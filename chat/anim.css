@@ -43,34 +43,3 @@ html body :is(.g-file,.cd-fcard,.xw-file,.cd-files,.cd-fzip),html body :is(.g-fi
 html body :is(.g-file,.cd-fcard,.xw-file):is(:hover,:active,:focus,:focus-visible){transform:none!important;scale:none!important}
 html body :is(.g-file,.cd-fcard,.xw-file)::before,html body :is(.g-file,.cd-fcard,.xw-file)::after,html body :is(.g-file,.cd-fcard,.xw-file) *::before,html body :is(.g-file,.cd-fcard,.xw-file) *::after{content:none!important;display:none!important;animation:none!important}
 html body :is(.cd-fdl,.xw-btn,.g-fd,.cd-fzip){transform:none!important;animation:none!important;transition:background-color .3s ease,opacity .3s ease!important}
-
-
-/* v412 mobile smooth animations */
-@media (pointer:coarse), (max-width:900px){
-  .shell, .side, .composer, .cl-sheet, .ms-card, .m-bot, .m-user, .bn, .nav-i, .icon-btn, .cl-row {
-    transition: transform .28s cubic-bezier(.22,1,.36,1), opacity .22s ease, background-color .2s ease, box-shadow .25s ease;
-  }
-  .side.open, .cl-sheet, #modeSheet .ms-card {
-    animation: xmmSlideUp .34s cubic-bezier(.22,1,.36,1) both;
-  }
-  @keyframes xmmSlideUp {
-    from { transform: translate3d(0,18px,0); opacity: 0; }
-    to { transform: none; opacity: 1; }
-  }
-  .m-bot, .m-user {
-    animation: xmmMsgIn .32s cubic-bezier(.22,1,.36,1) both;
-  }
-  @keyframes xmmMsgIn {
-    from { transform: translate3d(0,10px,0); opacity: 0; }
-    to { transform: none; opacity: 1; }
-  }
-  button:active, .cl-row:active, .ms-i:active {
-    transform: scale(.97);
-  }
-  #xl { transition: opacity .4s ease; }
-}
-@media (prefers-reduced-motion: reduce){
-  .shell, .side, .composer, .cl-sheet, .ms-card, .m-bot, .m-user, .bn, .nav-i {
-    transition: none !important; animation: none !important;
-  }
-}

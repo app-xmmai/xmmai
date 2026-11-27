@@ -1,4 +1,4 @@
-/* XMM AI clone.js v89 — new UI layer: drawer, top bar, greeting, composer, sheets, settings, voice screen. Loaded last. */
+/* XMM AI clone.js v413 — new UI layer: drawer, top bar, greeting, composer, sheets, settings, voice screen. Loaded last. */
 (function(){
 "use strict";
 var $=function(s,r){return(r||document).querySelector(s)};
@@ -418,7 +418,19 @@ function openModelOld(){
 
  s.body.addEventListener("click",function(e){var x=e.target.closest(".cl-gx");if(x){var g=s.body.querySelector(".cl-gal"),on=g.hidden;g.hidden=!on;x.textContent=(on?"\u25BC":"\u25B6")+" Galaxy models";return}var r=e.target.closest(".cl-mi");if(!r)return;pickModel(r.dataset.k);s.close()});
 }
-function syncModelLabel(){var sp=$("#modeBtn span"),v=$("#cvModel span");if(sp&&sp.textContent!=="Models")sp.textContent="Models";if(v&&v.textContent!=="Models")v.textContent="Models"}
+function syncModelLabel(){
+ var name="Models";
+ try{
+  var api=window.XMM_SUNAPI||window.XMM_API||{};
+  var S=api.S||(window.XMM_API&&window.XMM_API.S);
+  var MODELS=api.MODELS||window.MODELS;
+  if(S&&MODELS&&MODELS[S.mode]&&MODELS[S.mode].name)name=MODELS[S.mode].name;
+  else if(S&&MODELS&&MODELS[S.mode]&&MODELS[S.mode].short)name=MODELS[S.mode].short;
+ }catch(e){}
+ var sp=$("#modeBtn span"),v=$("#cvModel span");
+ if(sp)sp.textContent=name;
+ if(v)v.textContent=name;
+}
 
 /* ---------- settings sheet ---------- */
 var setS=null,stack=[];
@@ -469,6 +481,7 @@ function show(pg,anim){
  setS.back=pg==="root"?null:function(){var p=stack.pop()||"root";show(p,1)};
  if(anim){setS.body.classList.remove("sl");void setS.body.offsetWidth;setS.body.classList.add("sl")}
  setS.body.scrollTop=0;
+ try{if(setS&&setS.body){setS.body.__xmmPlug=0;xmmPluginsWire(setS.body)}}catch(e){}
 }
 function openSettings(){
  if(window.innerWidth>=760){openSettingsDesk();return}
@@ -476,6 +489,7 @@ function openSettings(){
  stack=[];setS=sheet("clSet",{title:"Settings",height:"90dvh",onclose:function(){setS=null}});
  show("root",0);
  wireSet();
+ try{xmmPluginsWire(setS.body)}catch(e){}
 }
 
 function wireSet(){

@@ -11,30 +11,10 @@ new MutationObserver(function(){if(!T)T=setTimeout(clamp,350)}).observe(document
 window.addEventListener("click",function(ev){var b=ev.target.closest&&ev.target.closest("[data-xe=nav]");if(!b||true)return;ev.preventDefault();ev.stopImmediatePropagation();ev.stopPropagation();
  var had=document.documentElement.classList.contains("xm-galaxy");try{localStorage.setItem("xmm.galaxy","1")}catch(_){}document.documentElement.classList.add("xm-galaxy");
  if(document.getElementById("xgp"))return;var d=document.createElement("div");d.id="xgp";d.innerHTML='<div class="xgc"><div class="xgi">'+XMI("galaxy")+'</div><b>You got Galaxy Mode!</b><small>'+(had?"Space background is already on.":"Space background unlocked.")+'</small><button type="button">Awesome</button></div>';d.onclick=function(e){if(e.target===d||e.target.tagName==="BUTTON")d.remove()};document.body.appendChild(d)},true);
-/* splash — only dismiss when content is ready; show patience text if slow */
-function hideXl(){var x=document.getElementById("xl");if(!x||x.classList.contains("out"))return;x.classList.add("out");setTimeout(function(){try{x.remove()}catch(e){}},450)}
-function xlReady(){
-  var x=document.getElementById("xl");if(!x)return;
-  var shell=document.getElementById("shell-chat")||document.querySelector(".shell");
-  var ok=document.readyState==="complete" && shell && (shell.querySelector("#msg")||shell.querySelector(".composer")||shell.querySelector("#chatNav"));
-  if(ok){var w=Math.max(0,900-(Date.now()-(window.__xlT||0)));setTimeout(hideXl,w);return true}
-  return false
-}
-(function(){
-  var s=document.getElementById("xls");
-  var warned=0;
-  function tick(){
-    if(xlReady())return;
-    var elapsed=Date.now()-(window.__xlT||0);
-    if(elapsed>3200&&s&&!warned){warned=1;s.textContent="This is taking longer than expected…";s.style.color="#c4c4cc"}
-    if(elapsed>12000){hideXl();return}
-    setTimeout(tick,200)
-  }
-  if(document.readyState==="complete")tick();
-  else addEventListener("load",function(){setTimeout(tick,50)});
-  setTimeout(tick,400);
-  setTimeout(function(){if(document.getElementById("xl"))hideXl()},14000);
-})();
+/* splash — dismiss ASAP so main UI is visible; never block on slow assets */
+function hideXl(){var x=document.getElementById("xl");if(!x||x.className)return;x.className="out";setTimeout(function(){try{x.remove()}catch(e){}},320)}
+if(document.readyState!=="loading")hideXl();else document.addEventListener("DOMContentLoaded",hideXl);
+addEventListener("load",hideXl);setTimeout(hideXl,900);
 /* map opens inside the main app (URL stays /chat/). Old /map/<place> links are converted. */
 var pending=null,loading=false,seen=false;
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-xe=nav]");if(b)pending=b.getAttribute("data-q")},true);

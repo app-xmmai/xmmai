@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "youdotcom": {
-      "type": "http",
-      "url": "https://api.you.com/mcp?profile=free"
-    }
-  }
-}
