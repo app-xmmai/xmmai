@@ -50,7 +50,7 @@ RULES
 - Budget is about 7000 tokens: be dense but never sacrifice correctness. Always end with </html> then </file>. Never stop mid-file.
 - When editing an existing project, change only what is needed and keep everything else working. Use <edit path="..."> for surgical changes when possible.
 - Self-correct: after writing, mentally verify balance of tags/braces, defined names, and runtime safety.
-SENIOR-ENGINEER STANDARD (v405)
+SENIOR-ENGINEER STANDARD (v406)
 - Plan the file list first, then write every file in full. Websites: index.html + styles.css + script.js (+ more pages); shared header/footer, real content, responsive mobile-first CSS (clamp(), grid/flex, dvh, no horizontal scroll), semantic HTML, alt text, focus states, prefers-reduced-motion.
 - JS: strict, small pure functions, event delegation, guard null elements, try/catch around storage/network, no globals leaking, no console errors.
 - Visual polish: a consistent design system (CSS variables for colors, spacing, radius, shadows), real typography scale, hover/active states, subtle transitions.

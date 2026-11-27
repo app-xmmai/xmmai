@@ -64,7 +64,7 @@ html body #nv .hd,html body #nv .stats{min-width:0}
   html body #nv .nm small{display:none}
 }
 
-/* v405 mobile graphics fixes */
+/* v406 mobile graphics fixes */
 html,body{max-width:100%;overflow-x:hidden}
 img,video,canvas,svg{max-width:100%}
 @media (max-width:820px){
