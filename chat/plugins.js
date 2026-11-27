@@ -1,4 +1,4 @@
-/* XMM AI v418 · Plugins manager: upload .html / .py / .js plugins or let the AI make one. */
+/* XMM AI v420 · Plugins manager: upload .html / .py / .js plugins or let the AI make one. */
 (function(){"use strict";
 var $=function(s,r){return(r||document).querySelector(s)};
 function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -19,38 +19,41 @@ function css(){if($("#xpCss"))return;var s=document.createElement("style");s.id=
 ".xp-r{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid rgba(255,255,255,.1);border-radius:14px;margin:8px 0;background:rgba(255,255,255,.03);animation:xpIn .35s ease both}@keyframes xpIn{from{opacity:0;transform:translateY(8px)}}.xp-r .i{flex:1;min-width:0}.xp-r b{display:block}.xp-r small{color:#9a9aa6;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}"+
 ".xp-t{position:relative;width:42px;height:24px;border-radius:99px;background:rgba(255,255,255,.2);border:0;cursor:pointer;flex:none;transition:background .2s}.xp-t:after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}.xp-t.on{background:#34c759}.xp-t.on:after{transform:translateX(18px)}.xp-d{border:0;background:none;color:#ff8a8a;font-size:13px;cursor:pointer}"+
 ".xp-mk{display:none;gap:8px;margin-top:6px;flex-direction:column}.xp-mk.on{display:flex}.xp-mk textarea{width:100%;box-sizing:border-box;min-height:90px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#0c0c0e;color:#fff;font:14px system-ui;resize:vertical}"+
+".xp-emb .xp-b{background:rgba(127,127,127,.2);color:inherit}.xp-emb .xp-b.p{background:#2f6bff;color:#fff}.xp-emb .xp-r{border-color:rgba(127,127,127,.28);background:rgba(127,127,127,.07)}.xp-emb .xp-mk textarea{background:rgba(127,127,127,.1);color:inherit;border-color:rgba(127,127,127,.3)}.xp-emb .xp-p,.xp-emb .xp-r small{color:inherit;opacity:.65}.xp-emb .xp-t{background:rgba(127,127,127,.35)}.xp-emb .xp-t.on{background:#34c759}"+
 ".xp-ov{position:fixed;inset:0;z-index:2147483300;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;transition:opacity .25s}.xp-ov.in{opacity:1}.xp-fr{position:relative;width:min(760px,100%);height:min(80dvh,640px);background:#fff;border-radius:18px;overflow:hidden;transform:scale(.96);transition:transform .3s cubic-bezier(.22,1,.36,1)}.xp-ov.in .xp-fr{transform:none}.xp-fr iframe{width:100%;height:100%;border:0}.xp-fr .xp-x{position:absolute;top:8px;right:8px;z-index:2;background:rgba(0,0,0,.6)}";
 document.head.appendChild(s)}
 function draw(){var L=$("#xpL");if(!L)return;var a=list();
  L.innerHTML=a.length?a.map(function(p){var t=p.tools[0]||{};return'<div class="xp-r"><div class="i"><b>'+esc(p.name)+'</b><small>'+esc((t.lang||"js").toUpperCase())+' · '+esc(t.description||"")+'</small></div><button class="xp-d" type="button" data-d="'+p.id+'">Remove</button><button class="xp-t'+(p.on?" on":"")+'" type="button" data-t="'+p.id+'" aria-label="Toggle"></button></div>'}).join(""):'<div class="xp-p">No plugins yet. Upload a file or tap Make new.</div>'}
-function open(){css();var m=$("#xpM");if(m){m.remove()}
- m=document.createElement("div");m.id="xpM";m.className="xp-m";
- m.innerHTML='<div class="xp-c" role="dialog" aria-modal="true" aria-label="Plugins"><div class="xp-h"><h3>Plugins</h3><button class="xp-x" type="button" data-x aria-label="Close">\u00d7</button></div>'+
- '<div class="xp-p">Plugins add features the AI can use. Upload an .html, .py or .js file, or tap Make new and just explain what you want.</div>'+
+function mount(root){css();
+ root.classList.add("xp-emb");
+ root.innerHTML='<div class="xp-p">Plugins add features the AI can use. Upload an HTML, Python or JS file, or tap Make new and just explain what you want.</div>'+
  '<div class="xp-acts"><button class="xp-b p" type="button" data-up="html">HTML</button><button class="xp-b p" type="button" data-up="py">Python</button><button class="xp-b p" type="button" data-up="js">JS</button></div><div class="xp-acts"><button class="xp-b" type="button" data-new>Make new</button></div>'+
  '<input id="xpF" type="file" multiple hidden>'+
  '<div class="xp-mk" id="xpMk"><textarea id="xpTx" placeholder="Explain it, e.g. a plugin that converts euros to dollars"></textarea><button class="xp-b p" type="button" id="xpGo">Create plugin</button></div>'+
- '<div id="xpL"></div></div>';
- document.body.appendChild(m);draw();requestAnimationFrame(function(){m.classList.add("in")});
- function close(){m.classList.remove("in");setTimeout(function(){m.remove()},260)}
- m.addEventListener("click",function(e){
-  if(e.target===m||e.target.closest("[data-x]"))return close();
+ '<div id="xpL"></div>';
+ draw();
+ root.addEventListener("click",function(e){
   var up=e.target.closest("[data-up]");if(up){var k=up.dataset.up,f=$("#xpF");f.dataset.k=k;f.accept=k==="py"?".py,text/x-python,text/plain":k==="js"?".js,text/javascript,application/javascript,text/plain":".html,.htm,text/html";f.click();return}
   if(e.target.closest("[data-new]")){$("#xpMk").classList.toggle("on");return}
   var t=e.target.closest("[data-t]");if(t){XMM_MCP.togPlugin(t.dataset.t);draw();return}
   var d=e.target.closest("[data-d]");if(d){XMM_MCP.delPlugin(d.dataset.d);draw();return}});
- $("#xpF").onchange=function(e){var fs=[].slice.call(e.target.files||[]);fs.forEach(function(f){
-  var ext=(f.name.split(".").pop()||"").toLowerCase(),lang=ext==="py"?"py":(ext==="js"?"js":(/^html?$/.test(ext)?"html":""));var want=e.target.dataset.k;if(want&&lang!==want){toast(f.name+" is not a ."+(want==="py"?"py":want==="js"?"js":"html")+" file");return}
-  if(!lang){toast("Use .html, .py or .js files");return}
+ $("#xpF").onchange=function(e){var fs=[].slice.call(e.target.files||[]),want=e.target.dataset.k;fs.forEach(function(f){
+  var ext=(f.name.split(".").pop()||"").toLowerCase(),lang=ext==="py"?"py":(ext==="js"?"js":(/^html?$/.test(ext)?"html":""));
+  if(!lang||(want&&lang!==want)){toast(f.name+" is not a ."+(want==="py"?"py":want==="js"?"js":"html")+" file");return}
   if(f.size>400000){toast(f.name+" is too big (max 400 KB)");return}
   var r=new FileReader();r.onload=function(){var txt=String(r.result||""),c=/^\s*(?:#|\/\/|\/\*|<!--)\s*(.{3,160})/.exec(txt);
    if(add(build(f.name.replace(/\.[a-z]+$/i,""),c?c[1].replace(/(\*\/|-->)\s*$/,"").trim():"Uploaded "+f.name,lang,txt))){draw();toast(f.name+" added")}};r.readAsText(f)});e.target.value=""};
- $("#xpGo").onclick=async function(){var b=this,q=$("#xpTx").value.trim();if(!q)return;b.disabled=true;b.textContent="Making it…";
+ $("#xpGo").onclick=async function(){var b=this,q=$("#xpTx").value.trim();if(!q)return;b.disabled=true;b.textContent="Making it\u2026";
   try{var out=await XMM_API.groq([{role:"system",content:'You write browser plugins. Reply with ONLY JSON, no markdown: {"name":"short name","description":"one sentence what it does","lang":"js","code":"..."}. The code is the body of an async JavaScript function that receives an object named args (args.input is a string) and must return a string. It runs in a sandboxed Web Worker: no DOM, but fetch works. Keep it small and correct.'},{role:"user",content:q}],{maxTokens:1800,autoCont:false});
    var j=JSON.parse(String(out).replace(/^[\s\S]*?(\{[\s\S]*\})[\s\S]*$/,"$1"));
    if(!j.code)throw new Error("empty");
    if(add(build(j.name||"plugin",j.description||q,"js",String(j.code)))){draw();$("#xpTx").value="";$("#xpMk").classList.remove("on");toast((j.name||"Plugin")+" created")}}
   catch(er){toast("Could not make it, try describing it again")}
   b.disabled=false;b.textContent="Create plugin"}}
-window.XMM_PLUGINS={open:open};
+function open(){if(window.XMM_CLONE&&XMM_CLONE.openSettings){XMM_CLONE.openSettings("plugins");return}
+ css();var m=$("#xpM");if(m)m.remove();m=document.createElement("div");m.id="xpM";m.className="xp-m";
+ m.innerHTML='<div class="xp-c" role="dialog" aria-modal="true" aria-label="Plugins"><div class="xp-h"><h3>Plugins</h3><button class="xp-x" type="button" data-x aria-label="Close">\u00d7</button></div><div id="xpBox"></div></div>';
+ document.body.appendChild(m);mount($("#xpBox"));requestAnimationFrame(function(){m.classList.add("in")});
+ m.addEventListener("click",function(e){if(e.target===m||e.target.closest("[data-x]")){m.classList.remove("in");setTimeout(function(){m.remove()},260)}})}
+window.XMM_PLUGINS={open:open,mount:mount};
 })();

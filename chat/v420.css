@@ -1,4 +1,4 @@
-/* XMM AI v418 · smooth mobile motion, model check marks, model sheet slide */
+/* XMM AI v420 · smooth mobile motion, model check marks, model sheet slide */
 #xmSub .xm-it,#xmCard .xm-it{display:flex;align-items:center;gap:8px;transition:background-color .2s ease,color .2s ease,transform .15s ease}
 #xmSub .xm-it:active,#xmCard .xm-it:active{transform:scale(.98)}
 .xm-ckw,.xm-lk{display:inline-flex;align-items:center;color:#fff}

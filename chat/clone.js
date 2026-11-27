@@ -435,7 +435,7 @@ function pageRoot(){
  '<div class="cl-lbl" style="padding-top:6px">Account</div><div class="cl-grp">'+
   row(IC.person,"Profile",{go:"profile"})+row(IC.bell,"Notifications",{go:"notif"})+row(IC.shield,"Privacy",{go:"privacy"})+'</div>'+
  '<div class="cl-lbl">App</div><div class="cl-grp">'+
-  row(IC.help,"Support",{act:"support"})+row(IC.sliders,"Memory",{go:"caps"})+row(IC.sliders,"Plugins",{act:"plugins"})+row(IC.voice,"Voice and dictation",{go:"voice"})+
+  row(IC.help,"Support",{act:"support"})+row(IC.sliders,"Memory",{go:"caps"})+row(IC.sliders,"Plugins",{go:"plugins"})+row(IC.voice,"Voice and dictation",{go:"voice"})+
   '<div class="cl-row" style="cursor:default">'+IC.globe+'<span class="rt">Open links in</span><span class="rv">'+(ld("xmm.cl.links","tab")==="same"?"This tab":"New tab")+IC.updn+'</span><select data-links><option value="tab"'+(ld("xmm.cl.links","tab")==="tab"?" selected":"")+'>New tab</option><option value="same"'+(ld("xmm.cl.links","tab")==="same"?" selected":"")+'>This tab</option></select></div>'+
   '<div class="cl-row" style="cursor:default" data-do="hap">'+IC.haptic+'<span class="rt">Haptic feedback</span><button class="cl-sw'+(hapOn()?" on":"")+'" data-sw="hap" type="button" aria-label="Haptic feedback"></button></div>'+
   (window.XMM_APP?(window.xmmDesktop?row(IC.dl,"Download local model",{act:"localmodel"}):""):row(IC.dl,"Install app",{act:"install"}))+'</div>'+
@@ -450,11 +450,12 @@ function pageNotif(){var p="Notification" in window?Notification.permission:"den
 function pagePrivacy(){return'<div class="cl-grp" style="margin-top:6px">'+row(IC.term,"Privacy policy",{act:"privacy"})+row(IC.term,"Terms of Service",{act:"terms"})+row(IC.help,"Support",{act:"support"})+'</div><div class="cl-grp">'+row(IC.trash,"Delete all chats",{act:"clear",cls:"dg",chev:false})+'</div>'}
 function pageCaps(){return'<div class="cl-lbl" style="padding-top:6px">Memory</div><textarea class="cl-in" id="clMem" maxlength="2000" placeholder="Things XMM AI should always remember about you…" dir="auto">'+esc(ld("xmm.mem",""))+'</textarea><div class="cl-note">XMM AI uses this in every chat. You can change it any time.</div>'}
 function pageVoice(){return'<div class="cl-grp" style="margin-top:6px"><div class="cl-row nl" style="cursor:default">'+IC.globe+'<span class="rt">Voice language<small>Voice mode and dictation listen and speak in this language.</small></span><span class="rv">'+esc(langName())+IC.updn+'</span>'+langSel()+'</div></div>'}
-function pageInfo(){return'<div class="cl-prof" style="margin-top:6px"><div class="a" style="background:none"><img src="icon.svg?v=gpu6" alt="" width="40" height="40" style="border-radius:11px"></div><div><b>XMM AI</b><span>by XMM Bayat · v418</span></div></div><div class="cl-grp">'+row(IC.term,"Terms of Service",{act:"terms"})+row(IC.term,"Privacy policy",{act:"privacy"})+row(IC.help,"Support",{act:"support"})+'</div><div class="cl-note" style="text-align:center">© XMMAI. All rights reserved.</div>'}
-var PAGES={root:{t:"Settings",h:pageRoot},profile:{t:"Profile",h:pageProfile},notif:{t:"Notifications",h:pageNotif},privacy:{t:"Privacy",h:pagePrivacy},caps:{t:"Memory",h:pageCaps},voice:{t:"Voice and dictation",h:pageVoice},info:{t:"About",h:pageInfo}};
+function pageInfo(){return'<div class="cl-prof" style="margin-top:6px"><div class="a" style="background:none"><img src="icon.svg?v=gpu6" alt="" width="40" height="40" style="border-radius:11px"></div><div><b>XMM AI</b><span>by XMM Bayat · v420</span></div></div><div class="cl-grp">'+row(IC.term,"Terms of Service",{act:"terms"})+row(IC.term,"Privacy policy",{act:"privacy"})+row(IC.help,"Support",{act:"support"})+'</div><div class="cl-note" style="text-align:center">© XMMAI. All rights reserved.</div>'}
+function mountPl(){var e=setS&&setS.body&&setS.body.querySelector("#xpEmbed");if(e&&window.XMM_PLUGINS)XMM_PLUGINS.mount(e)}
+var PAGES={plugins:{t:"Plugins",h:function(){return'<div id="xpEmbed" style="padding:6px 2px"></div>'}},root:{t:"Settings",h:pageRoot},profile:{t:"Profile",h:pageProfile},notif:{t:"Notifications",h:pageNotif},privacy:{t:"Privacy",h:pagePrivacy},caps:{t:"Memory",h:pageCaps},voice:{t:"Voice and dictation",h:pageVoice},info:{t:"About",h:pageInfo}};
 function show(pg,anim){
  if(!setS)return;
- if(setS.desk){setS.page=pg;setS.body.innerHTML=deskPage(pg);var nb=setS.el.querySelectorAll("[data-dk]");for(var i=0;i<nb.length;i++)nb[i].classList.toggle("on",nb[i].dataset.dk===pg);setS.body.scrollTop=0;return}var P=PAGES[pg]||PAGES.root;setS.title.textContent=P.t;setS.body.innerHTML=P.h();setS.page=pg;
+ if(setS.desk){setS.page=pg;setS.body.innerHTML=deskPage(pg);mountPl();var nb=setS.el.querySelectorAll("[data-dk]");for(var i=0;i<nb.length;i++)nb[i].classList.toggle("on",nb[i].dataset.dk===pg);setS.body.scrollTop=0;return}var P=PAGES[pg]||PAGES.root;setS.title.textContent=P.t;setS.body.innerHTML=P.h();setS.page=pg;mountPl();
  setS.left.innerHTML=pg==="root"?IC.x:IC.back;
  setS.right.innerHTML="";
  if(pg==="root"){var ib=el("button","cl-b");ib.type="button";ib.innerHTML=IC.info;ib.setAttribute("aria-label","About");ib.onclick=function(){stack.push("root");show("info",1)};setS.right.appendChild(ib)}
@@ -462,11 +463,12 @@ function show(pg,anim){
  if(anim){setS.body.classList.remove("sl");void setS.body.offsetWidth;setS.body.classList.add("sl")}
  setS.body.scrollTop=0;
 }
-function openSettings(){
- if(window.innerWidth>=760){openSettingsDesk();return}
+function openSettings(pg){
+ if(window.innerWidth>=760){openSettingsDesk(pg);return}
  closeDrawer();var m=$("#msg");if(m)m.blur();
  stack=[];setS=sheet("clSet",{title:"Settings",height:"90dvh",onclose:function(){setS=null}});
  show("root",0);
+ if(pg==="plugins"){stack.push("root");show("plugins",0)}
  wireSet();
 }
 
@@ -513,12 +515,12 @@ function deskPage(k){
  if(k==="acc")return'<h4>Profile</h4>'+dkRow("Profile photo",'<span class="dk-av">'+esc((n||"X").charAt(0).toUpperCase())+'</span>')+dkRow("Full name",'<input class="dk-in" id="clName" maxlength="40" value="'+esc(n)+'" dir="auto">')+dkRow("Language",langSel().replace("<select","<select class=\"dk-in\""))+dkRow("Open links in",'<select class="dk-in" data-links><option value="tab"'+(ld("xmm.cl.links","tab")==="tab"?" selected":"")+'>New tab</option><option value="same"'+(ld("xmm.cl.links","tab")==="same"?" selected":"")+'>This tab</option></select>')+'<div class="dk-btns"><button class="dk-b" data-do="install" type="button">Install app</button><button class="dk-b dg" data-do="logout" type="button">Log out</button></div>';
  if(k==="app")return'<h4>Appearance</h4>'+themesHtml()+'<div class="cl-grp"><div class="cl-row nl" style="cursor:default" data-do="hap">'+IC.haptic+'<span class="rt">Haptic feedback</span><button class="cl-sw'+(hapOn()?" on":"")+'" data-sw="hap" type="button" aria-label="Haptic feedback"></button></div></div>'+(window.xmmDesktop?'<h4 style="margin-top:22px">Local model</h4><div class="cl-grp">'+row(IC.dl,"Download local model",{act:"localmodel",sub:"Run an AI on this computer instead of the online one"})+'</div>':"");
  if(k==="mem")return'<h4>Memory</h4>'+pageCaps();
- if(k==="plugins")return'<h4>Plugins</h4><div class="cl-note" style="margin:6px 0 12px">Upload .html, .py or .js files that add features the AI can use, or let the AI make one for you.</div><button class="cl-row" type="button" data-do="plugins"><span class="rt">Open plugins</span></button>';
+ if(k==="plugins")return'<h4>Plugins</h4><div id="xpEmbed" style="margin-top:8px"></div>';
  if(k==="notif")return'<h4>Notifications</h4>'+pageNotif();
  if(k==="priv")return'<h4>Privacy</h4>'+pagePrivacy();
  return'<h4>About</h4>'+pageInfo();
 }
-function openSettingsDesk(){
+function openSettingsDesk(pg){
  closeDrawer();var m=$("#msg");if(m)m.blur();
  var old=document.getElementById("clDesk");if(old)old.remove();
  var bg=el("div","dk-bg");bg.id="clDesk";
@@ -529,7 +531,7 @@ function openSettingsDesk(){
  bg.addEventListener("mousedown",function(e){if(e.target===bg)setS&&setS.close()});
  bg.querySelector(".dk-x").onclick=function(){setS&&setS.close()};
  bg.querySelector(".dk-n").addEventListener("click",function(e){var b=e.target.closest("[data-dk]");if(b)show(b.dataset.dk,0)});
- wireSet();show("acc",0);
+ wireSet();show(pg||"acc",0);
 }
 
 /* ---------- voice screen ---------- */
