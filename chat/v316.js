@@ -692,7 +692,7 @@ function page(k){
   return'<h4>Notifications</h4>'+row('Browser notifications',pm==="granted"?'On':pm==="denied"?'Blocked in browser':pm==="unsupported"?'Not supported':'<button class="bt" id="v3Nf" type="button">Allow</button>','Get told when a long task such as a build is done.')}
  if(k==="priv")return'<h4>Privacy</h4>'+row('Terms of Use','<a href="https://xmm-ai.com/terms" target="_blank" rel="noopener">View</a>')+row('Privacy Policy','<a href="https://xmm-ai.com/privacy" target="_blank" rel="noopener">View</a>')+
   row('Delete all chats','<button class="bt dg" id="v3Del" type="button">Delete</button>','Removes every chat saved on this device.')+row('Log out','<button class="bt" id="v3Out" type="button">Log out</button>');
- if(k==="plugins")return'<h4>Plugins</h4>'+row('MCP server','<button class="bt" id="v3Mcp" type="button">Open</button>','Connect external tools to XMM AI.');
+ if(k==="plugins")return'<h4>Plugins</h4>'+row('Add plugin','<button class="bt" type="button" data-pl="html">HTML</button> <button class="bt" type="button" data-pl="py">Python</button> <button class="bt" type="button" data-pl="js">JS</button>','Upload a file that adds a feature the AI can use.')+row('Make plugin','<button class="bt" id="v3PlMk" type="button">Make plugin</button>','Explain it and the AI makes it for you.')+row('MCP server','<button class="bt" id="v3Mcp" type="button">Open</button>','Connect external tools to XMM AI.')+(window.XMM_PLUGINS?window.XMM_PLUGINS.listHtml():'');
  if(k==="code")return'<h4>Code</h4>'+row('Build mode','<button class="bt" id="v3Bd" type="button">Open Build</button>','XMM AI Engine 5.2 writes complete files and shows them live in Preview.');
  return"";
 }
@@ -736,6 +736,10 @@ function openSettings(k){
   if(id==="v3Del"){if(confirm("Delete all chats on this device?")){o.remove();var ca=$("#clearAll");if(ca)ca.click()}return}
   if(id==="v3Nf"){try{Notification.requestPermission().then(function(){show("notif")})}catch(x){}return}
   if(id==="v3Vo"){o.remove();try{CL().openVoice()}catch(x){}return}
+  if(t.dataset.pl){if(window.XMM_PLUGINS)XMM_PLUGINS.pick(t.dataset.pl,function(){show("plugins")});else toast("Plugins are loading, try again");return}
+  if(id==="v3PlMk"){if(window.XMM_PLUGINS)XMM_PLUGINS.make(function(){show("plugins")});else toast("Plugins are loading, try again");return}
+  if(t.dataset.pt){XMM_PLUGINS.tog(t.dataset.pt);show("plugins");return}
+  if(t.dataset.pd){XMM_PLUGINS.del(t.dataset.pd);show("plugins");return}
   if(id==="v3Mcp"){o.remove();var mb=$(".xmcp-btn");if(mb)mb.click();else toast("Plugins are loading, try again");return}
   if(id==="v3Bd"){o.remove();var sb=$('#seg [data-m="code"]');if(sb)sb.click();return}
  });

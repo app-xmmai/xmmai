@@ -1,4 +1,4 @@
-/* XMM AI v420 · Plugins manager: upload .html / .py / .js plugins or let the AI make one. */
+/* XMM AI v421 · Plugins manager: upload .html / .py / .js plugins or let the AI make one. */
 (function(){"use strict";
 var $=function(s,r){return(r||document).querySelector(s)};
 function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -55,5 +55,29 @@ function open(){if(window.XMM_CLONE&&XMM_CLONE.openSettings){XMM_CLONE.openSetti
  m.innerHTML='<div class="xp-c" role="dialog" aria-modal="true" aria-label="Plugins"><div class="xp-h"><h3>Plugins</h3><button class="xp-x" type="button" data-x aria-label="Close">\u00d7</button></div><div id="xpBox"></div></div>';
  document.body.appendChild(m);mount($("#xpBox"));requestAnimationFrame(function(){m.classList.add("in")});
  m.addEventListener("click",function(e){if(e.target===m||e.target.closest("[data-x]")){m.classList.remove("in");setTimeout(function(){m.remove()},260)}})}
-window.XMM_PLUGINS={open:open,mount:mount};
+
+var ACC={html:".html,.htm,text/html",py:".py,text/x-python,text/plain",js:".js,text/javascript,application/javascript,text/plain"};
+function pick(kind,cb){css();var i=document.createElement("input");i.type="file";i.accept=ACC[kind]||"";i.multiple=true;i.style.cssText="position:fixed;left:-999px;opacity:0";document.body.appendChild(i);
+ i.onchange=function(){var fs=[].slice.call(i.files||[]),left=fs.length;if(!left){i.remove();return}
+  fs.forEach(function(f){var ext=(f.name.split(".").pop()||"").toLowerCase(),lang=ext==="py"?"py":(ext==="js"?"js":(/^html?$/.test(ext)?"html":""));
+   function end(){if(--left<=0){i.remove();if(cb)cb()}}
+   if(lang!==kind){toast(f.name+" is not a ."+(kind==="py"?"py":kind)+" file");end();return}
+   if(f.size>400000){toast(f.name+" is too big (max 400 KB)");end();return}
+   var r=new FileReader();r.onload=function(){var txt=String(r.result||""),c=/^\s*(?:#|\/\/|\/\*|<!--)\s*(.{3,160})/.exec(txt);
+    if(add(build(f.name.replace(/\.[a-z]+$/i,""),c?c[1].replace(/(\*\/|-->)\s*$/,"").trim():"Uploaded "+f.name,lang,txt)))toast(f.name+" added");end()};r.onerror=end;r.readAsText(f)})};
+ i.click()}
+function make(cb){css();var m=$("#xpM");if(m)m.remove();m=document.createElement("div");m.id="xpM";m.className="xp-m";
+ m.innerHTML='<div class="xp-c" role="dialog" aria-modal="true" aria-label="Make plugin"><div class="xp-h"><h3>Make plugin</h3><button class="xp-x" type="button" data-x aria-label="Close">\u00d7</button></div><div class="xp-p">Explain what the plugin should do and the AI makes it for you.</div><div class="xp-mk on"><textarea id="xpTx2" placeholder="Explain it, e.g. a plugin that converts euros to dollars"></textarea><button class="xp-b p" type="button" id="xpGo2">Create plugin</button></div></div>';
+ document.body.appendChild(m);requestAnimationFrame(function(){m.classList.add("in")});
+ function close(){m.classList.remove("in");setTimeout(function(){m.remove()},260)}
+ m.addEventListener("click",function(e){if(e.target===m||e.target.closest("[data-x]"))close()});
+ $("#xpGo2").onclick=async function(){var b=this,q=$("#xpTx2").value.trim();if(!q)return;b.disabled=true;b.textContent="Making it\u2026";
+  try{var out=await XMM_API.groq([{role:"system",content:'You write browser plugins. Reply with ONLY JSON, no markdown: {"name":"short name","description":"one sentence what it does","lang":"js","code":"..."}. The code is the body of an async JavaScript function that receives an object named args (args.input is a string) and must return a string. It runs in a sandboxed Web Worker: no DOM, but fetch works. Keep it small and correct.'},{role:"user",content:q}],{maxTokens:1800,autoCont:false});
+   var j=JSON.parse(String(out).replace(/^[\s\S]*?(\{[\s\S]*\})[\s\S]*$/,"$1"));if(!j.code)throw new Error("empty");
+   if(add(build(j.name||"plugin",j.description||q,"js",String(j.code)))){toast((j.name||"Plugin")+" created");close();if(cb)cb()}}
+  catch(er){toast("Could not make it, try describing it again");b.disabled=false;b.textContent="Create plugin"}}}
+function listHtml(){var a=list();if(!a.length)return'<p class="note">No plugins yet. Tap HTML, Python or JS to add one, or Make plugin.</p>';
+ return a.map(function(p){var t=p.tools[0]||{};return'<div class="row"><div>'+esc(p.name)+'<small>'+esc((t.lang||"js").toUpperCase())+' \u00b7 '+esc(t.description||"")+'</small></div><div><button class="bt dg" type="button" data-pd="'+p.id+'">Remove</button> <button class="sw'+(p.on?" on":"")+'" type="button" data-pt="'+p.id+'" aria-label="Toggle"></button></div></div>'}).join("")}
+function tog(id){XMM_MCP.togPlugin(id)}function del(id){XMM_MCP.delPlugin(id)}
+window.XMM_PLUGINS={open:open,mount:mount,pick:pick,make:make,listHtml:listHtml,tog:tog,del:del};
 })();
