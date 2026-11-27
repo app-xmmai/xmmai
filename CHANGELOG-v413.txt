@@ -1,6 +1,0 @@
-XMM AI v413
-- Main chat UI loads first (critical JS only)
-- Settings / model menu / code / image / voice / maps load after paint, one file at a time (slow 3 kb/s friendly)
-- Settings & model sheets still only build when you tap them
-- Model button keeps real model name (syncModelLabel fixed)
-- Includes v412 fixes (UI restore, quote crash, fast splash, root -> chat)
