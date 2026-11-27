@@ -98,30 +98,6 @@ function buildSug(){
  s.onclick=function(e){var b=e.target.closest("button");if(!b)return;var m=$("#msg");m.focus();m.value=items[+b.dataset.i][2];m.dispatchEvent(new Event("input",{bubbles:true}));try{m.setSelectionRange(m.value.length,m.value.length)}catch(_){}};
 }
 
-/* ============ plus popup ============ */
-function pickFile(kind){
- var i=document.createElement("input");i.type="file";i.className="xmm-file";i.style.cssText="position:fixed;left:-999px;opacity:0";
- if(kind==="camera"){i.accept="image/*";i.setAttribute("capture","environment")}else if(kind==="photos"){i.accept="image/*,video/*";i.multiple=true}else if(kind==="video"){i.accept="video/*";i.multiple=true}else i.multiple=true;
- document.body.appendChild(i);i.addEventListener("change",function(){setTimeout(function(){i.remove()},2500)});i.click();
-}
-window.__ipPlus=function(a){$("#ipPlus")?closePlus():openPlus(a)};
-function closePlus(){var p=$("#ipPlus");if(p)p.remove()}
-function openPlus(btn){
- closePlus();
- var p=el("div");p.id="ipPlus";
- p.innerHTML=[["camera","Camera",IC.camera],["photos","Photos",IC.photos],["video","Video",IC.video],["files","Files",IC.files],["plugins","Plugins",IC.plug]].map(function(x){return'<button type="button" data-k="'+x[0]+'">'+x[2]+'<span>'+x[1]+'</span></button>'}).join("");
- document.body.appendChild(p);
- var r=btn.getBoundingClientRect();
- p.style.left=Math.max(10,Math.min(r.left,innerWidth-p.offsetWidth-10))+"px";
- p.style.top=Math.max(10,r.top-p.offsetHeight-10)+"px";
- p.onclick=function(e){var b=e.target.closest("button");if(!b)return;var k=b.dataset.k;closePlus();if(k==="plugins")openPage("plugins");else pickFile(k)};
-}
-["pointerdown","pointerup","mousedown","mouseup","touchstart","touchend","click"].forEach(function(ev){window.addEventListener(ev,function(e){
- var a=e.target.closest&&e.target.closest("#attBtn");
- if(a){e.stopImmediatePropagation();e.stopPropagation();if(ev!=="touchstart")e.preventDefault&&e.cancelable&&e.preventDefault();if(ev==="pointerup"){if(e.button===0||e.button==null){window.__plT=Date.now();$("#ipPlus")?closePlus():openPlus(a)}}else if(ev==="click"){if(Date.now()-(window.__plT||0)>700){$("#ipPlus")?closePlus():openPlus(a)}}return}
- if(ev==="click"&&!e.target.closest("#ipPlus"))closePlus();
-},true)});
-
 /* ============ pages ============ */
 function ensurePage(){
  if(pageEl&&pageEl.isConnected)return pageEl;
