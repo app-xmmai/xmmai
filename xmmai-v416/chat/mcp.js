@@ -98,7 +98,18 @@ async function statusTool(sg){
  return (n?"":"No external MCP servers or plugins have been added yet (only the built-in Browser tools).\n")+out.join("\n")}
 
 /* ---------------- plugins (JS tools from GitHub) run in a sandboxed Worker: no page, no chats, no tokens ---------------- */
-function runPlugin(t,args,sg){return new Promise(function(res,rej){
+function runPy(t,args,sg){return new Promise(function(res,rej){
+ var W;try{var src='self.onmessage=async function(e){try{importScripts("https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js");var py=await loadPyodide();py.globals.set("args",py.toPy(e.data));await py.runPythonAsync('+JSON.stringify(String(t.code||""))+');var r=py.globals.get("result");if(r&&r.toJs)r=r.toJs();postMessage({ok:1,r:typeof r==="string"?r:JSON.stringify(r===undefined?"done":r)})}catch(x){postMessage({ok:0,e:String(x&&x.message||x)})}}';
+ W=new Worker(URL.createObjectURL(new Blob([src],{type:"text/javascript"})))}catch(e){return rej(new Error("This browser cannot run Python plugins here."))}
+ var tm=setTimeout(function(){try{W.terminate()}catch(e){}rej(new Error("Python plugin timed out after 60 s"))},60000);
+ if(sg)sg.addEventListener("abort",function(){clearTimeout(tm);try{W.terminate()}catch(e){}rej(Object.assign(new Error("aborted"),{name:"AbortError"}))},{once:true});
+ W.onmessage=function(m){clearTimeout(tm);try{W.terminate()}catch(e){}m.data.ok?res(m.data.r):rej(new Error(m.data.e))};
+ W.onerror=function(m){clearTimeout(tm);try{W.terminate()}catch(e){}rej(new Error(m.message||"Plugin error"))};
+ W.postMessage(args||{})})}
+function runHtml(t){var o=document.createElement("div");o.className="xp-ov";o.innerHTML='<div class="xp-fr"><button type="button" class="xp-x" aria-label="Close">\u00d7</button><iframe sandbox="allow-scripts" title="Plugin"></iframe></div>';
+ o.querySelector("iframe").srcdoc=String(t.code||"");o.querySelector(".xp-x").onclick=function(){o.classList.remove("in");setTimeout(function(){o.remove()},250)};
+ document.body.appendChild(o);requestAnimationFrame(function(){o.classList.add("in")});return Promise.resolve("Opened the plugin on the user's screen.")}
+function runPlugin(t,args,sg){if(t.lang==="py")return runPy(t,args,sg);if(t.lang==="html")return runHtml(t);return new Promise(function(res,rej){
  var W;try{
   var src='self.onmessage=async function(e){try{var f=new Function("args",'+JSON.stringify("return (async()=>{"+String(t.code||"")+"\n})()")+');var r=await f(e.data);postMessage({ok:1,r:typeof r==="string"?r:JSON.stringify(r)})}catch(x){postMessage({ok:0,e:String(x&&x.message||x)})}}';
   W=new Worker(URL.createObjectURL(new Blob([src],{type:"text/javascript"})))}catch(e){return rej(new Error("This browser cannot run plugins here."))}
@@ -206,5 +217,9 @@ var T=0;function sched(){if(T)return;T=setTimeout(function(){T=0;try{inject()}ca
 function boot(){ensureStyle();inject();new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});setInterval(inject,2500)}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
 
-window.XMM_MCP={active:active,hint:hint,parse:parse,strip:strip,raw:raw,run:run,open:open};
+window.XMM_MCP={active:active,hint:hint,parse:parse,strip:strip,raw:raw,run:run,open:open,
+ plugins:function(){return S.filter(function(x){return x.plugin})},
+ addPlugin:function(o){S.push(o);save();draw()},
+ delPlugin:function(id){S=S.filter(function(x){return x.id!==id});save();draw()},
+ togPlugin:function(id){S.forEach(function(x){if(x.id===id)x.on=!x.on});save();draw()}};
 })();

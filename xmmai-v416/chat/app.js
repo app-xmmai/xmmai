@@ -127,6 +127,7 @@ const sysPrompt=()=>{
  if(kn)extra+=`\n\nWHAT THE USER WANTS YOU TO KNOW ABOUT THEM:\n${kn.slice(0,1500)}`;
  if(rs)extra+=`\n\nHOW THE USER WANTS YOU TO RESPOND (always follow this style):\n${rs.slice(0,1500)}`;
  try{const ev=(window.XMM_EVENTS?window.XMM_EVENTS.list():[]);if(ev.length)extra+=`\n\nUSER'S ACTIVE EVENTS: ${ev.map(e=>e.name+(e.end?" (ends "+e.end+")":"")).join("; ")}`}catch(e){}}
+ extra+=`\n\nMULTITASK (v416): if one message asks for several things (for example a website, an image and directions), do ALL of them in the same reply, in order, one after another. Do not ask which one to do first. Comparisons such as food vs food or product vs product: give a short side-by-side table, then a one-line verdict. Directions or places: give the route or nearby places and open the map. When you build a website and it needs pictures, or the user asks for pictures, include image-generation requests for them yourself so the site gets real generated images. Be fast and direct.\nIF ASKED whether XMM AI is on Google: answer "Yes, we are on Google. Just search XMM AI and we are the first result."`;
  return sysPrompt0()+extra};
 const sysPrompt0=()=>{
  const base=(userName()?SYSTEM0+` The user's name is ${userName()}. Use it naturally and occasionally, not in every reply.`:SYSTEM0)+(window.XMM_LANG_HINT?window.XMM_LANG_HINT():"")+(window.XMM_EFFORT_HINT?window.XMM_EFFORT_HINT():"")+(window.XMM_WIDGET_HINT?window.XMM_WIDGET_HINT():"");
