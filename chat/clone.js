@@ -377,7 +377,13 @@ function openModel(anchor){
  function pickE(v){xmSetEff(v)}
  var subKind=null,subRow=null;
  function placeSub(){if(!sub||!subRow)return;var cr=card.getBoundingClientRect(),rr=subRow.getBoundingClientRect(),w=sub.offsetWidth;sub.style.maxHeight=(innerHeight-24)+"px";var h=sub.offsetHeight;var left=cr.right+8+w<=innerWidth-8?cr.right+8:Math.max(8,cr.left-w-8);var top=Math.max(12,Math.min(rr.top-8,innerHeight-h-12));sub.style.left=left+"px";sub.style.top=top+"px"}
- function pos(){if(mob)return;var an=anchor&&anchor.closest?(anchor.closest("[data-r],button")||anchor):anchor,cp=(an&&an.closest&&an.closest(".composer"))||an;if(!cp||!cp.getBoundingClientRect)return;var r=cp.getBoundingClientRect(),b=an.getBoundingClientRect(),w=card.offsetWidth||400,h=card.offsetHeight||200;var left=Math.max(r.left,Math.min(b.left+(b.right-b.left)/2-w/2,r.right-w));left=Math.max(12,Math.min(left,innerWidth-w-12));var up=r.top-h-6>=8;card.style.left=left+"px";card.style.bottom="auto";card.style.top=Math.round(up?r.top-h-6:Math.min(r.bottom+6,innerHeight-h-8))+"px";placeSub()}
+ function vis(n){if(!n||!n.getBoundingClientRect)return false;var r=n.getBoundingClientRect();return r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight}
+ function findAnchor(){var c=[];if(anchor&&anchor.closest)c.push(anchor.closest("[data-r],button")||anchor);var q=document.querySelectorAll("#modeBtn,#cvModel");for(var i=0;i<q.length;i++)c.push(q[i]);for(var j=0;j<c.length;j++)if(vis(c[j]))return c[j];var cs=document.querySelectorAll(".composer");for(var k=0;k<cs.length;k++)if(vis(cs[k]))return cs[k];return null}
+ function pos(){if(mob)return;var w=card.offsetWidth||400,h=card.offsetHeight||200,an=findAnchor();card.style.bottom="auto";
+  if(!an){card.style.left=Math.max(12,(innerWidth-w)/2)+"px";card.style.top=Math.max(12,innerHeight-h-110)+"px";return}
+  var cp=an.closest(".composer");if(!vis(cp))cp=an;var r=cp.getBoundingClientRect(),b=an.getBoundingClientRect();
+  var left=Math.max(r.left,Math.min(b.left+(b.right-b.left)/2-w/2,r.right-w));left=Math.max(12,Math.min(left,innerWidth-w-12));
+  var up=r.top-h-6>=8;card.style.left=left+"px";card.style.top=Math.round(up?r.top-h-6:Math.min(r.bottom+6,innerHeight-h-8))+"px";placeSub()}
  function tick(){if(!document.getElementById("xmCard"))return;pos();requestAnimationFrame(tick)}
  function openSub(kind,row){
   if(sub){sub.remove();sub=null}
