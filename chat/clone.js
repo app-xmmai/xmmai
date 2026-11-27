@@ -434,7 +434,7 @@ function pageRoot(){
  '<div class="cl-lbl" style="padding-top:6px">Account</div><div class="cl-grp">'+
   row(IC.person,"Profile",{go:"profile"})+row(IC.bell,"Notifications",{go:"notif"})+row(IC.shield,"Privacy",{go:"privacy"})+'</div>'+
  '<div class="cl-lbl">App</div><div class="cl-grp">'+
-  row(IC.help,"Support",{act:"support"})+row(IC.sliders,"Memory",{go:"caps"})+row(IC.voice,"Voice and dictation",{go:"voice"})+
+  row(IC.help,"Support",{act:"support"})+row(IC.sliders,"Memory",{go:"caps"})+row(IC.voice,"Voice and dictation",{go:"voice"})+row(IC.sliders,"Plugins",{go:"plugins",sub:"Upload or create feature files"})+
   '<div class="cl-row" style="cursor:default">'+IC.globe+'<span class="rt">Open links in</span><span class="rv">'+(ld("xmm.cl.links","tab")==="same"?"This tab":"New tab")+IC.updn+'</span><select data-links><option value="tab"'+(ld("xmm.cl.links","tab")==="tab"?" selected":"")+'>New tab</option><option value="same"'+(ld("xmm.cl.links","tab")==="same"?" selected":"")+'>This tab</option></select></div>'+
   '<div class="cl-row" style="cursor:default" data-do="hap">'+IC.haptic+'<span class="rt">Haptic feedback</span><button class="cl-sw'+(hapOn()?" on":"")+'" data-sw="hap" type="button" aria-label="Haptic feedback"></button></div>'+
   (window.XMM_APP?(window.xmmDesktop?row(IC.dl,"Download local model",{act:"localmodel"}):""):row(IC.dl,"Install app",{act:"install"}))+'</div>'+
@@ -447,10 +447,19 @@ function pageProfile(){return'<div class="cl-lbl" style="padding-top:6px">Name</
 function pageNotif(){var p="Notification" in window?Notification.permission:"denied",on=ld("xmm.cl.notif","")==="yes"&&p==="granted";
  return'<div class="cl-grp" style="margin-top:6px"><div class="cl-row nl" style="cursor:default" data-do="notif">'+IC.bell+'<span class="rt">Response notifications<small>Get notified when XMM AI finishes a reply while you are away.</small></span><button class="cl-sw'+(on?" on":"")+'" data-sw="notif" type="button" aria-label="Response notifications"></button></div></div>'+(p==="denied"?'<div class="cl-note">Notifications are blocked for this site. Allow them in your browser settings to turn this on.</div>':"")}
 function pagePrivacy(){return'<div class="cl-grp" style="margin-top:6px">'+row(IC.term,"Privacy policy",{act:"privacy"})+row(IC.term,"Terms of Service",{act:"terms"})+row(IC.help,"Support",{act:"support"})+'</div><div class="cl-grp">'+row(IC.trash,"Delete all chats",{act:"clear",cls:"dg",chev:false})+'</div>'}
+
+function pagePlugins(){
+ var L=[];try{L=JSON.parse(localStorage.getItem("xmm.plugins")||"[]")}catch(e){}
+ var list=L.length?L.map(function(p,i){
+  return '<div class="cl-row nl" data-pi="'+i+'"><span class="rt">'+esc(p.name)+'<small>'+esc(p.kind||"js")+' · '+esc(String(p.code||"").slice(0,48))+(String(p.code||"").length>48?"…":"")+'</small></span><button class="cl-b" type="button" data-pdel="'+i+'" aria-label="Remove">'+(IC.x||"×")+'</button></div>';
+ }).join(""):'<div class="cl-note">No plugins yet. Upload an HTML, JS or Python feature file, or tap Make new and describe what you want.</div>';
+ return '<div class="cl-lbl" style="padding-top:6px">Plugins</div><div class="cl-grp">'+list+'</div><div class="cl-grp" style="margin-top:10px"><button class="cl-row" type="button" data-do="pluginUpload">'+(IC.plus||"")+'<span class="rt">Upload HTML / JS / Python</span></button><button class="cl-row" type="button" data-do="pluginMake">'+(IC.sliders||"")+'<span class="rt">Make new<small>Describe a feature and XMM builds the plugin for you</small></span></button></div><input type="file" id="clPlugFile" accept=".html,.htm,.js,.mjs,.py,.txt,.css" multiple hidden><div class="cl-note">Plugins stay on this device. The AI can use their code when you ask related tasks.</div>';
+}
+
 function pageCaps(){return'<div class="cl-lbl" style="padding-top:6px">Memory</div><textarea class="cl-in" id="clMem" maxlength="2000" placeholder="Things XMM AI should always remember about you…" dir="auto">'+esc(ld("xmm.mem",""))+'</textarea><div class="cl-note">XMM AI uses this in every chat. You can change it any time.</div>'}
 function pageVoice(){return'<div class="cl-grp" style="margin-top:6px"><div class="cl-row nl" style="cursor:default">'+IC.globe+'<span class="rt">Voice language<small>Voice mode and dictation listen and speak in this language.</small></span><span class="rv">'+esc(langName())+IC.updn+'</span>'+langSel()+'</div></div>'}
 function pageInfo(){return'<div class="cl-prof" style="margin-top:6px"><div class="a" style="background:none"><img src="icon.svg?v=gpu6" alt="" width="40" height="40" style="border-radius:11px"></div><div><b>XMM AI</b><span>by XMM Bayat · v89</span></div></div><div class="cl-grp">'+row(IC.term,"Terms of Service",{act:"terms"})+row(IC.term,"Privacy policy",{act:"privacy"})+row(IC.help,"Support",{act:"support"})+'</div><div class="cl-note" style="text-align:center">© XMMAI. All rights reserved.</div>'}
-var PAGES={root:{t:"Settings",h:pageRoot},profile:{t:"Profile",h:pageProfile},notif:{t:"Notifications",h:pageNotif},privacy:{t:"Privacy",h:pagePrivacy},caps:{t:"Memory",h:pageCaps},voice:{t:"Voice and dictation",h:pageVoice},info:{t:"About",h:pageInfo}};
+var PAGES={root:{t:"Settings",h:pageRoot},profile:{t:"Profile",h:pageProfile},notif:{t:"Notifications",h:pageNotif},privacy:{t:"Privacy",h:pagePrivacy},caps:{t:"Memory",h:pageCaps},voice:{t:"Voice and dictation",h:pageVoice},plugins:{t:"Plugins",h:pagePlugins},info:{t:"About",h:pageInfo}};
 function show(pg,anim){
  if(!setS)return;
  if(setS.desk){setS.page=pg;setS.body.innerHTML=deskPage(pg);var nb=setS.el.querySelectorAll("[data-dk]");for(var i=0;i<nb.length;i++)nb[i].classList.toggle("on",nb[i].dataset.dk===pg);setS.body.scrollTop=0;return}var P=PAGES[pg]||PAGES.root;setS.title.textContent=P.t;setS.body.innerHTML=P.h();setS.page=pg;
@@ -503,7 +512,7 @@ function wireSet(){
   else if(e.target.id==="clName"){if(e.target.value.trim()){try{API().setName(e.target.value)}catch(_){}updGreeting()}}
  });
 }
-var DESK=[["acc","Account"],["app","Appearance"],["mem","Memory"],["notif","Notifications"],["priv","Privacy"],["about","About"]];
+var DESK=[["acc","Account"],["app","Appearance"],["mem","Memory"],["notif","Notifications"],["priv","Privacy"],["plugins","Plugins"],["about","About"]];
 function dkRow(l,c){return'<div class="dk-row"><label>'+l+'</label><div>'+c+'</div></div>'}
 function themesHtml(){var th=themePref();return'<div class="cl-themes">'+[["light","Light","l"],["dark","Dark","d"],["system","System","s"]].map(function(t){return'<button class="cl-th'+(th===t[0]?" on":"")+'" data-th="'+t[0]+'" type="button"><div class="p '+t[2]+'"></div>'+t[1]+'</button>'}).join("")+'</div>'}
 function deskPage(k){
@@ -513,8 +522,25 @@ function deskPage(k){
  if(k==="mem")return'<h4>Memory</h4>'+pageCaps();
  if(k==="notif")return'<h4>Notifications</h4>'+pageNotif();
  if(k==="priv")return'<h4>Privacy</h4>'+pagePrivacy();
+ if(k==="plugins")return'<h4>Plugins</h4>'+pagePlugins();
  return'<h4>About</h4>'+pageInfo();
 }
+
+function xmmPluginsWire(root){
+ if(!root||root.__xmmPlug)return;root.__xmmPlug=1;
+ root.addEventListener("click",function(e){
+  var up=e.target.closest('[data-do="pluginUpload"]');
+  if(up){e.preventDefault();var f=document.getElementById("clPlugFile");if(f)f.click();return}
+  var mk=e.target.closest('[data-do="pluginMake"]');
+  if(mk){e.preventDefault();var name=prompt("Plugin name (e.g. Weather card)");if(!name)return;var desc=prompt("Describe the feature in plain words. XMM will generate the plugin code.");if(!desc)return;var code="// Plugin: "+name+"\n// "+desc+"\n// Ask XMM in chat to expand this plugin.\nexport default function run(ctx){return {ok:true,note:"+JSON.stringify(desc)+"};}\n";var L=[];try{L=JSON.parse(localStorage.getItem("xmm.plugins")||"[]")}catch(_){ }L.push({name:name.trim(),kind:"js",code:code,ts:Date.now()});try{localStorage.setItem("xmm.plugins",JSON.stringify(L))}catch(_){ }try{if(setS){if(setS.desk)show("plugins",0);else show("plugins",0)}}catch(_){ }try{if(window.toast)toast("Plugin created")}catch(_){ }return}
+  var del=e.target.closest("[data-pdel]");
+  if(del){e.preventDefault();var i=+del.getAttribute("data-pdel");var L=[];try{L=JSON.parse(localStorage.getItem("xmm.plugins")||"[]")}catch(_){ }if(i>=0&&i<L.length){L.splice(i,1);try{localStorage.setItem("xmm.plugins",JSON.stringify(L))}catch(_){ }try{if(setS){if(setS.desk)show("plugins",0);else show("plugins",0)}}catch(_){ }}return}
+ });
+ root.addEventListener("change",function(e){
+  if(e.target&&e.target.id==="clPlugFile"){var files=e.target.files;if(!files||!files.length)return;var L=[];try{L=JSON.parse(localStorage.getItem("xmm.plugins")||"[]")}catch(_){ }var n=files.length,done=0;Array.prototype.forEach.call(files,function(file){var r=new FileReader();r.onload=function(){var ext=(file.name.split(".").pop()||"js").toLowerCase();var kind=ext==="py"?"python":(ext==="html"||ext==="htm"?"html":(ext==="css"?"css":"js"));L.push({name:file.name,kind:kind,code:String(r.result||""),ts:Date.now()});done++;if(done===n){try{localStorage.setItem("xmm.plugins",JSON.stringify(L))}catch(_){ }e.target.value="";try{if(setS){if(setS.desk)show("plugins",0);else show("plugins",0)}}catch(_){ }try{if(window.toast)toast(n+" plugin"+(n>1?"s":"")+" added")}catch(_){ }}};r.readAsText(file)});return}
+ });
+}
+
 function openSettingsDesk(){
  closeDrawer();var m=$("#msg");if(m)m.blur();
  var old=document.getElementById("clDesk");if(old)old.remove();
@@ -526,7 +552,7 @@ function openSettingsDesk(){
  bg.addEventListener("mousedown",function(e){if(e.target===bg)setS&&setS.close()});
  bg.querySelector(".dk-x").onclick=function(){setS&&setS.close()};
  bg.querySelector(".dk-n").addEventListener("click",function(e){var b=e.target.closest("[data-dk]");if(b)show(b.dataset.dk,0)});
- wireSet();show("acc",0);
+ wireSet();try{xmmPluginsWire(setS.body)}catch(e){};show("acc",0);
 }
 
 /* ---------- voice screen ---------- */

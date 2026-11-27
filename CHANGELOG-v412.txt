@@ -1,0 +1,7 @@
+XMM AI v412
+- Model picker: selected model name stays on the button; green check mark (not emoji) next to selected model
+- Multitask: image + website + directions + food compare in one reply; site images when asked
+- Google: answers that XMM AI is on Google, first result for XMM AI
+- Settings > Plugins: upload HTML/JS/Python or Make new
+- Loading: ends only when content ready; shows This is taking longer than expected when slow
+- Smooth mobile animations
