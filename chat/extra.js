@@ -11,10 +11,9 @@ new MutationObserver(function(){if(!T)T=setTimeout(clamp,350)}).observe(document
 window.addEventListener("click",function(ev){var b=ev.target.closest&&ev.target.closest("[data-xe=nav]");if(!b||true)return;ev.preventDefault();ev.stopImmediatePropagation();ev.stopPropagation();
  var had=document.documentElement.classList.contains("xm-galaxy");try{localStorage.setItem("xmm.galaxy","1")}catch(_){}document.documentElement.classList.add("xm-galaxy");
  if(document.getElementById("xgp"))return;var d=document.createElement("div");d.id="xgp";d.innerHTML='<div class="xgc"><div class="xgi">'+XMI("galaxy")+'</div><b>You got Galaxy Mode!</b><small>'+(had?"Space background is already on.":"Space background unlocked.")+'</small><button type="button">Awesome</button></div>';d.onclick=function(e){if(e.target===d||e.target.tagName==="BUTTON")d.remove()};document.body.appendChild(d)},true);
-/* splash — dismiss ASAP so main UI is visible; never block on slow assets */
-function hideXl(){var x=document.getElementById("xl");if(!x||x.className)return;x.className="out";setTimeout(function(){try{x.remove()}catch(e){}},320)}
-if(document.readyState!=="loading")hideXl();else document.addEventListener("DOMContentLoaded",hideXl);
-addEventListener("load",hideXl);setTimeout(hideXl,900);
+/* splash */
+function hideXl(){var x=document.getElementById("xl");if(!x||x.className)return;var w=Math.max(0,2500-(Date.now()-(window.__xlT||0)));setTimeout(function(){x.className="out";setTimeout(function(){x.remove()},450)},w)}
+if(document.readyState==="complete")hideXl();else addEventListener("load",hideXl);setTimeout(hideXl,2700);
 /* map opens inside the main app (URL stays /chat/). Old /map/<place> links are converted. */
 var pending=null,loading=false,seen=false;
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-xe=nav]");if(b)pending=b.getAttribute("data-q")},true);

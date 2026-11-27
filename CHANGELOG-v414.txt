@@ -1,3 +1,0 @@
-XMM AI v414
-- Load ALL scripts at once (no part-by-part / no freeze on tap)
-- Keeps v412/v413 fixes: original UI, app.js quote fix, fast splash, model name + check, plugins, root->chat
