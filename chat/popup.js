@@ -46,7 +46,7 @@
   f.style.cssText="position:fixed;left:-99999px;width:0;height:0;opacity:0;pointer-events:none";
   document.body.appendChild(f);
   f.onchange=function(){try{deliver(f.files)}catch(e){}try{f.remove()}catch(e){}};
-  try{f.click()}catch(e){try{f.remove()}catch(e2){}}
+  f.__ok=1;try{f.click()}catch(e){try{f.remove()}catch(e2){}}
  }
  var ov=null;
  function close(){if(!ov)return;var o=ov;ov=null;o.classList.remove("on");setTimeout(function(){try{o.remove()}catch(e){}},180)}

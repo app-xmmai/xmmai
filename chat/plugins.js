@@ -1,4 +1,4 @@
-/* XMM AI v421 · Plugins manager: upload .html / .py / .js plugins or let the AI make one. */
+/* XMM AI v422 · Plugins manager: upload .html / .py / .js plugins or let the AI make one. */
 (function(){"use strict";
 var $=function(s,r){return(r||document).querySelector(s)};
 function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
