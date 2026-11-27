@@ -1,4 +1,4 @@
-/* XMM AI v416 · Plugins manager: upload .html / .py / .js plugins or let the AI make one. */
+/* XMM AI v418 · Plugins manager: upload .html / .py / .js plugins or let the AI make one. */
 (function(){"use strict";
 var $=function(s,r){return(r||document).querySelector(s)};
 function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -27,20 +27,20 @@ function open(){css();var m=$("#xpM");if(m){m.remove()}
  m=document.createElement("div");m.id="xpM";m.className="xp-m";
  m.innerHTML='<div class="xp-c" role="dialog" aria-modal="true" aria-label="Plugins"><div class="xp-h"><h3>Plugins</h3><button class="xp-x" type="button" data-x aria-label="Close">\u00d7</button></div>'+
  '<div class="xp-p">Plugins add features the AI can use. Upload an .html, .py or .js file, or tap Make new and just explain what you want.</div>'+
- '<div class="xp-acts"><button class="xp-b p" type="button" data-up>Upload file</button><button class="xp-b" type="button" data-new>Make new</button></div>'+
- '<input id="xpF" type="file" accept=".html,.htm,.py,.js" multiple hidden>'+
+ '<div class="xp-acts"><button class="xp-b p" type="button" data-up="html">HTML</button><button class="xp-b p" type="button" data-up="py">Python</button><button class="xp-b p" type="button" data-up="js">JS</button></div><div class="xp-acts"><button class="xp-b" type="button" data-new>Make new</button></div>'+
+ '<input id="xpF" type="file" multiple hidden>'+
  '<div class="xp-mk" id="xpMk"><textarea id="xpTx" placeholder="Explain it, e.g. a plugin that converts euros to dollars"></textarea><button class="xp-b p" type="button" id="xpGo">Create plugin</button></div>'+
  '<div id="xpL"></div></div>';
  document.body.appendChild(m);draw();requestAnimationFrame(function(){m.classList.add("in")});
  function close(){m.classList.remove("in");setTimeout(function(){m.remove()},260)}
  m.addEventListener("click",function(e){
   if(e.target===m||e.target.closest("[data-x]"))return close();
-  if(e.target.closest("[data-up]"))return $("#xpF").click();
+  var up=e.target.closest("[data-up]");if(up){var k=up.dataset.up,f=$("#xpF");f.dataset.k=k;f.accept=k==="py"?".py,text/x-python,text/plain":k==="js"?".js,text/javascript,application/javascript,text/plain":".html,.htm,text/html";f.click();return}
   if(e.target.closest("[data-new]")){$("#xpMk").classList.toggle("on");return}
   var t=e.target.closest("[data-t]");if(t){XMM_MCP.togPlugin(t.dataset.t);draw();return}
   var d=e.target.closest("[data-d]");if(d){XMM_MCP.delPlugin(d.dataset.d);draw();return}});
  $("#xpF").onchange=function(e){var fs=[].slice.call(e.target.files||[]);fs.forEach(function(f){
-  var ext=(f.name.split(".").pop()||"").toLowerCase(),lang=ext==="py"?"py":(ext==="js"?"js":(/^html?$/.test(ext)?"html":""));
+  var ext=(f.name.split(".").pop()||"").toLowerCase(),lang=ext==="py"?"py":(ext==="js"?"js":(/^html?$/.test(ext)?"html":""));var want=e.target.dataset.k;if(want&&lang!==want){toast(f.name+" is not a ."+(want==="py"?"py":want==="js"?"js":"html")+" file");return}
   if(!lang){toast("Use .html, .py or .js files");return}
   if(f.size>400000){toast(f.name+" is too big (max 400 KB)");return}
   var r=new FileReader();r.onload=function(){var txt=String(r.result||""),c=/^\s*(?:#|\/\/|\/\*|<!--)\s*(.{3,160})/.exec(txt);

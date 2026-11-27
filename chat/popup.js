@@ -79,6 +79,7 @@
   var a=e.target.closest&&e.target.closest("#attBtn,#v3Add,#cvPlus");
   if(!a)return;e.stopImmediatePropagation();e.preventDefault();open();
  },true);
+ window.XMM_UPLOAD_OPEN=open;
  function hook(){if(window.XMM_CLONE)window.XMM_CLONE.openAdd=open;window.__ipPlus=function(){open()}}
  hook();window.addEventListener("load",function(){hook();setTimeout(hook,500)});
 })();
