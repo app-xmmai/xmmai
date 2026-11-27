@@ -1,0 +1,51 @@
+/* product thumbnails next to names + Apple-Maps-style place card */
+.xw-thw{position:relative;flex:none;display:inline-block;border-radius:12px;overflow:hidden;background:rgba(128,128,128,.18);vertical-align:middle}
+.xw-thw.sm{width:34px;height:34px;border-radius:9px}.xw-thw.md{width:52px;height:52px}.xw-thw.lg{width:76px;height:76px;border-radius:16px}
+.xw-thw img,.xcmp-c .xw-thw img,.xw-prod .xw-thw img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;display:block;background:none;border-radius:0}
+.xw-ckp{gap:10px}.xw-ckp .xw-ckt{flex:1;min-width:0;font-weight:500}.xw-ckp input{flex:none}
+.xw-ck input:checked~.xw-ckt{text-decoration:line-through;opacity:.5}
+.xw-ckp{padding:6px 0;border-bottom:1px solid rgba(128,128,128,.14)}.xw-ckp:last-child{border-bottom:0}
+.xcmp-hd,.xw-ph{display:flex;align-items:center;gap:10px}.xcmp-nm,.xw-pht{display:flex;flex-direction:column;min-width:0}.xcmp-nm small,.xw-pht small{opacity:.7;font-size:13px}.xw-pht b{font-size:18px}
+.xw-ph{margin-bottom:10px}
+.xw-prod-r{display:flex;align-items:flex-start;gap:12px;padding:12px;height:auto}.xw-prod-r .xw-pb{flex:1;min-width:0}
+.xw-place{padding:0!important;overflow:hidden;border-radius:20px}.xw-place .xe-mini{margin:0;border-radius:0;height:170px}
+.xp-b{display:flex;padding:12px 14px 0}.xp-t{display:flex;flex-direction:column;min-width:0}.xp-t b{font-size:17px;font-weight:700}.xp-t small{opacity:.65;font-size:13px;margin-top:2px}
+.xp-a{display:flex;gap:8px;padding:12px 14px 14px}
+.xp-go{flex:1.4;display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;height:46px;background:#0a84ff;color:#fff;font:700 15px inherit;cursor:pointer}
+.xp-gm{flex:1;display:flex;align-items:center;justify-content:center;border-radius:14px;height:46px;background:rgba(128,128,128,.2);color:inherit;font-weight:600;font-size:14px;text-decoration:none}
+/* thumbnails: beat global chat img rules so photos always fill the box */
+html body .xw-thw img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;border-radius:0!important;aspect-ratio:auto!important;margin:0!important}
+html body .xw-thw{background:rgba(128,128,128,.18)}
+/* Apple Maps style place card */
+.xw-place{border-radius:22px!important;box-shadow:0 4px 20px rgba(0,0,0,.14)}
+.xp-t b{font-size:20px!important;letter-spacing:normal}
+.xp-go{border-radius:26px!important;height:50px!important;font-size:16px!important}
+.xp-gm{border-radius:26px!important;height:50px!important}
+.xp-row{border-radius:16px}
+
+/* directions screen: compact, docked to the screen edges (no floating cards) */
+html body #nv .sheet,html body #nv .drv{left:0!important;right:0!important;bottom:0!important;width:auto!important;border-radius:16px 16px 0 0!important;padding:6px 12px calc(env(safe-area-inset-bottom,0px) + 8px)!important;box-shadow:0 -4px 18px rgba(0,0,0,.14)!important;border-left:0!important;border-right:0!important;border-bottom:0!important}
+html body #nv .sheet::before{width:32px!important;height:4px!important;margin:0 auto 6px!important}
+html body #nv .hd{gap:8px!important}
+html body #nv .rb{width:28px!important;height:28px!important}
+html body #nv .nm b{font-size:16px!important}html body #nv .nm small{font-size:11.5px!important;margin-top:0!important}
+html body #nv .acts{gap:6px!important;margin-top:8px!important}
+html body #nv .acts>*{height:38px!important;border-radius:11px!important;font-size:10.5px!important;gap:1px!important}
+html body #nv .acts .st b{font-size:13px!important}
+html body #nv .acts svg{width:16px!important;height:16px!important}
+html body #nv .stats{margin-top:8px!important;padding-top:7px!important}
+html body #nv .stats small{font-size:10px!important}html body #nv .stats b{font-size:14px!important;margin-top:1px!important}
+html body #nv .drv b{font-size:21px!important}html body #nv .drv small{font-size:11px!important}
+html body #nv .top{left:0!important;right:0!important;top:0!important;padding-top:env(safe-area-inset-top,0px)!important;gap:6px!important}
+html body #nv .sbar{height:40px!important;border-radius:0 0 14px 14px!important;padding:0 6px 0 12px!important}
+html body #nv .sbar input{font-size:15px!important}
+html body #nv .sbar .av{width:28px!important;height:28px!important;font-size:11px!important}
+html body #nv .turn{border-radius:0 0 16px 16px!important;padding:8px 12px!important;gap:10px!important}
+html body #nv .turn .ti{width:32px!important;height:32px!important}
+html body #nv .turn b{font-size:17px!important}html body #nv .turn small{font-size:11.5px!important}
+html body #nv .wx{margin-left:10px!important;padding:5px 10px 5px 8px!important;font-size:13px!important}
+html body #nv .rcl{padding:6px 12px!important;font-size:13px!important}
+html body #nv .fabs{right:0!important;bottom:calc(var(--sh,150px) + 10px)!important;border-radius:12px 0 0 12px!important}
+html body #nv .fabs button{width:38px!important;height:38px!important;font-size:20px!important}
+html body #nv .aip{left:0!important;right:0!important;border-radius:16px 16px 0 0!important;padding:8px 10px!important;bottom:var(--sh,150px)!important}
+@media (min-width:700px){html body #nv .sheet,html body #nv .drv{left:50%!important;right:auto!important;width:480px!important;transform:translateX(-50%)!important}}

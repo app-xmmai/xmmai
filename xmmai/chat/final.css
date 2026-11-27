@@ -1,0 +1,258 @@
+/* ===== orange glow background (ambient, breathing) ===== */
+.shell::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+ background:radial-gradient(60% 45% at 50% 108%,rgba(255,132,40,.34),rgba(255,110,30,.12) 45%,transparent 72%),radial-gradient(40% 30% at 12% 100%,rgba(255,170,90,.14),transparent 70%);animation:xglow 7s ease-in-out infinite alternate}
+@keyframes xglow{from{opacity:.75;transform:scale(1)}to{opacity:1;transform:scale(1.06)}}
+html body .main{background:transparent!important}
+html body #sideChat{z-index:40}
+
+/* ===== top bar: no black bars, floating glass controls ===== */
+html body .main>.topbar,html body #mainChat>header.topbar{position:relative!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;margin:10px 14px 0!important;padding:0!important;min-height:48px}
+html body .main>.topbar::before,html body .main>.topbar::after,html body header.topbar::before,html body header.topbar::after{content:none!important;display:none!important}
+html body .topbar .xtog,html body .topbar .xnew{background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.2)!important;-webkit-backdrop-filter:blur(6px) saturate(1.1)!important;backdrop-filter:blur(6px) saturate(1.1)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 6px 20px rgba(0,0,0,.25)!important;color:#fff!important;width:44px!important;height:44px!important;border-radius:50%!important;transition:transform .25s cubic-bezier(.3,1.4,.4,1),background .2s}
+html body .topbar #tbPreview{display:none!important}
+html body .topbar .xtog:active,html body .topbar .xnew:active,html body .topbar #tbPreview:active{transform:scale(.88)}
+html body .topbar #tbPreview svg{width:22px;height:22px}
+
+/* ===== pill: Ask | Imagine | Build — centered + sliding thumb for 3 positions ===== */
+html body .topbar .xpill{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;display:flex!important;align-items:center;gap:0!important;padding:4px!important;margin:0!important;border-radius:999px!important;pointer-events:auto!important;visibility:visible!important;
+ background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.2)!important;-webkit-backdrop-filter:blur(26px) saturate(1.9)!important;backdrop-filter:blur(26px) saturate(1.9)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 10px 30px rgba(0,0,0,.3)!important;animation:xpin .7s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes xpin{from{opacity:0;transform:translate(-50%,-90%) scale(.85)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+html body .topbar .xp-b{position:relative;z-index:2;display:flex!important;align-items:center;justify-content:center;gap:7px;width:92px!important;height:38px!important;padding:0!important;border:0!important;border-radius:999px!important;background:transparent!important;color:#fff!important;font:600 14.5px/1 inherit;font-family:inherit;pointer-events:auto!important;opacity:.55;transition:opacity .3s,transform .25s cubic-bezier(.3,1.4,.4,1)}
+html body .topbar .xp-b svg{width:18px!important;height:18px!important}
+html body .topbar .xp-b:active{transform:scale(.92)}
+/* active tab full opacity via data-pos */
+html body .topbar .xpill[data-pos="0"] .xp-b[data-m="chat"],
+html body .topbar .xpill[data-pos="1"] .xp-b[data-m="imagine"],
+html body .topbar .xpill[data-pos="2"] .xp-b[data-m="code"]{opacity:1!important}
+html body .topbar .xp-thumb{display:block!important;position:absolute!important;z-index:1;left:4px!important;top:4px!important;width:92px!important;height:38px!important;border-radius:999px!important;pointer-events:none!important;
+ background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.14))!important;box-shadow:inset 0 0 0 .75px rgba(255,255,255,.55),inset 0 1px 1px rgba(255,255,255,.5),0 3px 12px rgba(0,0,0,.25)!important;transform:none;transition:transform .55s cubic-bezier(.3,1.25,.4,1)!important}
+/* 3 positions: 0=Ask, 1=Imagine, 2=Build */
+html body .topbar .xpill[data-pos="0"] .xp-thumb{transform:none!important}
+html body .topbar .xpill[data-pos="1"] .xp-thumb{transform:translateX(92px)!important}
+html body .topbar .xpill[data-pos="2"] .xp-thumb{transform:translateX(184px)!important}
+@media(max-width:480px){
+ html body .topbar .xp-b{width:78px!important;font-size:13.5px}
+ html body .topbar .xp-thumb{width:78px!important}
+ html body .topbar .xpill[data-pos="0"] .xp-thumb{transform:none!important}
+ html body .topbar .xpill[data-pos="1"] .xp-thumb{transform:translateX(78px)!important}
+ html body .topbar .xpill[data-pos="2"] .xp-thumb{transform:translateX(156px)!important}
+}
+
+/* ===== liquid-glass morph panel (+ button and ... button) ===== */
+.mg-panel{position:fixed;z-index:200;min-width:230px;padding:6px;border-radius:26px;display:flex;flex-direction:column;gap:2px;
+ background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.07));-webkit-backdrop-filter:blur(30px) saturate(2);backdrop-filter:blur(30px) saturate(2);
+ border:1px solid rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 -1px 0 rgba(255,255,255,.06),0 24px 70px rgba(0,0,0,.55),0 0 0 .5px rgba(0,0,0,.4)}
+.mg-panel[hidden]{display:none}
+.mg-i{display:flex;align-items:center;gap:12px;padding:12px 14px;border:0;border-radius:18px;background:transparent;color:#fff;font:500 15px/1.2 inherit;text-align:left;cursor:pointer;transition:background .2s}
+.mg-i:hover{background:rgba(255,255,255,.1)}
+.mg-i:active{background:rgba(255,255,255,.16);transform:scale(.98)}
+.mg-i svg{width:20px;height:20px;flex:none;opacity:.9}
+
+html body .composer #attBtn{transition:none}
+html body #sideChat{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))!important;box-sizing:border-box}
+html body .msgs .m-bot,html body .msgs .m-user{animation:xrise .45s cubic-bezier(.22,1,.36,1) both}
+@keyframes xrise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+html body #sendBtn.xvoice{background:#2a2a2c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M5 10v4M8.5 7v10M12 4v16M15.5 8v8M19 10v4'/%3E%3C/svg%3E") center/18px no-repeat!important;border-radius:50%!important;width:34px!important;height:34px!important;opacity:1!important}
+html body #sendBtn.xvoice>*{opacity:0!important}
+
+/* ===== Build mode: rainbow glowing "Build" label + underline glow ===== */
+@keyframes xrb{to{background-position:300% 0}}
+html body .topbar .xpill[data-pos="2"] .xp-b[data-m="code"],
+html body.code-on .topbar .xp-b[data-m="code"]{background:linear-gradient(90deg,#ff3b30,#ff9500,#ffd60a,#34c759,#00c7be,#0a84ff,#bf5af2,#ff2d55,#ff3b30)!important;background-size:300% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent;color:transparent!important;animation:xrb 3s linear infinite;filter:drop-shadow(0 0 7px rgba(150,120,255,.55))}
+html body .topbar .xpill[data-pos="2"] .xp-b[data-m="code"]::after,
+html body.code-on .topbar .xp-b[data-m="code"]::after{content:"";position:absolute;left:22%;right:22%;bottom:5px;height:2px;border-radius:2px;background:linear-gradient(90deg,#ff3b30,#ff9500,#ffd60a,#34c759,#00c7be,#0a84ff,#bf5af2,#ff2d55,#ff3b30);background-size:300% 100%;animation:xrb 3s linear infinite;box-shadow:0 0 10px 1px rgba(150,120,255,.6);-webkit-text-fill-color:initial}
+
+/* ===== press animation on every button ===== */
+html body :is(.icon-btn,.nav-i,.mode,.send,.xp-b,.xtog,.xnew,.mg-i,.chat-i,.btn,.xnav button,.dots,.xfab,.user){transition:transform .28s cubic-bezier(.3,1.5,.4,1),background .2s,opacity .25s,box-shadow .25s}
+html body :is(.icon-btn,.nav-i,.mode,.send,.xp-b,.xtog,.xnew,.chat-i,.btn,.xnav button,.dots,.xfab,.user):active{transform:scale(.9)}
+
+/* orange ambient glow — force on mobile too */
+
+
+/* weaker blur everywhere */
+html body :is(.composer,.menu,.sheet,.xs,.xsum-s,.toast,.searchbar,.install,.vtop,.vseg,.vgl,.vc,.vpop,.mg-panel,#settings .sheet,#sideChat,.bnav,.glass,.xpill,.sv-bar,.sv-view){
+  -webkit-backdrop-filter:blur(6px) saturate(1.1)!important;
+  backdrop-filter:blur(6px) saturate(1.1)!important
+}
+html body #settings.modal,
+html body .scrim,
+html body .modal{
+  -webkit-backdrop-filter:blur(4px)!important;
+  backdrop-filter:blur(4px)!important
+}
+html body #sideChat{
+  -webkit-backdrop-filter:blur(8px)!important;
+  backdrop-filter:blur(8px)!important
+}
+
+
+/* hide Files & Preview button */
+html body #tbPreview,html body [aria-label="Files & Preview"],html body .tb-preview{display:none!important}
+
+/* preview fully removed */
+html body #tbPreview,
+html body [aria-label="Files & Preview"],
+html body [title="Files & Preview"]{display:none!important}
+
+/* Files & Preview panel removed entirely */
+html body #code,
+html body #code.preview-only,
+html body .cd-preview-only{display:none!important;visibility:hidden!important;pointer-events:none!important}
+
+
+/* kill invisible upload / ghost hit targets */
+html body #file,
+html body input[type="file"]{
+  position:fixed!important;
+  left:-9999px!important;top:-9999px!important;
+  width:1px!important;height:1px!important;
+  opacity:0!important;pointer-events:none!important;
+  clip:rect(0,0,0,0)!important;
+}
+html body #upMod:not(.on){
+  pointer-events:none!important;
+  visibility:hidden!important;
+}
+html body #upMod:not(.on) *{pointer-events:none!important}
+
+/* model menu above button, never covers modeBtn */
+html body .menu.pop{
+  position:fixed!important;
+  z-index:120!important;
+  min-width:220px!important;
+  max-width:min(320px,calc(100vw - 16px))!important;
+  pointer-events:auto!important;
+}
+html body .menu.pop button{
+  display:block!important;
+  width:100%!important;
+  text-align:left!important;
+  padding:12px 14px!important;
+  position:relative!important;
+  z-index:1!important;
+  background:transparent!important;
+}
+html body #modeBtn{position:relative!important;z-index:5!important}
+html body .composer .vrow-b{position:relative!important;z-index:4!important;overflow:visible!important}
+html body .composer{overflow:visible!important}
+
+/* no stretched invisible + / attach ghost */
+html body #attBtn{
+  position:relative!important;
+  width:42px!important;min-width:42px!important;max-width:48px!important;
+  height:42px!important;
+  overflow:hidden!important;
+  flex:none!important;
+}
+html body .composer .vrow-b button{
+  position:relative!important;
+  flex:none!important;
+}
+
+/* xmm-file-guard */
+html body input[type=file]{position:fixed!important;left:-99999px!important;width:0!important;height:0!important;opacity:0!important;pointer-events:none!important}
+
+
+/* remove invisible / ghost UI that steals taps */
+html body .mg-panel[hidden]{display:none!important;pointer-events:none!important;visibility:hidden!important}
+html body .mg-panel:not([hidden]){display:flex!important;visibility:visible!important;pointer-events:auto!important;opacity:1!important}
+html body .vplus-pop:not(.on),
+html body .vmenu-pop:not(.on),
+html body .vpop:empty{display:none!important;pointer-events:none!important}
+html body #tbCode[hidden],
+html body #tbPreview,
+html body [aria-label="Files & Preview"]{display:none!important;pointer-events:none!important;width:0!important;height:0!important;overflow:hidden!important}
+html body #upMod:not(.on){pointer-events:none!important;visibility:hidden!important}
+html body #cfGate[hidden]{display:none!important;pointer-events:none!important}
+html body input[type=file]{position:fixed!important;left:-99999px!important;width:0!important;height:0!important;opacity:0!important;pointer-events:none!important}
+/* no full-screen invisible overlays when closed */
+html body .scrim:not(.on){pointer-events:none!important;opacity:0!important}
+
+html body #sideChat.open,html body #sideChat .xnav button,html body #sideChat .chat-list,html body #sideChat .chat-list *,html body #sideChat .user,html body #sideChat .xfab{pointer-events:auto}
+
+
+/* morph attach panel */
+html body .mg-panel{
+  position:fixed!important;z-index:100!important;
+  min-width:200px;padding:8px;border-radius:26px;
+  background:rgba(40,40,44,.72)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(1.6)!important;
+  backdrop-filter:blur(24px) saturate(1.6)!important;
+  box-shadow:inset 0 0 0 .5px rgba(255,255,255,.22),0 20px 50px rgba(0,0,0,.45)!important;
+  display:flex;flex-direction:column;gap:2px;
+  pointer-events:auto!important;
+}
+html body .mg-panel[hidden]{display:none!important;pointer-events:none!important}
+html body .mg-panel .mg-i{
+  display:flex!important;align-items:center;gap:12px;
+  width:100%;padding:12px 14px;border:0;border-radius:18px;
+  background:transparent;color:#fff;font:500 16px/1.2 system-ui;text-align:left;cursor:pointer
+}
+html body .mg-panel .mg-i:active{background:rgba(255,255,255,.1)}
+html body .mg-panel .mg-i svg{width:22px;height:22px;flex:none;stroke:currentColor;fill:none}
+
+/* imagine fully removed */
+html body #studio,
+html body [data-m="imagine"],
+html body [data-v="imagine"],
+html body [data-act="image"]{display:none!important}
+html body .xpill{/* 2 tabs Ask + Build */
+}
+html body .xpill .xp-thumb{width:calc(50% - 4px)!important}
+html body .xpill[data-pos="0"] .xp-thumb{transform:translateX(0)!important}
+html body .xpill[data-pos="1"] .xp-thumb,
+html body .xpill[data-pos="2"] .xp-thumb{transform:translateX(100%)!important}
+
+/* ===== Build mode: rainbow glow around the chat box (always on, all screen sizes) ===== */
+@keyframes xrb{to{background-position:300% 0}}
+html body.v-build #mainChat .composer,
+html body.code-on #code .cd-in{position:relative!important;border-color:transparent!important}
+html body.v-build #mainChat .composer::before,
+html body.v-build #mainChat .composer::after,
+html body.code-on #code .cd-in::before,
+html body.code-on #code .cd-in::after{
+ content:""!important;display:block!important;position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:1;
+ background:linear-gradient(90deg,#ff3b30,#ff9500,#ffd60a,#34c759,#00c7be,#0a84ff,#bf5af2,#ff2d55,#ff3b30);background-size:300% 100%;
+ animation:xrb 4s linear infinite}
+html body.v-build #mainChat .composer::before,
+html body.code-on #code .cd-in::before{
+ padding:2px;z-index:2;
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+ mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+html body.v-build #mainChat .composer::after,
+html body.code-on #code .cd-in::after{inset:-3px;z-index:-1;filter:blur(14px);opacity:.55}
+/* old focus-only ring on the text row is replaced by the one above */
+html body.vui.v-build #mainChat .composer .vrow-t::before,
+html body.vui.v-build #mainChat .composer .vrow-t::after{display:none!important}
+@media(prefers-reduced-motion:reduce){
+ html body.v-build #mainChat .composer::before,html body.v-build #mainChat .composer::after,
+ html body.code-on #code .cd-in::before,html body.code-on #code .cd-in::after{animation:none}}
+
+/* ===== v47: Build mode — thin rainbow LINE wrapped around the chat input, glowing (no fill) ===== */
+@keyframes xrbLine{to{background-position:0 0,300% 0}}
+@keyframes xrbGlow{0%{box-shadow:0 0 14px 1px rgba(255,59,48,.55),0 0 30px 3px rgba(255,149,0,.25)}
+ 25%{box-shadow:0 0 14px 1px rgba(52,199,89,.55),0 0 30px 3px rgba(0,199,190,.25)}
+ 50%{box-shadow:0 0 14px 1px rgba(10,132,255,.6),0 0 30px 3px rgba(191,90,242,.28)}
+ 75%{box-shadow:0 0 14px 1px rgba(191,90,242,.55),0 0 30px 3px rgba(255,45,85,.25)}
+ 100%{box-shadow:0 0 14px 1px rgba(255,59,48,.55),0 0 30px 3px rgba(255,149,0,.25)}}
+html body.v-build #mainChat .composer::before,
+html body.v-build #mainChat .composer::after{content:none!important;display:none!important}
+html body.v-build #mainChat .composer{
+ border:2px solid transparent!important;
+ background:linear-gradient(#18181a,#18181a) padding-box,
+  linear-gradient(90deg,#ff3b30,#ff9500,#ffd60a,#34c759,#00c7be,#0a84ff,#bf5af2,#ff2d55,#ff3b30) border-box!important;
+ background-size:100% 100%,300% 100%!important;
+ animation:xrbLine 4s linear infinite,xrbGlow 6s linear infinite!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+@media(prefers-reduced-motion:reduce){html body.v-build #mainChat .composer{animation:none!important}}
+
+/* model picker: own sheet, not a .menu.pop, so no animation layer clones it */
+html body #modeSheet{position:fixed;inset:0;z-index:400;display:flex;align-items:flex-end;justify-content:center;padding:0 10px calc(env(safe-area-inset-bottom,0px) + 10px)}
+html body #modeSheet .ms-bg{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+html body #modeSheet .ms-card{position:relative;width:min(420px,100%);background:#252527;border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:6px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+html body #modeSheet .ms-i{display:grid!important;grid-template-columns:1fr auto;align-items:center;width:100%!important;min-height:56px!important;height:auto!important;padding:10px 14px!important;border:0!important;border-radius:16px!important;background:transparent!important;color:#fff!important;text-align:left;touch-action:manipulation;cursor:pointer}
+html body #modeSheet .ms-i b{font-size:16px;font-weight:600}
+html body #modeSheet .ms-i small{grid-column:1;font-size:13px;opacity:.6}
+html body #modeSheet .ms-i i{grid-row:1/3;grid-column:2;font-style:normal;font-size:18px}
+html body #modeSheet .ms-i.on,html body #modeSheet .ms-i:active{background:rgba(255,255,255,.1)!important}

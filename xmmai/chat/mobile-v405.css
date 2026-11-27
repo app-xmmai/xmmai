@@ -1,0 +1,12 @@
+/* v405 mobile graphical fixes */
+html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%}
+img,video,canvas,svg{max-width:100%}
+@media (max-width:768px){
+  body{min-height:100dvh}
+  input,textarea,select{font-size:16px!important}
+  pre,code{white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere}
+  .msg pre,.bubble pre{max-width:100%;overflow-x:auto}
+  table{display:block;max-width:100%;overflow-x:auto}
+  #composer,.composer,footer{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+  *{-webkit-tap-highlight-color:transparent}
+}

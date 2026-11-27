@@ -1,0 +1,48 @@
+/* XMM AI — dark product skin (final layer). Near-black palette, blue accent, "Create anything" start screen. */
+html:root,html[data-cl-theme=light]:root{
+ --cl-bg:#09090b;--cl-bg2:#060607;--cl-card:#131316;--cl-card2:#1a1a1e;--cl-sheet:#0e0e10;
+ --cl-txt:#ededf0;--cl-mut:#8a8a93;--cl-line:rgba(255,255,255,.07);
+ --cl-glass:rgba(255,255,255,.06);--cl-glass2:rgba(255,255,255,.045);--cl-glass-b:rgba(255,255,255,.09);
+ --cl-acc:#2f7bff;--cl-blue:#2f7bff;--ip-blue:#2f7bff;--ip-card:#131316;color-scheme:dark}
+html,body{background:#09090b!important}
+html body #cine,html body .cin-back,html body .cin-front,html body .aurora{display:none!important}
+html.cine-reveal body>.shell,html.cine-reveal body>main{animation:none!important}
+html body #shell-chat,html body #mainChat{background:#09090b!important}
+
+/* composer */
+html body .composer,html body.ip .composer,html body.ip .composer.cl-exp,html body .composer:hover,html body .composer:focus-within{
+ background:#111114!important;border:1px solid #26262c!important;border-radius:26px!important;
+ box-shadow:0 14px 44px rgba(0,0,0,.5)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body .composer:focus-within{border-color:#3a3a44!important}
+html body .composer #sendBtn,html body .composer>#gWave,html body.ip .composer #sendBtn,html body.ip .composer>#gWave,
+html body .composer.cl-exp #sendBtn,html body .composer.cl-exp #gWave{background:#2f7bff!important;color:#fff!important;border-radius:50%!important}
+html body .composer #attBtn,html body .composer.cl-exp #attBtn{background:#1b1b20!important;color:#d6d6dc!important}
+html body .composer #modeBtn{background:#1b1b20!important;color:#cfcfd6!important;border-radius:99px!important}
+html body .composer #msg{color:#ededf0!important}
+
+/* start screen */
+html body.xempty .greeting,html body.xempty .cl-greet,html body.xempty #ipSug,html body.xempty .g-sug{display:none!important}
+#zhero{display:none;position:fixed;left:0;right:0;top:0;bottom:0;z-index:6;overflow-y:auto;overflow-x:hidden;padding:84px 20px 200px;pointer-events:none;-webkit-overflow-scrolling:touch}
+body.xempty #zhero{display:flex}
+#zhero .zin{width:100%;max-width:780px;margin:auto;pointer-events:auto;animation:zup .5s cubic-bezier(.22,.8,.24,1) both}
+@keyframes zup{from{opacity:0;transform:translateY(10px)}}
+#zhero .zk{display:inline-flex;align-items:center;gap:8px;font:500 12.5px/1 var(--cl-sans);color:#8a8a93;letter-spacing:.02em;margin:0 0 14px;padding:7px 12px;border:1px solid #222228;border-radius:99px;background:#0f0f12}
+#zhero .zk i{width:7px;height:7px;border-radius:50%;background:#2f7bff;box-shadow:0 0 10px #2f7bff}
+#zhero h1{font:600 clamp(27px,4.4vw,38px)/1.12 "Iowan Old Style","Palatino Linotype",Georgia,serif;letter-spacing:-.015em;color:#f4f4f6;margin:0 0 22px}
+#zhero h1 b{font-weight:600;background:linear-gradient(90deg,#5b9cff,#8f7bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+#zhero .zg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){#zhero .zg{grid-template-columns:repeat(3,1fr);gap:14px}}
+#zhero .zc{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:10px;padding:8px 8px 12px;border-radius:20px;background:#121215;border:1px solid #202026;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+#zhero .zc:hover{transform:translateY(-2px);border-color:#34343c;background:#16161a}
+#zhero .zc:focus-visible{outline:2px solid #2f7bff;outline-offset:2px}
+#zhero .zc .zi{height:96px;border-radius:14px;background:#1a1a1f;display:grid;place-items:center;overflow:hidden}
+#zhero .zc svg{width:100%;height:100%;display:block}
+#zhero .zc span{font:500 13.5px/1 var(--cl-sans);color:#c9c9d0;text-align:center}
+@media(min-width:640px){#zhero .zc .zi{height:112px}}
+
+/* chat input pinned to the bottom on every screen size */
+html body.xempty #viewChat.empty .dock,html body.xempty #viewChat .dock,html.is-tablet body.xempty #viewChat.empty .dock{
+ position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100%!important;max-width:none!important;
+ margin:0!important;padding:0 20px calc(env(safe-area-inset-bottom,0px) + 22px)!important;background:none!important;z-index:20!important}
+html body.xempty .composer,html.is-tablet body.xempty .composer{width:100%!important;max-width:780px!important;margin:0 auto!important}
+#zhero{padding-top:72px}

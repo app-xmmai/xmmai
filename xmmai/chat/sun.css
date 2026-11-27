@@ -1,0 +1,56 @@
+/* Sun event + smooth open/close for the model switcher */
+html body #modeSheet{animation:msIn .32s cubic-bezier(.22,1,.36,1) both}
+html body #modeSheet .ms-bg{animation:msBg .32s ease both}
+html body #modeSheet .ms-card{animation:msCard .42s cubic-bezier(.22,1,.36,1) both;transform-origin:50% 100%}
+html body #modeSheet.out{pointer-events:none;animation:none}
+html body #modeSheet.out .ms-bg{animation:msBgOut .26s ease forwards}
+html body #modeSheet.out .ms-card{animation:msCardOut .26s cubic-bezier(.4,0,1,1) forwards}
+@keyframes msIn{from{opacity:1}to{opacity:1}}
+@keyframes msBg{from{opacity:0}to{opacity:1}}
+@keyframes msBgOut{from{opacity:1}to{opacity:0}}
+@keyframes msCard{from{opacity:0;transform:translateY(28px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes msCardOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(24px) scale(.94)}}
+html body #modeSheet .ms-i.lock{opacity:.55}
+/* quiz */
+.sunq{margin:10px 0 4px;padding:14px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);display:grid;gap:8px;max-width:360px}
+.sunq>b{font-size:16px;margin-bottom:2px}
+.sq-o{min-height:48px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:inherit;font:inherit;font-size:16px;font-weight:600;cursor:pointer;touch-action:manipulation;transition:transform .15s,background .2s}
+.sq-o:active{transform:scale(.97)}
+.sq-o.ok{background:rgba(52,199,89,.25);border-color:rgba(52,199,89,.7)}
+.sq-o.bad{background:rgba(255,69,58,.18);border-color:rgba(255,69,58,.5);opacity:.6}
+.sq-o.shake{animation:sqShake .4s}
+@keyframes sqShake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+/* unlock pop up */
+.sunpop{position:fixed;inset:0;z-index:100001;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s ease}
+.sunpop.in{opacity:1}.sunpop.out{opacity:0;pointer-events:none}
+.sp-card{width:min(320px,100%);text-align:center;padding:26px 22px 20px;border-radius:28px;background:#1c1c1e;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(24px) scale(.92);transition:transform .45s cubic-bezier(.22,1.3,.36,1)}
+.sunpop.in .sp-card{transform:none}.sunpop.out .sp-card{transform:translateY(18px) scale(.94);transition:transform .3s cubic-bezier(.4,0,1,1)}
+.sp-sun{width:64px;height:64px;margin:0 auto 12px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ffe9a8 55%,#ffb347);box-shadow:0 0 40px rgba(255,200,80,.6)}
+.sp-card h3{margin:0 0 6px;font-size:22px}.sp-card p{margin:0 0 16px;line-height:1.45;opacity:.85}
+.sp-go{width:100%;min-height:48px;border:0;border-radius:16px;background:#fff;color:#111;font:inherit;font-weight:700;font-size:16px;cursor:pointer}
+.sun-confetti{position:fixed;inset:0;width:100vw;height:100vh;z-index:100002;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.sun-confetti{display:none}html body #modeSheet,html body #modeSheet *{animation-duration:.01s!important}}
+.sp-fl{list-style:none;margin:0 0 16px;padding:0;text-align:left;display:grid;gap:10px}.sp-fl li{display:grid;gap:2px}.sp-fl span{font-size:14px;opacity:.7;line-height:1.4}
+.sp-later{width:100%;margin-top:8px;min-height:40px;border:0;background:transparent;color:inherit;opacity:.6;font:inherit;cursor:pointer}
+html body #modeSheet .ms-gt{display:block;width:100%;background:none;border:0;color:inherit;opacity:.7;font:inherit;font-size:14px;padding:12px 14px;text-align:left;cursor:pointer}
+html body #modeSheet .ms-gal[hidden]{display:none}
+
+html body #modeSheet .ms-gt,html body #clModel .cl-gx{display:block!important;width:auto!important;height:auto!important;min-height:0!important;margin:6px 0 2px 14px!important;padding:4px 2px!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:inherit!important;opacity:.55;font-size:12px!important;font-weight:400!important;line-height:1.3;text-align:left;cursor:pointer;user-select:none;-webkit-user-select:none}
+html body #modeSheet .ms-gt:hover,html body #clModel .cl-gx:hover{opacity:.9}
+html body #clModel .cl-gal[hidden]{display:none!important}
+html body #modeSheet .ms-gt,html body #clModel .cl-gx{pointer-events:auto!important;-webkit-tap-highlight-color:transparent;outline:0!important}
+html body #clModel .cl-gal,html body #modeSheet .ms-gal{animation:none!important}
+html body #clModel .cl-gal .cl-mi,html body #modeSheet .ms-gal .ms-i{opacity:1!important;animation:none!important}
+
+html body #modeSheet button.ms-gt,html body #clModel button.cl-gx{all:unset!important;display:block!important;box-sizing:border-box!important;margin:6px 0 2px 14px!important;padding:4px 2px!important;font:400 12px/1.3 inherit!important;font-family:inherit!important;font-size:12px!important;color:inherit!important;opacity:.55;cursor:pointer;pointer-events:auto!important;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;width:fit-content!important}
+html body #modeSheet button.ms-gt:hover,html body #clModel button.cl-gx:hover{opacity:.9}
+
+html body #modeSheet span.ms-gt,html body #clModel span.cl-gx{display:block!important;width:fit-content!important;margin:8px 0 2px 16px!important;padding:2px 0!important;background:none!important;border:0!important;box-shadow:none!important;outline:0!important;font-size:12px!important;font-weight:400!important;line-height:1.3!important;color:inherit!important;opacity:.5;cursor:pointer;pointer-events:auto!important;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+html body #modeSheet span.ms-gt:hover,html body #clModel span.cl-gx:hover{opacity:.85}
+
+/* v405 model families + roomier rows */
+html body #modeSheet .ms-fam,html body #clModel .cl-fam{padding:2px 0 8px}
+html body #modeSheet .ms-fh,html body #clModel .cl-fh{display:block;margin:12px 16px 6px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.55}
+html body #modeSheet .ms-i,html body #clModel .cl-mi{padding:12px 16px!important;min-height:56px;margin:2px 0;border-radius:14px;gap:4px}
+html body #modeSheet .ms-i small,html body #clModel .cl-mi small{display:block;margin-top:3px;line-height:1.35}
+html body #modeSheet .ms-card{max-height:78dvh;overflow-y:auto;-webkit-overflow-scrolling:touch}

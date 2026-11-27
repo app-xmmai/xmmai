@@ -1,0 +1,21 @@
+/* no animations anywhere */
+*,*::before,*::after{animation:none!important;animation-delay:0s!important;animation-duration:0s!important;transition:none!important;transition-delay:0s!important;transition-duration:0s!important;scroll-behavior:auto!important}
+/* no hover effect on model options */
+html body #clModel .cl-mi:hover,html body #clModel .cl-mi:active,html body #clModel .cl-mi:focus,html body #clModel .cl-mi:focus-visible,html body #modeSheet .ms-i:hover,html body #modeSheet .ms-i:active,html body #modeSheet .ms-i:focus,html body #modeSheet .ms-i:focus-visible{background:#1e1f20!important;background-color:#1e1f20!important;background-image:none!important;filter:none!important;transform:none!important;scale:none!important;translate:none!important;box-shadow:none!important;opacity:1!important;outline:0!important;border-color:transparent!important}
+html body #clModel .cl-mi:hover *,html body #modeSheet .ms-i:hover *{opacity:1!important;filter:none!important}
+html body #clModel .cl-mi,html body #modeSheet .ms-i{-webkit-tap-highlight-color:transparent}
+html body #clModel span.cl-gx:hover,html body #modeSheet span.ms-gt:hover{opacity:.5!important}
+/* error card + offline screen */
+.xerr{display:flex;align-items:center;gap:12px;margin:8px 0;padding:14px 16px;border-radius:16px;background:#1e1f20;border:1px solid rgba(255,255,255,.1);max-width:460px}
+.xerr-i{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;background:rgba(255,107,107,.16);color:#ff8a8a}
+.xerr-t{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.xerr-t b{font-size:15px;font-weight:600}
+.xerr-t span{font-size:13px;opacity:.65;line-height:1.35}
+html body .xerr .xerr-b{flex:none;padding:8px 14px;border-radius:999px;border:0;background:#fff;color:#000;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+html[data-cl-theme=light] .xerr{background:#fff;border-color:rgba(0,0,0,.1)}
+#xOff{position:fixed;inset:0;z-index:2147483000;background:#141414;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;padding:24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+#xOff[hidden]{display:none}
+#xOff .o-i{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:6px}
+#xOff h1{margin:0;font-size:22px;font-weight:600}
+#xOff p{margin:0;font-size:15px;opacity:.6;max-width:300px;line-height:1.4}
+#xOff button{margin-top:14px;padding:12px 26px;border:0;border-radius:999px;background:#fff;color:#000;font:inherit;font-weight:600;cursor:pointer}

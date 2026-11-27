@@ -1,0 +1,5 @@
+/* turbo: while the AI is replying, switch off every animation/blur/shadow so all speed goes to the reply */
+html.xmm-turbo *,html.xmm-turbo *::before,html.xmm-turbo *::after{animation:none!important;transition:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;filter:none!important;box-shadow:none!important;text-shadow:none!important;scroll-behavior:auto!important}
+html.xmm-turbo canvas:not(.keep){display:none!important}
+html.xmm-turbo .xw-skel span,html.xmm-turbo .typing *,html.xmm-turbo .dots *{animation:xmm-t 1s linear infinite!important}
+@keyframes xmm-t{50%{opacity:.35}}

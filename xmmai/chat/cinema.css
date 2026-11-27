@@ -1,0 +1,157 @@
+/* XMM AI cinematic layer. Loaded last. Compositor-only animations (transform/opacity), no blur filters, no blend modes. */
+:root{--cin-ease:cubic-bezier(.16,1,.3,1)}
+
+/* ---- base: deep near-black "film" canvas, app surfaces see-through to the graded backdrop ---- */
+html body,html body.vui{background:#07080a!important}
+html body .shell,html body #shell-chat,html body #mainChat,html body #viewChat,html body .main{background:transparent!important}
+html body #sideChat{background:rgba(10,11,13,.94)!important;border-right-color:rgba(255,255,255,.06)!important}
+
+/* ---- lighting rig ---- */
+.cin-back,.cin-front{position:fixed;inset:0;pointer-events:none;contain:strict}
+.cin-back{z-index:0}
+.cin-front{z-index:45}
+.cin-back i,.cin-front i{position:absolute;display:block}
+/* orange & teal grade */
+.cin-grade{inset:0;background:
+ radial-gradient(75vmax 58vmax at 0% 0%,rgba(36,120,160,.20),transparent 70%),
+ radial-gradient(75vmax 58vmax at 100% 100%,rgba(214,120,40,.15),transparent 70%),
+ radial-gradient(50vmax 40vmax at 50% 105%,rgba(214,120,40,.07),transparent 70%);
+ animation:cinBreathe 16s ease-in-out infinite alternate}
+@keyframes cinBreathe{from{opacity:.72}to{opacity:1}}
+/* projector spotlight that follows the pointer (desktop only, set in cinema.js) */
+.cin-spot{left:0;top:0;width:78vmax;height:78vmax;margin:-39vmax 0 0 -39vmax;
+ background:radial-gradient(circle,rgba(255,255,255,.065),transparent 62%);opacity:0;transition:opacity .9s ease;will-change:transform}
+/* film grain + lens vignette (very light so text stays crisp) */
+.cin-grain{inset:0;opacity:.05;background-size:160px 160px;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.cin-vig{inset:0;background:radial-gradient(130% 100% at 50% 46%,transparent 66%,rgba(0,0,0,.34) 100%)}
+
+/* ---- scene entrance after the intro: camera pulls back ---- */
+html.cine-reveal body>.shell,html.cine-reveal body>main{animation:cinReveal 1.05s var(--cin-ease) backwards}
+@keyframes cinReveal{from{opacity:0;transform:scale(1.07)}}
+
+/* ---- messages arrive like shots cutting in ---- */
+html body .msgs .m-bot,html body .msgs .m-user,html body #msgs .m-uw{animation:cinMsg .65s var(--cin-ease) backwards}
+@keyframes cinMsg{from{opacity:0;transform:translateY(16px) scale(.985)}}
+
+/* ---- sheets / dialogs dolly in with depth ---- */
+html body .modal:not([hidden]) .sheet{animation:cinSheet .6s var(--cin-ease) backwards}
+@keyframes cinSheet{from{opacity:0;transform:translateY(44px) scale(.955)}}
+html body .modal:not([hidden]){animation:cinFade .35s ease backwards}
+@keyframes cinFade{from{opacity:0}}
+
+/* ---- title-card greeting ---- */
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+ html body .greeting::before{
+  font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif!important;font-weight:400!important;letter-spacing:-.01em!important;
+  background:linear-gradient(100deg,#e9e9e6 0%,#e9e9e6 40%,#ffffff 50%,#e9e9e6 60%,#e9e9e6 100%);background-size:260% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  animation:cinTitle 1.2s var(--cin-ease) .1s backwards,cinShine 2.4s ease-out .5s 1 backwards}
+}
+@keyframes cinTitle{from{opacity:0;transform:translateY(12px) scale(1.04)}}
+@keyframes cinShine{from{background-position:120% 0}to{background-position:-20% 0}}
+
+/* ---- accessibility / low power ---- */
+@media (prefers-reduced-motion:reduce){
+ .cin-grade{animation:none}
+ html.cine-reveal body>.shell,html.cine-reveal body>main,html body .msgs .m-bot,html body .msgs .m-user,html body .modal:not([hidden]) .sheet,html body .greeting::before{animation:none!important}
+}
+
+/* login page: keep the form above the lighting rig */
+body>main,body>footer{position:relative;z-index:1}
+
+/* ================= v86 ================= */
+:root{--cin-soft:cubic-bezier(.22,1,.36,1)}
+
+/* ---- AI reply bubble hugs its text ---- */
+html body .m-bot{display:flex!important;flex-direction:column;align-items:flex-start}
+html body .m-bot>.body{width:fit-content!important;max-width:min(92%,680px)!important;min-width:0;transform-origin:0 100%}
+html body .m-bot>.body:has(pre,table,.genbox,img,video,iframe,canvas,[class*="card"],[class*="xw-"],[class*="wd-"],[class*="xmm-"],.xsum,[class*="widget"]){width:100%!important;max-width:92%!important}
+html body .m-user,html body .m-uw .m-user{width:fit-content;transform-origin:100% 100%}
+
+/* ---- real glass: bars blur whatever is behind them ---- */
+html body .composer{background:rgba(26,27,31,.5)!important;border:1px solid rgba(255,255,255,.11)!important;box-shadow:none!important;
+ -webkit-backdrop-filter:blur(28px) saturate(1.6)!important;backdrop-filter:blur(28px) saturate(1.6)!important}
+html body .composer:focus-within{border-color:rgba(255,255,255,.26)!important;background:rgba(30,31,36,.58)!important}
+html body #sideChat{background:rgba(10,11,14,.55)!important;-webkit-backdrop-filter:blur(30px) saturate(1.5)!important;backdrop-filter:blur(30px) saturate(1.5)!important}
+html body #mainChat>.topbar{background:linear-gradient(rgba(7,8,10,.62),rgba(7,8,10,0))!important;
+ -webkit-backdrop-filter:blur(18px)!important;backdrop-filter:blur(18px)!important;
+ -webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+html body .modal{-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);background:rgba(0,0,0,.42)!important}
+html body .sheet{background:rgba(24,25,29,.72)!important;-webkit-backdrop-filter:blur(34px) saturate(1.6);backdrop-filter:blur(34px) saturate(1.6);box-shadow:none!important;border:1px solid rgba(255,255,255,.09)!important}
+html body .bnav,html body .xpill,html body .toast{-webkit-backdrop-filter:blur(24px) saturate(1.5)!important;backdrop-filter:blur(24px) saturate(1.5)!important}
+
+/* ---- flat buttons: no 3D, no bevels, no overshoot ---- */
+html body :is(button,.btn,.icon-btn,.circle,.chip,.sug,.pl,.mode,.send,.xp-b,.xp-thumb,.xtog,.xnew,.mg-i,.chat-i,.dots,.xfab,.user,.sv-chip,.sv-tab,.sv-style,.composer #sendBtn,.composer #attBtn){
+ box-shadow:none!important;text-shadow:none!important;filter:none!important;transform-style:flat!important;perspective:none!important}
+html body :is(button,.btn,.icon-btn,.circle,.chip,.sug,.pl,.mode,.send,.xp-b,.xtog,.xnew,.mg-i,.chat-i,.dots,.xfab,.user,.sv-chip,.sv-tab,.sv-style,#sideChat .chat-list>*,#sideChat .xnav button){
+ transition:transform .5s var(--cin-soft),background-color .4s var(--cin-soft),color .4s var(--cin-soft),opacity .4s var(--cin-soft),border-color .4s var(--cin-soft)!important}
+@media (hover:hover){
+ html body :is(.icon-btn,.circle,.chip,.sug,.pl,.btn,.mode,.xp-b):hover{transform:translate3d(0,-1px,0)}
+ html body #sideChat .chat-list>*:hover{transform:translate3d(3px,0,0)}
+}
+html body :is(button,.btn,.icon-btn,.circle,.chip,.sug,.pl,.mode,.send):active{transform:scale(.95)!important;transition-duration:.15s!important}
+
+/* ---- everything eases in ---- */
+html body .dock{animation:cinDock 1s var(--cin-soft) .25s backwards}
+@keyframes cinDock{from{opacity:0;transform:translate3d(0,28px,0)}}
+html body #mainChat>.topbar>*{animation:cinTop .8s var(--cin-soft) .3s backwards}
+@keyframes cinTop{from{opacity:0;transform:translate3d(0,-10px,0)}}
+html body #sideChat{animation:cinSide .9s var(--cin-soft) backwards}
+@keyframes cinSide{from{opacity:0;transform:translate3d(-24px,0,0)}}
+html body #sideChat .chat-list>*{animation:cinItem .7s var(--cin-soft) backwards}
+@keyframes cinItem{from{opacity:0;transform:translate3d(-14px,0,0)}}
+html body #sideChat .chat-list>:nth-child(1){animation-delay:.30s}html body #sideChat .chat-list>:nth-child(2){animation-delay:.36s}
+html body #sideChat .chat-list>:nth-child(3){animation-delay:.42s}html body #sideChat .chat-list>:nth-child(4){animation-delay:.48s}
+html body #sideChat .chat-list>:nth-child(5){animation-delay:.54s}html body #sideChat .chat-list>:nth-child(6){animation-delay:.60s}
+html body #sideChat .chat-list>:nth-child(n+7){animation-delay:.66s}
+html body .convo{scroll-behavior:smooth}
+html body .view:not([hidden]):not(#viewChat){animation:cinView .6s var(--cin-soft) backwards}
+@keyframes cinView{from{opacity:0;transform:translate3d(0,14px,0)}}
+
+/* messages: focus-pull (blur to sharp) on the newest shots only */
+html body .msgs>:nth-last-child(-n+3){animation:cinMsgBlur .8s var(--cin-soft) backwards!important}
+@keyframes cinMsgBlur{from{opacity:0;transform:translate3d(0,18px,0) scale(.97);filter:blur(10px)}}
+html body .msgs .m-acts{animation:cinFade .6s ease .15s backwards}
+
+/* moving light leak across the bottom of the frame */
+.cin-leak{left:-30%;bottom:-18vmax;width:90vmax;height:36vmax;border-radius:50%;
+ background:radial-gradient(closest-side,rgba(255,150,60,.13),transparent);animation:cinLeak 22s ease-in-out infinite alternate;will-change:transform}
+@keyframes cinLeak{from{transform:translate3d(0,0,0)}to{transform:translate3d(55vmax,-4vmax,0)}}
+
+@media (prefers-reduced-motion:reduce){
+ html body .dock,html body #mainChat>.topbar>*,html body #sideChat,html body #sideChat .chat-list>*,html body .msgs>*,html body .msgs .m-acts,html body .view{animation:none!important}
+ .cin-leak{animation:none}
+}
+
+/* ================= v87: one UI for PC, tablets (any rotation) and phones ================= */
+html,body{height:100%;min-height:100dvh}
+html body .shell{height:100dvh;min-height:-webkit-fill-available}
+html body #mainChat{padding-bottom:env(safe-area-inset-bottom,0px)}
+html body .composer{max-width:100%}
+html body #msgs,html body .msgs{padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+
+/* mid widths: sidebar slightly slimmer so tablets keep room for the chat */
+@media (min-width:768px) and (max-width:1024px){
+  html body #sideChat{width:232px!important;max-width:232px!important}
+  html body #shell-chat #mainChat{margin-left:232px!important}
+  html body.collapsed #shell-chat #mainChat{margin-left:0!important}
+}
+
+/* phones: same look as PC, sidebar slides over the chat */
+@media (max-width:767px){
+  html body #sideChat{width:min(84vw,320px)!important;max-width:320px!important;z-index:60!important;
+    transition:transform .5s var(--cin-soft)!important;padding-top:env(safe-area-inset-top,0px)}
+  html body #shell-chat #mainChat,html body.collapsed #shell-chat #mainChat{margin-left:0!important;width:100%!important}
+  html body #scrim{display:block!important;position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.5);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .45s var(--cin-soft)}
+  html body #scrim:not(.on){opacity:0;pointer-events:none!important}
+  html body #scrim.on{opacity:1;pointer-events:auto!important}
+  /* top settings button is gone on phones (Settings lives in the sidebar) */
+  html body .g-fabS,html body #gFabS,html body .g-dmo,html body .g-fabM{display:none!important}
+  /* sidebar toggle sits where the PC one does, below the status bar */
+  html body.collapsed .g-fabD{top:calc(10px + env(safe-area-inset-top,0px));left:calc(12px + env(safe-area-inset-left,0px))}
+  html body .greeting::before{font-size:24px}
+  html body .composer{width:calc(100% - 24px)!important}
+  html body #viewChat.empty .dock{padding:0 12px!important}
+}

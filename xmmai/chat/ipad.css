@@ -1,0 +1,214 @@
+/* XMM AI ipad.css v1 — tablet-app look (black, flat, blue accent). Loaded last. */
+:root{--cl-bg:#000;--cl-bg2:#161617;--cl-card:#161617;--cl-card2:#1f1f21;--cl-sheet:#0b0b0c;--cl-txt:#fff;--cl-mut:#8d8d93;
+--cl-line:rgba(255,255,255,.08);--cl-glass:rgba(255,255,255,.09);--cl-glass2:#0f0f10;--cl-glass-b:rgba(255,255,255,.1);
+--cl-acc:#3a5bff;--cl-blue:#3a5bff;--cl-serif:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;--ip-blue:#2f54f5;--ip-card:#141415;--dw:300px}
+@media (max-width:520px){:root{--dw:min(82vw,320px)}}
+html,body{background:#000!important}
+html body #shell-chat{background:#161617!important}
+html body.cl-drawer #mainChat{border-radius:0;box-shadow:none;border-left:1px solid rgba(255,255,255,.06)}
+html body #mainChat{background:#000!important}
+
+/* ---- drawer ---- */
+html body.ip #clDrawer{background:#161617}
+html body.ip .cl-dh{display:flex;justify-content:space-between;align-items:center;font:600 20px var(--cl-sans);letter-spacing:0;padding:calc(env(safe-area-inset-top,0px) + 14px) 18px 6px;height:auto;min-height:64px}
+.ip-circ{width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0}
+.ip-circ svg{width:19px;height:19px}
+html body.ip .cl-nr{height:44px;font:600 15px var(--cl-sans);gap:14px;padding:0 18px;border-radius:12px;margin:0 6px;width:calc(100% - 12px)}
+html body.ip .cl-nr svg{width:20px;height:20px}
+html body.ip .cl-rl{padding:22px 20px 6px;font:700 14.5px var(--cl-sans);color:#fff}
+html body.ip .cl-ci{height:40px;font:500 15px var(--cl-sans);padding:0 20px;gap:0;margin:0}
+html body.ip .cl-ci>svg:first-child{display:none}
+html body.ip .cl-ci .cl-dots{opacity:0;width:28px;height:28px;display:grid;place-items:center}
+html body.ip .cl-ci:hover .cl-dots,html body.ip .cl-ci.on .cl-dots{opacity:.7}
+html body.ip .cl-ci.on{background:rgba(255,255,255,.08);border-radius:12px;margin:0 6px;width:calc(100% - 12px);padding:0 14px}
+html body.ip .cl-ds{padding-bottom:110px}
+html body.ip .cl-db{padding:30px 16px calc(env(safe-area-inset-bottom,0px) + 14px)}
+html body.ip .cl-nc.ip-chat,html body.ip .cl-nc{background:var(--ip-blue)!important;color:#fff!important;height:44px;border-radius:22px;padding:0 18px;gap:9px;font:600 15px var(--cl-sans);border:0;box-shadow:0 6px 22px rgba(47,84,245,.35)}
+html body.ip .cl-nc svg{width:18px;height:18px}
+html body.ip .cl-av{width:38px;height:38px;border-radius:50%;background:#7a5a2a!important;color:#f5d9a6!important;font:600 13px var(--cl-sans);border:0}
+
+/* ---- top bar ---- */
+html body.ip #clTop{padding-left:16px;padding-right:16px;gap:10px;justify-content:flex-start}
+html body.ip .cl-b,html body.ip .cl-pill{background:rgba(255,255,255,.1);border:0}
+html body.ip .cl-b{width:42px;height:42px}
+.ip-pill{height:42px;border-radius:21px;border:0;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;gap:8px;padding:0 16px 0 12px;font:600 15px var(--cl-sans);cursor:pointer;max-width:56vw;overflow:hidden;white-space:nowrap}
+.ip-pill svg{width:17px;height:17px;color:#5d7bff;flex:none}
+.ip-pill span{overflow:hidden;text-overflow:ellipsis}
+html body.ip .cl-sp{flex:1}
+html body.ip:has(#viewChat.empty:not([hidden])) #clMore{display:none!important}
+html body.ip .cl-pill{background:none!important;border:0!important;padding:0;gap:10px;height:42px}
+html body.ip .cl-pill button{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1)}
+
+/* ---- empty state ---- */
+html body.ip .cl-greet{display:none!important}
+#ipSug{display:none;flex-direction:column;gap:2px;width:100%;max-width:720px;margin:0 auto;padding:0 18px 10px}
+html body #viewChat.empty #ipSug{display:flex}
+#ipSug button{display:flex;align-items:center;gap:14px;border:0;background:none;color:#fff;font:500 15px var(--cl-sans);height:42px;padding:0 6px;cursor:pointer;text-align:left;border-radius:10px}
+#ipSug button:active{background:rgba(255,255,255,.08)}
+#ipSug svg{width:19px;height:19px;color:#d8d8dc;flex:none}
+
+/* ---- composer ---- */
+html body.ip .composer,html body.ip .composer.cl-exp{grid-template-columns:auto 1fr auto auto!important;grid-template-areas:"plus ta mic act"!important;background:#0e0e0f!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:26px!important;padding:6px 7px!important;row-gap:0!important;min-height:52px}
+html body.ip .composer.cl-exp>#modeBtn,html body.ip .composer>#modeBtn{display:none!important}
+html body.ip .composer>#gMic{display:grid!important;background:none!important;width:38px;height:38px}
+html body.ip .composer #msg{font-size:16px!important;transition:height .22s cubic-bezier(.22,.8,.24,1)}
+html body.ip #attBtn,html body.ip .composer.cl-exp #attBtn{background:none!important;width:38px;height:38px;color:#e8e8ea!important}
+html body.ip .composer #sendBtn,html body.ip .composer>#gWave,html body.ip .composer.cl-exp #gWave,html body.ip .composer.cl-exp #sendBtn{background:var(--ip-blue)!important;color:#fff!important;width:38px!important;height:38px!important;border-radius:50%!important}
+html body.ip .composer>#gWave svg,html body.ip .composer #sendBtn svg{width:19px;height:19px}
+html body.ip .composer>.cl-hold{display:none!important}
+html body.ip .cl-tip{display:none}
+html body.ip .foot{display:none}
+html.is-tablet body.xempty .composer,html body.xempty .composer{max-width:720px!important;margin:0 auto!important}
+html body.ip .cl-ph{font-size:16px}
+
+/* ---- messages ---- */
+html body.ip .m-user{background:#0b1f7a!important;color:#fff!important;border-radius:20px!important;padding:9px 17px!important;font-size:15px!important;box-shadow:0 0 26px rgba(40,70,255,.35)!important}
+html body.ip .m-bot .body{font-family:var(--cl-sans)!important;font-size:15.5px!important;line-height:1.55!important}
+#msgs .m-bot:last-child:has(.m-acts)::after{display:none}
+.ip-fb{display:flex;align-items:center;justify-content:space-between;background:#232325;border-radius:16px;padding:14px 16px;margin:16px 0 10px;font:500 15px var(--cl-sans);color:#d6d6da}
+.ip-fb div{display:flex;gap:16px}.ip-fb button{border:0;background:none;color:#fff;cursor:pointer;padding:2px}.ip-fb svg{width:20px;height:20px}
+.ip-fb.done{opacity:.55;pointer-events:none}
+
+/* ---- plus popup ---- */
+#ipPlus{position:fixed;z-index:100001;min-width:230px;background:#242426;border-radius:22px;padding:8px;box-shadow:0 14px 50px rgba(0,0,0,.6);transform-origin:bottom left;animation:ipPop .18s ease both}
+@keyframes ipPop{from{opacity:0;transform:scale(.92) translateY(8px)}to{opacity:1;transform:none}}
+#ipPlus button{display:flex;align-items:center;gap:14px;width:100%;border:0;background:none;color:#fff;font:500 16px var(--cl-sans);padding:13px 14px;border-radius:14px;cursor:pointer;text-align:left}
+#ipPlus button:active,#ipPlus button:hover{background:rgba(255,255,255,.08)}
+#ipPlus svg{width:21px;height:21px}
+
+/* ---- pages ---- */
+#ipPage{position:absolute;inset:0;z-index:60;background:#000;display:none;flex-direction:column;color:#fff;font-family:var(--cl-sans)}
+#ipPage.on{display:flex}
+.ip-h{flex:none;display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 10px;min-height:68px;position:relative}
+.ip-h h2{position:absolute;left:0;right:0;text-align:center;font:600 17px var(--cl-sans);margin:0;pointer-events:none}
+.ip-h .ip-circ{position:relative;z-index:1}
+.ip-b{flex:1;overflow-y:auto;padding:6px 16px 40px;-webkit-overflow-scrolling:touch}
+.ip-w{max-width:760px;margin:0 auto}
+.ip-grp{background:var(--ip-card);border-radius:20px;margin:0 0 22px;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.ip-row{display:flex;align-items:center;gap:14px;width:100%;border:0;background:none;color:#fff;font:500 15px var(--cl-sans);padding:15px 16px;text-align:left;cursor:pointer;position:relative}
+.ip-row+.ip-row::before{content:"";position:absolute;left:50px;right:0;top:0;height:1px;background:rgba(255,255,255,.07)}
+.ip-row>svg:first-child{width:20px;height:20px;flex:none;color:#e5e5e8}
+.ip-row .t{flex:1;min-width:0}.ip-row .t small{display:block;color:var(--cl-mut);font-size:12.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ip-row .v{color:var(--cl-mut);font-size:14px}.ip-row .v.b{color:#5d7bff;font-weight:500}
+.ip-row .ch{width:15px;height:15px;color:#6c6c72}
+.ip-sw{width:50px;height:30px;border-radius:15px;background:#3a3a3d;border:0;position:relative;flex:none;cursor:pointer;transition:background .2s}
+.ip-sw::after{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .2s}
+.ip-sw.on{background:var(--ip-blue)}.ip-sw.on::after{transform:translateX(20px)}
+.ip-chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;scrollbar-width:none}
+.ip-chip{flex:none;border:0;border-radius:18px;background:#1c1c1e;color:#fff;font:600 14px var(--cl-sans);padding:9px 16px;cursor:pointer}
+.ip-chip.on{background:#34343a}
+.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.ip-img{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1.25;cursor:pointer;background:#111}
+.ip-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ip-img span{position:absolute;left:10px;bottom:9px;right:10px;font:600 11px var(--cl-sans);color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ip-style{border-radius:18px;aspect-ratio:1/1.25;padding:16px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;border:0;text-align:left;color:#111;font-family:var(--cl-sans)}
+.ip-style b{font:800 26px/1.05 var(--cl-sans);letter-spacing:-.02em}.ip-style small{font:600 12px var(--cl-sans);opacity:.75}
+.ip-bar{flex:none;padding:8px 16px calc(env(safe-area-inset-bottom,0px) + 14px)}
+.ip-bar form{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:8px;background:#161617;border:1px solid rgba(255,255,255,.1);border-radius:26px;padding:6px 7px 6px 16px}
+.ip-bar input{flex:1;min-width:0;border:0;background:none;outline:0;color:#fff;font:16px var(--cl-sans);height:38px}
+.ip-bar button{width:38px;height:38px;border-radius:50%;border:0;background:var(--ip-blue);color:#fff;display:grid;place-items:center;cursor:pointer}
+.ip-bar svg{width:18px;height:18px}
+.ip-lbl{font:600 13px var(--cl-sans);color:var(--cl-mut);padding:6px 6px 8px}
+.ip-in{width:100%;background:var(--ip-card);border:1px solid rgba(255,255,255,.08);border-radius:16px;color:#fff;font:16px var(--cl-sans);padding:14px;outline:0;box-sizing:border-box;margin-bottom:14px}
+textarea.ip-in{min-height:140px;resize:vertical}
+.ip-btn{border:0;border-radius:22px;background:var(--ip-blue);color:#fff;font:600 15px var(--cl-sans);height:44px;padding:0 22px;cursor:pointer}
+.ip-btn.g{background:#2a2a2d}.ip-btn.r{background:#3a1d1f;color:#ff8a8a}
+.ip-empty{color:var(--cl-mut);text-align:center;padding:60px 20px;font:15px/1.5 var(--cl-sans)}
+.ip-card{background:var(--ip-card);border-radius:18px;padding:14px 16px;margin-bottom:10px;border:1px solid rgba(255,255,255,.05);cursor:pointer}
+.ip-card b{display:block;font:600 15px var(--cl-sans);margin-bottom:4px}.ip-card span{color:var(--cl-mut);font:13.5px/1.4 var(--cl-sans)}
+.ip-opt.on .ck{opacity:1}.ip-opt .ck{opacity:0;color:#5d7bff;width:18px;height:18px}
+
+/* ---- settings sheet: full screen ---- */
+html body #clSet{height:100dvh!important;max-height:none!important;border-radius:0!important;background:#000!important;top:0!important}
+html body #clSet .cl-sb{background:#000}
+html body #clSet .cl-grp,html body #clSet .cl-prof{background:var(--ip-card);border-radius:20px}
+html body #clSet .cl-grab{display:none}
+
+/* ---- voice orb ---- */
+#clVoice .cl-logo{display:none}
+#clVoice .cl-vmid::before{content:"";display:block;width:150px;height:150px;border-radius:50%;margin:0 auto 28px;background:radial-gradient(circle at 50% 8%,#fff 0,#dce6ff 14%,#6f96ff 38%,#1f3fe0 70%,#1a2fb8 100%);box-shadow:0 0 70px rgba(70,110,255,.45);animation:ipOrb 3.2s ease-in-out infinite}
+#clVoice.speak .cl-vmid::before,#clVoice.talk .cl-vmid::before{animation-duration:1.1s}
+@keyframes ipOrb{50%{transform:scale(1.07)}}
+#clVoice .cl-vglow{display:none}
+
+@media (min-width:900px){
+ html body.ip.xempty #viewChat .dock{max-width:760px;margin:0 auto;width:100%}
+}
+
+/* smooth input text */
+html body.ip .composer>.cl-ph{background:linear-gradient(105deg,#8d8d93 38%,#fff 50%,#8d8d93 62%)!important;background-size:260% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;animation:clShine 7s ease-in-out infinite!important;transition:opacity .2s}
+html body.ip .composer.cl-sent>.cl-ph,html body.ip .composer.cl-listen>.cl-ph{animation:none!important}
+html body.ip .composer,html body.ip .composer button{transition:background-color .2s,border-color .2s,transform .22s cubic-bezier(.22,.8,.24,1),border-radius .34s cubic-bezier(.22,.8,.24,1)!important}
+html body.ip #msg{caret-color:#5d7bff}
+#ipSug button{animation:ipUp .5s cubic-bezier(.22,.8,.24,1) both}
+#ipSug button:nth-child(2){animation-delay:.05s}#ipSug button:nth-child(3){animation-delay:.1s}#ipSug button:nth-child(4){animation-delay:.15s}
+@keyframes ipUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#ipPage.on,#ipSet{animation:ipFade .25s ease both}
+@keyframes ipFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#clSet,#clSetBg{display:none!important}
+#ipSet{position:fixed;inset:0;z-index:100002;background:#000;display:flex;flex-direction:column;color:#fff;font-family:var(--cl-sans)}
+.ip-av{width:34px;height:34px;border-radius:50%;background:#7a5a2a;color:#f5d9a6;display:grid;place-items:center;font:600 13px var(--cl-sans);flex:none}
+.ip-row.dg{color:#ff7a7a}
+
+.cl-notif,#clNotif{display:none!important}
+.ip-fb{display:none!important}
+/* voice */
+#clVoice{background:#000}
+#clVoice .cl-vmid::before{width:170px;height:170px;background:radial-gradient(circle at 50% 10%,#fff 0,#e3ecff 12%,#7fa1ff 34%,#2a4ee6 66%,#1a2fb8 100%);box-shadow:0 0 90px rgba(70,110,255,.4),inset 0 -14px 30px rgba(10,20,120,.5)}
+#clVoice .cl-vt{font:500 15px var(--cl-sans);color:#a0a0a8;opacity:1}
+#clVoice .cl-vs{font:16px/1.5 var(--cl-sans);color:#e6e6ea}
+#cvGear,#cvModel,#clVoice .cl-sp{display:none!important}
+#clVoice .cl-vbar{gap:10px;padding:0 16px calc(env(safe-area-inset-bottom,0px) + 18px);align-items:center}
+.ip-vpill{flex:1;display:flex;align-items:center;gap:8px;height:52px;border-radius:26px;background:#0e0e0f;border:1px solid rgba(255,255,255,.1);padding:0 7px}
+.ip-vpill .cl-b{width:38px;height:38px;background:none!important;border:0}
+.ip-vph{flex:1;color:#8d8d93;font:16px var(--cl-sans)}
+#clVoice .ip-vpill .cl-vmic{position:static;transform:none;width:38px;height:38px;border:0;background:none;color:#fff;display:grid;place-items:center;margin:0}
+#clVoice .ip-vpill .cl-vmic svg{width:20px;height:20px}
+#clVoice .ip-vpill .cl-vmic::before{display:none}
+#clVoice.muted .ip-vpill .cl-vmic{background:none;color:#ff7a7a}
+#clVoice .cl-vx{width:52px;height:52px;background:#fff;color:#000}
+
+/* ===== floating glass: no bars, text scrolls underneath ===== */
+:root{--ip-glass:rgba(40,40,44,.42);--ip-blur:blur(14px) saturate(1.5)}
+html body.ip #clTop{background:none!important;box-shadow:none!important;border:0!important}
+html body.ip #clTop::before,html body.ip #clTop::after{display:none!important}
+html body.ip .cl-b,html body.ip .cl-pill button,.ip-pill,.ip-circ,.ip-chip,html body.ip .cl-vx.glass,
+html body.ip #attBtn,html body.ip #gMic,html body.ip .cl-av{background:var(--ip-glass)!important;-webkit-backdrop-filter:var(--ip-blur);backdrop-filter:var(--ip-blur)}
+html body.ip .cl-b,html body.ip .cl-pill button,.ip-pill,.ip-circ{border:1px solid rgba(255,255,255,.08)!important}
+html body.ip .composer,html body.ip .composer.cl-exp{background:rgba(24,24,27,.45)!important;-webkit-backdrop-filter:var(--ip-blur);backdrop-filter:var(--ip-blur);border:1px solid rgba(255,255,255,.12)!important;overflow:hidden}
+html body.ip #attBtn,html body.ip #gMic{background:none!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+html body.ip .composer #sendBtn,html body.ip .composer>#gWave{background:rgba(47,84,245,.9)!important}
+html body.ip .cl-nc{background:rgba(47,84,245,.85)!important;-webkit-backdrop-filter:var(--ip-blur);backdrop-filter:var(--ip-blur)}
+/* chat: dock floats over the messages */
+html body #viewChat{position:relative!important}
+html body.ip #viewChat:not(.empty) .dock{position:absolute!important;left:0!important;right:0!important;bottom:0!important;margin:0 auto!important;background:none!important;box-shadow:none!important;border:0!important;z-index:20;padding:0 14px calc(env(safe-area-inset-bottom,0px) + 12px)!important}
+html body.ip #viewChat:not(.empty) .dock::before,html body.ip #viewChat:not(.empty) .dock::after{display:none!important}
+html body.ip #viewChat:not(.empty) .convo{padding-bottom:130px!important}
+html body.ip #viewChat .dock{background:none!important}
+/* pages + settings: header and bottom bar float */
+#ipPage,#ipSet{position:absolute}#ipSet{position:fixed}
+.ip-h{position:absolute;top:0;left:0;right:0;z-index:3;background:none!important}
+.ip-b{padding-top:calc(env(safe-area-inset-top,0px) + 76px)!important;padding-bottom:110px!important}
+.ip-bar{position:absolute;left:0;right:0;bottom:0;z-index:3;background:none!important}
+.ip-bar form{background:rgba(24,24,27,.45)!important;-webkit-backdrop-filter:var(--ip-blur);backdrop-filter:var(--ip-blur)}
+.ip-chip{background:rgba(60,60,66,.5)!important}.ip-chip.on{background:rgba(110,110,120,.55)!important}
+.ip-vpill{background:rgba(24,24,27,.45)!important;-webkit-backdrop-filter:var(--ip-blur);backdrop-filter:var(--ip-blur)}
+/* drawer bottom */
+html body.ip .cl-db{background:none!important}
+html body.ip .cl-av{background:rgba(122,90,42,.7)!important}
+#ipPlus{background:rgba(40,40,44,.7)!important;-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5)}
+html body.ip .m-bot .body,html body.ip .m-bot{background:none!important;border:0!important;box-shadow:none!important;padding-left:0!important;padding-right:0!important}
+html body.ip .m-bot .body *{border-color:transparent}
+html body.ip .m-bot .body pre,html body.ip .m-bot .body code{border-color:rgba(255,255,255,.1)}
+
+/* v117: stable colours — more opaque glass, no colour transitions/animations */
+:root{--ip-glass:rgba(34,34,38,.82)}
+html body.ip .cl-b,html body.ip .cl-pill button,.ip-pill,.ip-circ{background:rgba(34,34,38,.82)!important;color:#fff!important}
+html body.ip .composer,html body.ip .composer.cl-exp,html body.ip .composer:hover,html body.ip .composer:focus-within,html body.ip .composer.focus,html body.ip .composer.cl-sent{background:rgba(24,24,27,.8)!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:none!important}
+.ip-bar form,.ip-vpill{background:rgba(24,24,27,.8)!important}
+html body.ip .composer,html body.ip .composer button,html body.ip .cl-b,html body.ip .cl-pill button,.ip-pill,.ip-circ{transition:transform .2s cubic-bezier(.22,.8,.24,1)!important;animation:none!important}
+html body.ip #attBtn,html body.ip #gMic,html body.ip #attBtn:hover,html body.ip #gMic:hover,html body.ip #gMic.on{background:none!important;color:#e8e8ea!important}
+html body.ip .composer #sendBtn,html body.ip .composer>#gWave,html body.ip .composer #sendBtn:hover,html body.ip .composer>#gWave:hover{background:#2f54f5!important;color:#fff!important;filter:none!important}
+html body.ip .cl-b:hover,html body.ip .cl-pill button:hover{background:rgba(34,34,38,.82)!important}
+html body.ip .composer>.cl-ph{animation:none!important;background:none!important;-webkit-text-fill-color:#8d8d93!important;color:#8d8d93!important}
+html body.ip .cin-back,html body.ip .cin-front,.cin-back,.cin-front,#cine{display:none!important}

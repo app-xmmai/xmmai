@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b4fe0"/><stop offset="1" stop-color="#0a2a8a"/></linearGradient>
+<linearGradient id="p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9dff4a"/><stop offset="1" stop-color="#27b800"/></linearGradient></defs>
+<rect width="400" height="140" fill="url(#g)"/>
+<rect y="108" width="400" height="32" fill="#06185a"/>
+<g fill="#fff" stroke="#000" stroke-width="3" stroke-linejoin="round"><path d="M250 108l14-34 14 34z"/><path d="M286 108l14-34 14 34z"/></g>
+<rect x="90" y="68" width="40" height="40" rx="6" fill="url(#p)" stroke="#000" stroke-width="4"/>
+<rect x="100" y="80" width="8" height="10" fill="#000"/><rect x="116" y="80" width="8" height="10" fill="#000"/>
+<g stroke="#000" stroke-width="2.5"><path d="M340 40l12 14-12 14-12-14z" fill="#ff4fa3"/><path d="M180 30l10 12-10 12-10-12z" fill="#ffd400"/></g>
+<text x="200" y="22" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-size="22" fill="#fff" stroke="#000" stroke-width="4" paint-order="stroke">SPIKEDASH</text>
+</svg>

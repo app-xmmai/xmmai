@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head><script data-xmm-guard>(function(){try{
+var h=location.hostname.toLowerCase(),p=location.pathname,q=location.search+location.hash,X="xmm-ai.com";
+var dev=h==="localhost"||h==="127.0.0.1"||h==="[::1]"||location.protocol==="file:";
+var S={app:1,auth:1,support:1,status:1};
+var sub=h===X?"":(h.slice(-X.length-1)==="."+X?h.slice(0,-X.length-1):null);
+function kind(p){if(/^\/chat(\/(index\.html)?)?$/.test(p))return"app";if(/^\/login(\/(index\.html)?)?$/.test(p))return"auth";if(/^\/support(\/|$)/.test(p))return"support";if(/^\/status(\/|$)/.test(p))return"status";return""}
+function u(k,p){return"https://"+k+"."+X+((k==="app"||k==="auth")?"/":(p.replace(/^\/(support|status)/,"").replace(/index\.html$/,"")||"/"))}
+var k=kind(p),to=null;
+if(!dev){
+if(sub===""||sub===null||!S[sub]){if(k)to=u(k,p)+q}
+else{if(k&&k!==sub)to=u(k,p)+q}
+}
+if(to){document.documentElement.style.visibility="hidden";location.replace(to);return}
+if(!dev&&S[sub]&&k===sub&&/^\/(chat|login|support|status)(\/(index\.html)?)?$/.test(p)){try{history.replaceState(history.state,"","/"+location.search+location.hash)}catch(e){}}
+var n=navigator,ua=n.userAgent||"";
+if(!(n.webdriver||/googlebot|bingbot|adsbot|applebot|duckduckbot|duckassistbot|baiduspider|yandex|gptbot|chatgpt-user|oai-searchbot|claudebot|claude-web|claude-user|claude-searchbot|anthropic|perplexitybot|perplexity-user|ccbot|bytespider|amazonbot|meta-external|facebookexternalhit|petalbot|semrush|ahrefs|mj12bot|dotbot|cohere|diffbot|youbot|ia_archiver|headless|lighthouse|python-requests|curl\/|wget|scrapy|puppeteer|playwright|selenium|phantomjs|(^|[^a-z])bot([^a-z]|$)|crawler|spider|slurp/i.test(ua)))return;
+var d=document.documentElement;d.setAttribute("data-bot","1");
+var s=document.createElement("style");
+s.textContent="html[data-bot] a,html[data-bot] button,html[data-bot] input,html[data-bot] textarea,html[data-bot] select,html[data-bot] label,html[data-bot] summary,html[data-bot] [role=button],html[data-bot] [onclick]{pointer-events:none!important;cursor:default!important}";
+document.head.appendChild(s);
+var SC={" ":1,ArrowUp:1,ArrowDown:1,PageUp:1,PageDown:1,Home:1,End:1};
+["click","dblclick","auxclick","mousedown","mouseup","pointerdown","pointerup","touchstart","touchend","keydown","keypress","keyup","input","beforeinput","change","submit","contextmenu","paste","cut","drop","dragstart"].forEach(function(t){
+window.addEventListener(t,function(e){e.stopImmediatePropagation();if(/^key/.test(t)&&SC[e.key])return;e.preventDefault()},true)});
+var of=window.fetch;
+if(of)window.fetch=function(u,o){var m=String((o&&o.method)||(u&&u.method)||"GET").toUpperCase(),x=false;
+try{x=new URL(String((u&&u.url)||u),location.href).origin!==location.origin}catch(e){}
+if((m!=="GET"&&m!=="HEAD")||x)return Promise.reject(new TypeError("read-only"));return of.apply(this,arguments)};
+var xo=XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open=function(m,u){var x=false;try{x=new URL(String(u),location.href).origin!==location.origin}catch(e){}
+if((String(m).toUpperCase()!=="GET")||x)throw new Error("read-only");return xo.apply(this,arguments)};
+window.WebSocket=function(){throw new Error("read-only")};
+n.sendBeacon=function(){return false};
+window.open=function(){return null};
+}catch(e){}})();</script>
+<script>/* no-suspension guard: clears any old ban/lock state and removes any suspension screen. */
+(function(){try{
+var h=location.hostname.toLowerCase();
+var BAD=/ban|susp|violat|strike|lockout|cooldown_chat|blocked/i;
+try{for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i);if(k&&BAD.test(k)&&!/^xmm\.(chats|notes|name|terms|welcomed)$/.test(k))localStorage.removeItem(k)}}catch(e){}
+try{var c=JSON.parse(localStorage.getItem("xmm.chats")||"[]");var ch=0;c.forEach(function(x){if(x&&(x.locked||x.banned||x.closed)){delete x.locked;delete x.banned;delete x.closed;ch=1}});if(ch)localStorage.setItem("xmm.chats",JSON.stringify(c))}catch(e){}
+var RX=/access suspended|account was suspended|safety violation|can.t message in this chat|you have been logged out/i;
+function sweep(){try{var all=document.body?document.body.querySelectorAll("div,section,aside,p,span"):[];for(var j=0;j<all.length;j++){var e=all[j];if(e.children.length<4&&RX.test(e.textContent||"")&&(e.textContent||"").length<400){var t=e;while(t.parentElement&&t.parentElement!==document.body&&(t.parentElement.textContent||"").length<500)t=t.parentElement;t.remove()}}
+var ins=document.querySelectorAll("#msg[disabled],#msg[readonly]");ins.forEach(function(n){n.removeAttribute("disabled");n.removeAttribute("readonly")})}catch(e){}}
+document.addEventListener("DOMContentLoaded",function(){sweep();new MutationObserver(sweep).observe(document.documentElement,{childList:true,subtree:true})});
+setInterval(sweep,1500);
+}catch(e){}})();</script>
+
+
+
+
+
+<script>
+(function(){
+  function apply(){
+    try{
+      var w=innerWidth||0;
+      var coarse=false;
+      try{coarse=matchMedia("(pointer:coarse)").matches}catch(e){}
+      var tab=w<=1100 || (coarse && w<=1400);
+      document.documentElement.classList.toggle("is-tablet", !!tab);
+      document.documentElement.classList.toggle("is-landscape", !!matchMedia("(orientation:landscape)").matches);
+      document.documentElement.classList.toggle("is-portrait", !!matchMedia("(orientation:portrait)").matches);
+    }catch(e){}
+  }
+  apply();
+  addEventListener("resize", apply);
+  addEventListener("orientationchange", function(){setTimeout(apply, 100)});
+})();
+</script>
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Install XMM AI on Windows, Mac and Linux | XMM AI Support</title>
+<meta name="theme-color" content="#faf9f5">
+<meta name="color-scheme" content="light">
+<meta name="description" content="You can install XMM AI as a desktop app from Chrome, Edge and other Chromium browsers.">
+<link rel="icon" href="/favicon.ico?v=gpu6" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/icon.svg?v=gpu6">
+<link rel="stylesheet" href="/support/support.css?v=1">
+<link rel="canonical" href="https://support.xmm-ai.com/a/install-on-desktop">
+</head>
+<body><header class="top"><div class="in"><button class="menu-b" aria-label="Menu" onclick="document.body.classList.toggle('m')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><a class="logo" href="/"><img src="/icon.svg?v=gpu6" alt=""><span>XMM AI Support</span></a><nav class="nav"><a class="hide" href="https://app.xmm-ai.com/">Open XMM AI</a><a class="hide" href="https://status.xmm-ai.com/">Status</a><a class="hide hide2" href="/a/contact-and-bug-reports">How to get support</a><div class="srch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search" autocomplete="off" aria-label="Search"><div id="sr" hidden></div></div><a class="mail-btn" href="mailto:support@xmm-ai.com?subject=XMM%20AI%20support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>Contact support</a></nav></div></header><div class="wrap"><aside class="side"><h4>Troubleshooting</h4><a href="/a/app-wont-load">XMM AI won’t load or shows a black screen</a><a href="/a/app-freezes-on-load">The app freezes or hangs while starting</a><h4>Install and update</h4><a href="/a/install-on-iphone">Install XMM AI on iPhone and iPad</a><a href="/a/install-on-android">Install XMM AI on Android</a><a href="/a/install-on-desktop" class="on">Install XMM AI on Windows, Mac and Linux</a><a href="/a/update-to-latest-version">Get the latest version of XMM AI</a><h4>Chat</h4><a href="/a/messages-not-sending">My messages are not sending</a><a href="/a/slow-replies">Replies are slow or stop halfway</a><a href="/a/incorrect-or-misleading-answers">The AI gave an incorrect or misleading answer</a><a href="/a/build-mode-problems">Build mode preview is blank or not updating</a><h4>Media</h4><a href="/a/image-generation-problems">Image creation fails or looks wrong</a><a href="/a/upload-problems">I can’t upload images or files</a><a href="/a/voice-and-microphone">Voice mode and the microphone don’t work</a><h4>Your data</h4><a href="/a/chats-missing">My chats disappeared</a><a href="/a/delete-chats-and-clear-data">Delete chats and clear your data</a><h4>Account and settings</h4><a href="/a/change-language">Change the language or fix text direction</a><a href="/a/layout-and-sidebar-issues">The sidebar or layout looks broken</a><a href="/a/username-and-profile">Your name, username and profile</a><a href="/a/ai-memory-and-settings">Use AI memory and settings</a><h4>Getting help</h4><a href="/a/contact-and-bug-reports">Contact support and report a bug</a></aside><main class="main"><div class="crumbs"><a href="/">All Collections</a><span>›</span><span>Install and update</span><span>›</span><span>Install XMM AI on Windows, Mac and Linux</span></div><article class="art"><h1>Install XMM AI on Windows, Mac and Linux</h1><div class="meta"><span>November 23, 2026</span><button class="copy" onclick="navigator.clipboard&&navigator.clipboard.writeText(document.querySelector('.art').innerText);this.textContent='Copied'">Copy article</button></div><p>You can install XMM AI as a desktop app from Chrome, Edge and other Chromium browsers.</p><p>It opens in its own window with no tabs or address bar.</p><h2>Chrome and Edge</h2><ul><li>Open app.xmm-ai.com.</li><li>Look for the install icon on the right side of the address bar.</li><li>Click it and choose Install.</li><li>Pin the new window to your taskbar or dock.</li></ul><h2>From the menu</h2><p>If the icon is missing, open the browser menu and look for Install XMM AI or Apps.</p><p>On Edge, choose Apps and then Install this site as an app.</p><h2>Safari on Mac</h2><p>In recent versions of macOS you can choose File then Add to Dock.</p><p>The result behaves like a standalone app.</p><h2>Firefox</h2><p>Firefox does not install web apps on desktop, so keep XMM AI as a pinned tab instead.</p><h2>Keyboard shortcuts</h2><ul><li>Enter sends a message.</li><li>Shift+Enter adds a new line.</li><li>Ctrl+Shift+R reloads with fresh files.</li></ul><h2>Updating</h2><p>The desktop app updates itself when it loads, so there is nothing to download.</p><p>Close the window and open it again if something looks old.</p><h2>Uninstalling</h2><p>Open the app window, click the three‑dot menu and choose Uninstall.</p><p>You can also remove it from your system’s app list.</p><h2>Window looks wrong</h2><p>Resize the window or toggle full screen once to refresh the layout.</p><h2>Support</h2><p>Email us your operating system and browser version.</p><p>Use Contact support on this page.</p><div class="helpful"><b>Still need help?</b><span>Email our team and we will get back to you.</span><a class="mail-btn" href="mailto:support@xmm-ai.com?subject=XMM%20AI%20support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>Contact support</a></div><div class="related"><h3>Related articles</h3><a href="/a/install-on-iphone">Install XMM AI on iPhone and iPad</a><a href="/a/install-on-android">Install XMM AI on Android</a><a href="/a/update-to-latest-version">Get the latest version of XMM AI</a></div></article></main></div><footer><a href="https://xmm-ai.com/">Home</a><a href="https://app.xmm-ai.com/">Open XMM AI</a><a href="https://status.xmm-ai.com/">Status</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="mailto:support@xmm-ai.com?subject=XMM%20AI%20support">support@xmm-ai.com</a><span>© 2026 XMM AI</span></footer><a class="fab" href="mailto:support@xmm-ai.com?subject=XMM%20AI%20support" aria-label="Email support" title="Email support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a><script src="/support/search.js?v=1"></script></body></html>

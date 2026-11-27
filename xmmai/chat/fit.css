@@ -1,0 +1,42 @@
+/* fit.css: phones. Fit the real visible screen and push everything down from the top/notch */
+:root{--xgap:22px;--xt:16px;--xb:max(env(safe-area-inset-bottom,0px),8px)}
+html{background:#0b0b10}html,body{height:var(--app-h,100%);min-height:100%;overflow:hidden;overscroll-behavior:none}#xl{height:100%!important;min-height:var(--app-h,100%)}
+html body .shell{height:var(--app-h,100dvh)!important;min-height:0!important;max-height:var(--app-h,100dvh)!important;overflow:hidden}
+@media(max-width:900px){
+ html body #mainChat>header.topbar.topbar{padding-top:calc(var(--xt) + var(--xgap) + 10px)!important}
+ html body #viewChat .convo{padding-top:calc(var(--xt) + var(--xgap) + 96px)!important;padding-bottom:calc(var(--xb) + 14px)!important}
+ html body .view.page{padding-top:calc(var(--xt) + var(--xgap) + 98px)!important;padding-bottom:calc(var(--xb) + 30px)!important}
+ html body #viewChat .dock,html body #viewChat.empty .dock,html body.xempty #viewChat .dock{padding-bottom:calc(var(--xb) + 14px)!important}
+ html body .cl-dh{padding-top:calc(var(--xt) + var(--xgap) + 16px)!important;height:calc(var(--xt) + var(--xgap) + 78px)!important}
+ html body .cl-vtop{padding-top:calc(var(--xt) + var(--xgap) + 12px)!important}
+ html body .g-fabD,html body.collapsed .g-fabD{top:calc(var(--xt) + var(--xgap) + 10px)!important}
+ html body #xwn .x{top:calc(var(--xt) + var(--xgap) + 10px)}
+}
+
+/* home-screen app (PWA): the whole app is pushed down by a fixed amount.
+   Turned on by html.pwa (set in index.html from navigator.standalone / display-mode / iOS UA) and also by the display-mode media query. */
+html.pwa{--xt:0px!important;--xgap:0px!important;--xtop:max(28px,calc(env(safe-area-inset-top,0px) + 10px - clamp(0px,calc((30px - env(safe-area-inset-top,0px)) * 100),2px)))}
+html.pwa,html.pwa body{background:var(--xgapbg,#191919)!important}
+html.pwa[data-cl-theme="light"],html.pwa[data-cl-theme="light"] body{background:var(--xgapbg,#faf9f5)!important}
+html.pwa{transition:background-color .2s ease}
+html.pwa body .shell #mainChat,html.pwa body #shell-chat #mainChat,html.pwa body .shell #zhero,html.pwa body .shell #viewChat{height:100%!important;min-height:0!important;max-height:100%!important}
+html.pwa body .shell,html.pwa body #shell-chat.shell,html.pwa body #shell-chat{top:var(--xtop)!important;bottom:var(--kb,0px)!important;height:auto!important;min-height:0!important;max-height:none!important}
+html.pwa body #clDrawer{height:100%!important;max-height:100%!important;top:0!important;bottom:0!important}
+@media (display-mode:standalone) and (pointer:coarse),(display-mode:fullscreen) and (pointer:coarse),(display-mode:minimal-ui) and (pointer:coarse){
+ :root{--xt:0px!important;--xgap:0px!important;--xtop:max(28px,calc(env(safe-area-inset-top,0px) + 10px - clamp(0px,calc((30px - env(safe-area-inset-top,0px)) * 100),2px)))}
+ html:root,html:root body{background:var(--xgapbg,#191919)!important}
+ html:root[data-cl-theme="light"],html:root[data-cl-theme="light"] body{background:var(--xgapbg,#faf9f5)!important}
+ html body .shell #mainChat,html body #shell-chat #mainChat,html body .shell #zhero,html body .shell #viewChat{height:100%!important;min-height:0!important;max-height:100%!important}
+ html body .shell,html body #shell-chat.shell,html body #shell-chat{top:var(--xtop)!important;bottom:var(--kb,0px)!important;height:auto!important;min-height:0!important;max-height:none!important}
+ html body #clDrawer{height:100%!important;max-height:100%!important;top:0!important;bottom:0!important}
+}
+
+/* keyboard: --kb (from visualViewport, set in index.html) raises the bottom of #shell-chat; the input bar lives inside it, so it follows the keyboard once */
+
+/* the top gap is painted by its own fixed strip, so nothing else can leave it black */
+html.pwa::before{content:"";position:fixed;left:0;right:0;top:0;height:var(--xtop,0px);background:var(--xgapbg,#191919);z-index:2147483000;pointer-events:none}
+html.pwa[data-cl-theme="light"]::before{background:var(--xgapbg,#faf9f5)}
+@media (display-mode:standalone) and (pointer:coarse),(display-mode:fullscreen) and (pointer:coarse),(display-mode:minimal-ui) and (pointer:coarse){
+ html:root::before{content:"";position:fixed;left:0;right:0;top:0;height:var(--xtop,0px);background:var(--xgapbg,#191919);z-index:2147483000;pointer-events:none}
+ html:root[data-cl-theme="light"]::before{background:var(--xgapbg,#faf9f5)}
+}

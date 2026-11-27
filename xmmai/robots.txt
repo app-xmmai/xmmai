@@ -1,0 +1,8 @@
+# xmm-ai.com
+# Every crawler/robot may crawl everything: scroll, read text and see images.
+# Robots cannot interact with the site (buttons, chat, forms, API calls):
+# that is enforced inside the pages themselves, because robots.txt cannot do it.
+User-agent: *
+Allow: /
+
+Sitemap: https://xmm-ai.com/sitemap.xml

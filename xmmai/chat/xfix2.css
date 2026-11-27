@@ -1,0 +1,174 @@
+/* xfix2: + and ⋯ menus = plain clickable text on blurred glass; + and ⋯ buttons = bare icons; settings solid */
+:root{--xb:blur(20px) saturate(1.5)}
+/* menus: blur back */
+html body #ipPlus,html body .menu,html body .menu.pop{-webkit-backdrop-filter:var(--xb)!important;backdrop-filter:var(--xb)!important;background:rgba(37,37,39,.62)!important}
+html[data-cl-theme=light] body #ipPlus,html[data-cl-theme=light] body .menu,html[data-cl-theme=light] body .menu.pop{background:rgba(255,255,255,.7)!important}
+html body #ipPlus button,html body .menu button,html body .menu.pop button,
+html body #ipPlus button:hover,html body .menu button:hover,html body .menu.pop button:hover,
+html body #ipPlus button:active,html body .menu button:active,html body .menu.pop button:active,
+html body #ipPlus button:focus,html body .menu button:focus,html body .menu.pop button:focus,html body .menu.pop button:focus-visible{
+ background:transparent!important;background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;outline:none!important;
+ -webkit-tap-highlight-color:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;filter:none!important}
+html body #ipPlus button:active,html body .menu button:active{opacity:.55}
+/* round buttons: blurred glass back */
+html body .cl-b,html body.ip .cl-b,html body .cl-pill button,html body.ip .cl-pill button,html body .ip-circ,html body .ip-pill,html body .circle,html body .icon-btn{
+ -webkit-backdrop-filter:var(--xb)!important;backdrop-filter:var(--xb)!important}
+html body .cl-b,html body.ip .cl-b,html body .ip-circ,html body .ip-pill{background:rgba(42,42,45,.6)!important;color:#fff!important;-webkit-text-fill-color:#fff}
+html[data-cl-theme=light] body .cl-b,html[data-cl-theme=light] body.ip .cl-b,html[data-cl-theme=light] body .ip-circ,html[data-cl-theme=light] body .ip-pill{background:rgba(236,235,231,.7)!important;color:#1f1e1d!important;-webkit-text-fill-color:#1f1e1d}
+/* top bar blur back */
+html body #clTop#clTop,html body #clPill#clPill{-webkit-backdrop-filter:var(--xb)!important;backdrop-filter:var(--xb)!important}
+/* + and ⋯: bare icons, no box */
+html body #attBtn#attBtn#attBtn,html body #attBtn#attBtn#attBtn:hover,html body #attBtn#attBtn#attBtn:active,html body #attBtn#attBtn#attBtn:focus,
+html body #clMore#clMore#clMore,html body #clMore#clMore#clMore:hover,html body #clMore#clMore#clMore:active,html body #clMore#clMore#clMore:focus,html body #clMore#clMore#clMore:focus-visible{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important;outline:none!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;filter:none!important;-webkit-filter:none!important;mix-blend-mode:normal!important;
+ will-change:auto!important;-webkit-appearance:none;appearance:none;color:#e8e8ea!important;-webkit-text-fill-color:#e8e8ea;opacity:1!important;
+ -webkit-tap-highlight-color:transparent!important;touch-action:manipulation;position:relative}
+html body #attBtn#attBtn#attBtn::before,html body #clMore#clMore#clMore::before{content:"";position:absolute;inset:-8px;background:transparent}
+html body #attBtn#attBtn#attBtn:active,html body #clMore#clMore#clMore:active{opacity:.55!important}
+html body #clMore#clMore#clMore svg,html body #clMore#clMore#clMore svg *{fill:currentColor!important;stroke:none!important;opacity:1!important}
+/* settings: solid, no glass */
+html body #ipPage,html body #ipPage *,html body #settings,html body #settings .sheet,html body #settings .sheet *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body #ipPage{background:#1a1a1c!important}
+html[data-cl-theme=light] body #ipPage{background:#f7f6f3!important}
+html body #ipPage .ip-grp,html body #ipPage .cl-grp,html body #ipPage .ip-row{background-color:#27272a!important}
+html[data-cl-theme=light] body #ipPage .ip-grp,html[data-cl-theme=light] body #ipPage .cl-grp,html[data-cl-theme=light] body #ipPage .ip-row{background-color:#fff!important}
+html body #ipPage .ip-circ,html body #ipPage .ip-chip{background:#2a2a2d!important}
+html[data-cl-theme=light] body #ipPage .ip-circ,html[data-cl-theme=light] body #ipPage .ip-chip{background:#ecebe7!important}
+
+/* v4: NO blur anywhere; square-ish (rounded-corner) composer and buttons; solid surfaces */
+html body *:not(#_a):not(#_b):not(#_c):not(#_d),html body *:not(#_a):not(#_b):not(#_c):not(#_d)::before,html body *:not(#_a):not(#_b):not(#_c):not(#_d)::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body #ipPlus#ipPlus,html body .menu.menu.menu.pop,html body .menu.menu.menu{background:#232326!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:12px!important;box-shadow:0 8px 24px rgba(0,0,0,.5)!important}
+html[data-cl-theme=light] body #ipPlus#ipPlus,html[data-cl-theme=light] body .menu.menu.menu.pop,html[data-cl-theme=light] body .menu.menu.menu{background:#fff!important;border-color:rgba(0,0,0,.1)!important}
+/* chat input: professional rounded square */
+html body #viewChat .composer.composer.composer,html body #viewChat .dock .composer.composer.composer,html body.ip #viewChat .composer.composer.composer,html body #viewChat .composer.cl-exp.composer.composer{
+ background:#1d1d20!important;background-color:#1d1d20!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:14px!important;box-shadow:0 2px 10px rgba(0,0,0,.35)!important;padding:8px 8px!important}
+html body #viewChat .composer.composer.composer::before,html body #viewChat .composer.composer.composer::after{display:none!important;content:none!important}
+html[data-cl-theme=light] body #viewChat .composer.composer.composer{background:#fff!important;border-color:rgba(0,0,0,.14)!important}
+html body #viewChat .composer.composer.composer #msg{border-radius:0!important;background:transparent!important}
+/* buttons: rounded squares */
+html body .cl-b.cl-b.cl-b,html body .ip-circ.ip-circ.ip-circ,html body .ip-chip.ip-chip.ip-chip,html body .circle.circle.circle,html body .icon-btn.icon-btn.icon-btn,html body .cl-nc.cl-nc.cl-nc,html body .cl-av.cl-av.cl-av,html body .cl-pill.cl-pill.cl-pill,html body .cl-pill.cl-pill button,html body .chip.chip.chip,html body .sug.sug.sug,html body .xnew.xnew.xnew,html body .btn.btn.btn,html body .ip-pill.ip-pill.ip-pill,
+html body #sendBtn#sendBtn#sendBtn,html body #gMic#gMic#gMic,html body #gWave#gWave#gWave,html body #modeBtn#modeBtn#modeBtn,html body #clNew#clNew#clNew,html body #clMenu#clMenu#clMenu,html body #clNc#clNc#clNc,html body #clAv#clAv#clAv{border-radius:10px!important}
+html body .cl-b.cl-b.cl-b,html body .ip-circ.ip-circ.ip-circ,html body .circle.circle.circle,html body .ip-pill.ip-pill.ip-pill,html body #clMenu#clMenu#clMenu,html body #clNew#clNew#clNew{background:#2a2a2d!important}
+html[data-cl-theme=light] body .cl-b.cl-b.cl-b,html[data-cl-theme=light] body .ip-circ.ip-circ.ip-circ,html[data-cl-theme=light] body .circle.circle.circle{background:#ecebe7!important}
+/* + and ⋯ stay bare */
+html body #attBtn#attBtn#attBtn#attBtn,html body #clMore#clMore#clMore#clMore{background:transparent!important;border:0!important;border-radius:10px!important}
+
+/* v5: menu items = plain text (no boxes/lines); header new-chat clean; sidebar New chat solid */
+html body #ipPlus#ipPlus button,html body #ipPlus#ipPlus button:hover,html body #ipPlus#ipPlus button:active,html body #ipPlus#ipPlus button:focus,
+html body .menu.pop:not(#_a):not(#_b) button,html body .menu.pop:not(#_a):not(#_b) button:hover,html body .menu.pop:not(#_a):not(#_b) button:active,html body .menu.pop:not(#_a):not(#_b) button:focus,
+html body .menu:not(#_a):not(#_b) button,html body .menu:not(#_a):not(#_b) button:hover,html body .menu:not(#_a):not(#_b) button:active{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;border:0!important;border-top:0!important;border-bottom:0!important;border-radius:0!important;box-shadow:none!important;outline:none!important}
+html body #ipPlus#ipPlus button::before,html body #ipPlus#ipPlus button::after,html body .menu:not(#_a):not(#_b) button::before,html body .menu:not(#_a):not(#_b) button::after{display:none!important;content:none!important}
+html body #ipPlus#ipPlus,html body .menu.pop:not(#_a):not(#_b){padding:6px!important}
+/* header: no frame around the new-chat / ⋯ group */
+html body #clPill#clPill,html body #clPill#clPill>*{background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important}
+html body #clNew#clNew#clNew,html body #clNew#clNew#clNew:hover,html body #clNew#clNew#clNew:active,html body #clNew#clNew#clNew:focus{background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important;color:#e8e8ea!important}
+html body #clNew#clNew#clNew::before,html body #clNew#clNew#clNew::after,html body #clPill#clPill::before,html body #clPill#clPill::after{display:none!important;content:none!important}
+/* sidebar New chat + profile: solid, not see-through over recents */
+html body #clDrawer .cl-db{background:#07070b!important;border-top:1px solid rgba(255,255,255,.08)!important}
+html body #clDrawer .cl-db #clNc#clNc,html body #clDrawer .cl-db #clAv#clAv{background:#2a2a2d!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;color:#fff!important}
+
+/* v6: bottom sidebar bar — solid bar, solid New chat + profile buttons */
+html body .cl-db:not(#_a):not(#_b){background:#0b0b10!important;background-color:#0b0b10!important;border-top:1px solid rgba(255,255,255,.1)!important;opacity:1!important}
+html body .cl-db button#clNc#clNc#clNc,html body .cl-db button#clNc#clNc#clNc:hover,html body .cl-db button#clNc#clNc#clNc:active,
+html body .cl-db button#clAv#clAv#clAv,html body .cl-db button#clAv#clAv#clAv:hover,html body .cl-db button#clAv#clAv#clAv:active{
+ background:#2f2f35!important;background-color:#2f2f35!important;background-image:none!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:10px!important;color:#fff!important;-webkit-text-fill-color:#fff;opacity:1!important;visibility:visible!important;box-shadow:none!important}
+html body .cl-db button#clNc#clNc#clNc svg{stroke:#fff!important;color:#fff!important}
+
+/* v7: smaller input + buttons, rounder squares, solid app, redesigned solid map, See more */
+html body,html{background:#0b0b10!important}
+#xmmBg,canvas#xmmBg{display:none!important}
+html body #clDrawer,html body #clTop#clTop,html body #viewChat,html body .dock,html body #clDrawer .cl-db:not(#_a){background:#0b0b10!important}
+html body #viewChat .composer.composer.composer,html body.ip #viewChat .composer.composer.composer,html body #viewChat .dock .composer.composer.composer{border-radius:18px!important;min-height:0!important;padding:4px 6px!important;background:#1a1a1f!important}
+html body #viewChat .composer #msg{font-size:15px!important;min-height:0!important;padding:6px 4px!important;line-height:1.35!important}
+html body #attBtn#attBtn#attBtn#attBtn{width:30px!important;height:30px!important;min-width:30px!important;border-radius:12px!important}
+html body #sendBtn#sendBtn#sendBtn,html body #gMic#gMic#gMic,html body #gWave#gWave#gWave,html body #modeBtn#modeBtn#modeBtn{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;border-radius:12px!important;padding:0!important}
+html body #sendBtn svg,html body #gMic svg,html body #gWave svg,html body #attBtn svg{width:16px!important;height:16px!important}
+html body .cl-b.cl-b.cl-b,html body .ip-circ.ip-circ.ip-circ{width:34px!important;height:34px!important;min-width:34px!important;border-radius:12px!important}
+html body .cl-b svg{width:17px!important;height:17px!important}
+html body .cl-db button#clNc#clNc#clNc,html body .cl-db button#clAv#clAv#clAv{height:38px!important;border-radius:12px!important}
+html body #ipPlus#ipPlus,html body .menu.menu.menu.pop,html body .menu.menu.menu{border-radius:16px!important}
+/* See more */
+html body .m-bot .body.xm-clamp{max-height:420px!important;overflow:hidden!important}
+html body .xm-btn{display:inline-block;margin:6px 0 0;padding:7px 14px;border:1px solid rgba(255,255,255,.16);border-radius:12px;background:#2a2a2d;color:#fff;font:600 13px inherit;cursor:pointer}
+/* ===== Map UI: solid, clean ===== */
+html body #nv#nv,html body #nv#nv *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body #nv#nv{--bg:#17171b;--fg:#f4f4f6;--mu:#9b9ba5;--sep:#2c2c33;--chip:#26262c;--blue:#3b82f6;background:#0b0b10}
+html body #nv .gl{background:#17171b!important;border:1px solid #2c2c33!important;box-shadow:0 6px 20px rgba(0,0,0,.45)!important;color:#f4f4f6}
+html body #nv .sbar{border-radius:16px!important;height:46px!important}
+html body #nv .sbar .av,html body #nv .rb,html body #nv .aih button,html body #nv .mic,html body #nv .spd{border-radius:12px!important}
+html body #nv .sheet,html body #nv .drv{left:10px!important;right:10px!important;border-radius:22px!important;padding:10px 16px 16px!important}
+html body #nv .sheet::before{width:34px!important;height:4px!important;background:#3a3a42!important}
+html body #nv .nm b{font-size:20px!important;letter-spacing:-.2px}
+html body #nv .acts>*{border-radius:14px!important;height:50px!important;background:#26262c!important;color:#f4f4f6!important}
+html body #nv .acts .st{background:#3b82f6!important;color:#fff!important}
+html body #nv .stats{border-top:1px solid #2c2c33!important}
+html body #nv .stats>div+div{border-left:1px solid #2c2c33!important}
+html body #nv .fabs{border-radius:16px!important}
+html body #nv .fabs button{color:#f4f4f6!important}
+html body #nv .fabs button+button{border-top:1px solid #2c2c33!important}
+html body #nv .turn{border-radius:18px!important;background:#2563eb!important}
+html body #nv .wx,html body #nv .rcl{border-radius:12px!important}
+html body #nv .aip{border-radius:20px!important}
+html body #nv .air input,html body #nv .aic button{border-radius:12px!important}
+html body #nv .leaflet-control-attribution,html body #nv .nv-attr{background:#17171b!important;color:#9b9ba5!important}
+html body #nv .leaflet-control-attribution a{color:#9b9ba5!important}
+html body #nv .fade{background:#0b0b10!important}
+
+/* v8: galaxy back, no bars at top/header, smaller input + buttons */
+html,html body{background:#000!important}
+#xmmBg,canvas#xmmBg{display:block!important}
+html body #clTop#clTop,html body #clTop#clTop#clTop,html body #viewChat,html body .dock,html body #mainChat,html body #main{background:transparent!important;background-color:transparent!important;border:0!important;box-shadow:none!important}
+html body #clTop::before,html body #clTop::after,html body #viewChat::before,html body #viewChat::after{display:none!important;content:none!important;background:none!important}
+html body #viewChat .composer.composer.composer,html body.ip #viewChat .composer.composer.composer,html body #viewChat .dock .composer.composer.composer{border-radius:16px!important;padding:2px 4px!important;min-height:0!important;background:#1a1a1f!important}
+html body #viewChat .composer #msg{font-size:14px!important;padding:4px 4px!important;line-height:1.3!important;min-height:0!important}
+html body #attBtn#attBtn#attBtn#attBtn,html body #sendBtn#sendBtn#sendBtn,html body #gMic#gMic#gMic,html body #gWave#gWave#gWave,html body #modeBtn#modeBtn#modeBtn{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;border-radius:10px!important;padding:0!important}
+html body #sendBtn svg,html body #gMic svg,html body #gWave svg,html body #attBtn svg{width:14px!important;height:14px!important}
+html body .cl-b.cl-b.cl-b,html body .ip-circ.ip-circ.ip-circ{width:30px!important;height:30px!important;min-width:30px!important;border-radius:10px!important}
+html body .cl-b svg{width:15px!important;height:15px!important}
+html body .cl-db button#clNc#clNc#clNc,html body .cl-db button#clAv#clAv#clAv{height:34px!important;border-radius:10px!important;font-size:13px!important}
+
+/* v9: input a bit bigger; sidebar bottom buttons not squished */
+html body #viewChat .composer.composer.composer,html body.ip #viewChat .composer.composer.composer,html body #viewChat .dock .composer.composer.composer{padding:6px 8px!important;border-radius:18px!important;min-height:48px!important}
+html body #viewChat .composer #msg{font-size:15px!important;padding:6px 6px!important;line-height:1.35!important}
+html body #attBtn#attBtn#attBtn#attBtn,html body #sendBtn#sendBtn#sendBtn,html body #gMic#gMic#gMic,html body #gWave#gWave#gWave,html body #modeBtn#modeBtn#modeBtn{width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;border-radius:11px!important}
+html body #sendBtn svg,html body #gMic svg,html body #gWave svg,html body #attBtn svg{width:16px!important;height:16px!important}
+html body .cl-db:not(#_a):not(#_b){display:flex!important;align-items:center!important;gap:10px!important;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px))!important;box-sizing:border-box!important}
+html body .cl-db button#clNc#clNc#clNc{flex:1 1 auto!important;min-width:0!important;height:44px!important;min-height:44px!important;padding:0 16px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;font-size:15px!important;white-space:nowrap!important;border-radius:12px!important}
+html body .cl-db button#clAv#clAv#clAv{flex:0 0 44px!important;width:44px!important;min-width:44px!important;height:44px!important;min-height:44px!important;padding:0!important;display:grid!important;place-items:center!important;font-size:15px!important;border-radius:12px!important}
+html body .cl-db button#clNc svg{flex:none!important;width:16px!important;height:16px!important}
+
+/* v10: map buttons = pills, icon buttons bare (invisible hitbox) */
+html body #nv .sbar{border-radius:999px!important;padding:0 8px 0 16px!important}
+html body #nv .sbar button,html body #nv .sbar .av,html body #nv .rb,html body #nv .aih button{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:999px!important;color:#f4f4f6!important}
+html body #nv .rb{width:38px!important;height:38px!important}
+html body #nv .fabs{border-radius:999px!important;padding:4px 0!important}
+html body #nv .fabs button,html body #nv .fabs button:active,html body #nv .fabs .cmp,html body #nv .fabs .cmp.m1,html body #nv .fabs .aib{background:transparent!important;border-radius:999px!important;box-shadow:none!important;color:#f4f4f6!important}
+html body #nv .fabs button+button{border-top:0!important}
+html body #nv .fabs .cmp.m2,html body #nv .fabs .aib{color:#3b82f6!important}
+html body #nv .acts>*{border-radius:999px!important;height:48px!important;flex-direction:row!important;gap:8px!important}
+html body #nv .acts .st{border-radius:999px!important}
+html body #nv .turn{border-radius:999px!important}
+html body #nv .drv .ex,html body #nv .aic button,html body #nv .air input,html body #nv .mic,html body #nv .wx,html body #nv .rcl,html body #nv .spd{border-radius:999px!important}
+html body #nv .sheet,html body #nv .drv{border-radius:26px!important}
+
+/* v11: bigger map pill, no chips inside */
+html body #nv .fabs:not(#_a){right:10px!important;padding:8px 0!important;border-radius:999px!important}
+html body #nv .fabs button:not(#_a):not(#_b),html body #nv .fabs button.cmp:not(#_a):not(#_b),html body #nv .fabs .aib:not(#_a):not(#_b){width:58px!important;height:58px!important;background:transparent!important;background-color:transparent!important;border:0!important;box-shadow:none!important;border-radius:999px!important;font-size:30px!important}
+html body #nv .fabs button svg{width:26px!important;height:26px!important}
+
+/* v12: original button size, bigger pill */
+html body #nv .fabs button:not(#_a):not(#_b),html body #nv .fabs button.cmp:not(#_a):not(#_b),html body #nv .fabs .aib:not(#_a):not(#_b){width:46px!important;height:46px!important;font-size:24px!important}
+html body #nv .fabs button svg{width:auto!important;height:auto!important}
+html body #nv .fabs:not(#_a){padding:16px 12px!important;gap:6px!important;align-items:center!important;right:8px!important;border-radius:999px!important}
+
+/* v13: galaxy locked by default; unlocked via "directions to galaxy" */
+html,html body{background:#0b0b10!important}
+#xmmBg,canvas#xmmBg{display:none!important}
+html.xm-galaxy,html.xm-galaxy body{background:#000!important}
+html.xm-galaxy #xmmBg,html.xm-galaxy canvas#xmmBg{display:block!important}
+#xgp{position:fixed;inset:0;z-index:2147483646;background:#000c;display:flex;align-items:center;justify-content:center;padding:24px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif}
+#xgp .xgc{background:#17171b;border:1px solid #2c2c33;border-radius:24px;padding:26px 24px 20px;max-width:320px;width:100%;text-align:center;color:#f4f4f6;display:flex;flex-direction:column;gap:8px;align-items:center}
+#xgp .xgi{font-size:54px;line-height:1}#xgp b{font-size:20px}#xgp small{font-size:14px;color:#9b9ba5}
+#xgp button{margin-top:12px;height:44px;padding:0 28px;border:0;border-radius:999px;background:#3b82f6;color:#fff;font:600 15px inherit;cursor:pointer}

@@ -1,0 +1,29 @@
+/* XMM AI v316 (light-DOM part). The whole interface lives in a Shadow DOM (see v316.js), so no old stylesheet can touch it.
+   This file only (1) frames the two hosts, (2) styles the chat messages the engine renders into the new frame, (3) colour variables for old pop-up sheets. */
+html:root{--cl-bg:#191919;--cl-bg2:#191919;--cl-card:#303030;--cl-card2:#303030;--cl-sheet:#303030;--cl-txt:#efefef;--cl-mut:#9a9a9a;--cl-line:rgba(255,255,255,.12);--cl-acc:#d97757;--cl-danger:#ef6a5e;--cl-serif:"Tiempos Text","Source Serif 4",Georgia,serif;--cl-sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+html:root[data-cl-theme="light"]{--cl-bg:#faf9f5;--cl-bg2:#faf9f5;--cl-card:#ffffff;--cl-card2:#f3f2ec;--cl-sheet:#ffffff;--cl-txt:#141413;--cl-mut:#73726c;--cl-line:rgba(0,0,0,.12)}
+html.v3,html.v3 body{background:#191919!important;overflow:hidden!important}
+html.v3[data-cl-theme="light"],html.v3[data-cl-theme="light"] body{background:#faf9f5!important}
+html.v3 #shell-chat,html.v3 .aurora,html.v3 #langTop,html.v3 #gmSiri,html.v3 #vowipe{display:none!important}
+html body *{-webkit-tap-highlight-color:transparent!important}
+.sun-note{display:none!important}
+#v3host{position:fixed;left:0;top:var(--xtop,0px);right:0;height:calc(var(--app-h,100dvh) - var(--xtop,0px));z-index:50;display:block;margin:0;padding:0;border:0;background:transparent;
+ --b0:#191919;--b1:#1f1f1f;--b3:#404040;--b4:#2a2a2a;--ln:#353535;--tx:#efefef;--tx2:#c8c8c8;--mu:#9a9a9a;--ac:#d97757;--serif:"Tiempos Text","Source Serif 4",Georgia,"Times New Roman",serif;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--tx)}
+html[data-cl-theme="light"] #v3host{--b0:#faf9f5;--b1:#f3f2ec;--b3:#e8e6dc;--b4:#eceae1;--ln:#e3e1d7;--tx:#141413;--tx2:#3d3d3a;--mu:#73726c}
+#v3ov{position:fixed;left:0;top:0;width:0;height:0;z-index:100;margin:0;padding:0}
+#v3host>#convo{position:absolute!important;inset:0!important;overflow-y:auto!important;overflow-x:hidden!important;padding:28px 24px 210px!important;margin:0!important;background:none!important;height:auto!important;max-height:none!important;width:auto!important;max-width:none!important;display:block!important;transform:none!important;scrollbar-width:thin;scrollbar-color:var(--b3) transparent}
+#v3host[data-empty="1"]>#convo{pointer-events:none;overflow:hidden!important}
+#v3host[data-view="other"]>#convo{display:none!important}
+#v3host>#convo>.greeting,#v3host>#convo>.cl-greet,#v3host>#convo #zhero{display:none!important}
+#v3host>#convo>#msgs{max-width:768px;margin:0 auto!important;width:100%}
+#v3host>.view.page{position:absolute!important;inset:0!important;overflow:auto!important;padding:28px 24px!important;margin:0!important;background:var(--b0)!important;color:var(--tx)!important;transform:none!important}
+#v3host>.view.page[hidden]{display:none!important}
+#v3host>#atts{display:flex;flex-wrap:wrap;gap:8px;padding:0 0 10px;margin:0;position:static!important;background:none!important}
+#v3host>#atts:empty{display:none}
+#v3host .m-user{background:var(--b4)!important;color:var(--tx)!important;border-radius:12px!important;font:400 15.5px/1.5 var(--sans)!important;padding:8px 14px!important;box-shadow:none!important;border:0!important}
+#v3host .m-bot .body,#v3host .m-bot .body p,#v3host .m-bot .body li{font:400 16.5px/1.65 var(--serif)!important;color:var(--tx)!important}
+#v3host .m-bot .body a{color:var(--ac)!important}
+#v3host .m-bot .body pre{background:var(--b1)!important;border:1px solid var(--ln)!important;border-radius:10px!important}
+#v3host .m-acts button{color:var(--mu)!important;background:none!important}
+#v3host .m-acts button:hover{color:var(--tx)!important;background:var(--b4)!important}
+@media (max-width:899px){#v3host>#convo{padding:20px 14px 200px!important}#v3host>.view.page{padding:20px 14px!important}}

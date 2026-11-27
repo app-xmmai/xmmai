@@ -1,0 +1,45 @@
+/* XMM smooth motion: spring press, hover lift, soft entrances (uses individual transform props so nothing existing breaks) */
+:root,:host{--spring:cubic-bezier(.34,1.56,.64,1);--out:cubic-bezier(.22,1,.36,1)}
+button,.icon-btn,.circle,.chat-i,.chip,summary,label.sin,select,a.btn{
+ transition:scale .4s var(--spring),translate .4s var(--out),filter .3s ease,opacity .35s ease,background-color .38s ease,border-color .38s ease,color .35s ease,box-shadow .4s ease!important;
+ -webkit-tap-highlight-color:transparent}
+@media(hover:hover){
+ :is(button,.icon-btn,.circle):not(:disabled):not(.g-file *):not(.g-file):not(#mainChat .composer *):not(.vtop *):not(.seg *):not(#cdBack):not(#cdTog):not(.cd-fcard *):hover{scale:1.04}
+ .chat-i:hover{translate:2px 0}
+}
+:is(button,.icon-btn,.circle):not(.g-file *):not(#mainChat .composer *):not(.vtop *):not(.seg *):not(#cdBack):not(#cdTog):active{scale:.95;transition-duration:.18s!important}
+button:disabled{opacity:.5}
+button svg,.icon-btn svg,.circle svg{transition:rotate .5s var(--spring),scale .4s var(--spring)}
+@media(hover:hover){button:hover svg{scale:1.08}}
+button[data-act=newchat]:hover svg,#v3Prev:hover svg,#v3Float:hover svg{rotate:90deg}
+/* entrances */
+@keyframes xIn{from{opacity:0;translate:0 10px;scale:.985}to{opacity:1;translate:0 0;scale:1}}
+@keyframes xPop{from{opacity:0;scale:.92;translate:0 -6px}to{opacity:1;scale:1;translate:0 0}}
+#msgs>*,.m-uw,.m-bot{animation:xIn .65s var(--out) both}
+[role=dialog],.popup,.v3-menu,#settings:not([hidden]),.v3-srch,#v3Srch{animation:xPop .45s var(--spring) both}
+#v3Panel,#v3Side,#sideChat{transition:transform .6s var(--out),translate .6s var(--out),opacity .45s ease,width .6s var(--out)!important}
+textarea,input{transition:box-shadow .4s ease,border-color .4s ease,background-color .4s ease}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* animate everything else softly */
+:where(a,li,tr,.card,.sheet,.cl-row,.cl-mi,.cl-grp,.v3-ci,.ms-i,.toast,img,h1,h2,h3,svg,small,b){transition:background-color .4s ease,color .4s ease,opacity .4s ease,border-color .4s ease,box-shadow .4s ease,scale .4s var(--spring),translate .4s var(--out)}
+@keyframes xRow{from{opacity:0;translate:-8px 0}to{opacity:1;translate:0 0}}
+.v3-list>*,.cl-row,.cl-mi,.ms-i{animation:xRow .55s var(--out) both}
+.v3-list>*:nth-child(2),.cl-mi:nth-child(2),.ms-i:nth-child(2){animation-delay:.05s}
+.v3-list>*:nth-child(3),.cl-mi:nth-child(3),.ms-i:nth-child(3){animation-delay:.1s}
+.v3-list>*:nth-child(4),.cl-mi:nth-child(4),.ms-i:nth-child(4){animation-delay:.15s}
+.v3-list>*:nth-child(n+5),.cl-mi:nth-child(n+5),.ms-i:nth-child(n+5){animation-delay:.2s}
+.cl-sheet{transition-duration:.8s!important}
+#v3Home h1{animation:xIn .9s var(--out) both}
+/* model dialog: no glowing / wave borders, no divider lines, no outlines */
+html:root:root body #clModel .cl-mi,html:root:root body .cl-mi:has(svg),html:root:root body .cl-mi[data-k="x7g"]{border:0!important;outline:0!important;box-shadow:none!important;animation:xRow .55s var(--out) both!important;background:#1e1f20!important;background-image:none!important}
+html:root:root body .cl-mi:has(svg){background:#282a2c!important}
+html:root:root body .cl-mi[data-k="x7g"] b{background:none!important;-webkit-background-clip:border-box;background-clip:border-box;color:inherit!important;animation:none!important}
+html:root:root body .cl-mi::before,html:root:root body .cl-mi::after,html:root:root body #clModel .cl-grp::before,html:root:root body #clModel .cl-grp::after{display:none!important;content:none!important}
+html:root:root body #clModel .cl-grp,html:root:root body #clModel.cl-sheet,html:root:root body #clModel{box-shadow:none!important;border:0!important}
+/* file cards + download buttons: never scale, glow, ring or blur when pressed */
+html body :is(.g-file,.cd-fcard,.xw-file,.cd-files,.cd-fzip),html body :is(.g-file,.cd-fcard,.xw-file,.cd-files) *{scale:none!important;translate:none!important;rotate:none!important;filter:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;outline:0!important;box-shadow:none!important;will-change:auto!important}
+html body :is(.g-file,.cd-fcard,.xw-file):is(:hover,:active,:focus,:focus-visible){transform:none!important;scale:none!important}
+html body :is(.g-file,.cd-fcard,.xw-file)::before,html body :is(.g-file,.cd-fcard,.xw-file)::after,html body :is(.g-file,.cd-fcard,.xw-file) *::before,html body :is(.g-file,.cd-fcard,.xw-file) *::after{content:none!important;display:none!important;animation:none!important}
+html body :is(.cd-fdl,.xw-btn,.g-fd,.cd-fzip){transform:none!important;animation:none!important;transition:background-color .3s ease,opacity .3s ease!important}

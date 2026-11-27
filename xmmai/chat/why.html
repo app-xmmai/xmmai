@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><script data-xmm-guard>(function(){try{
+var h=location.hostname.toLowerCase(),p=location.pathname,q=location.search+location.hash,X="xmm-ai.com";
+var dev=h==="localhost"||h==="127.0.0.1"||h==="[::1]"||location.protocol==="file:";
+var S={app:1,auth:1,support:1,status:1};
+var sub=h===X?"":(h.slice(-X.length-1)==="."+X?h.slice(0,-X.length-1):null);
+function kind(p){if(/^\/chat(\/(index\.html)?)?$/.test(p))return"app";if(/^\/login(\/(index\.html)?)?$/.test(p))return"auth";if(/^\/support(\/|$)/.test(p))return"support";if(/^\/status(\/|$)/.test(p))return"status";return""}
+function u(k,p){return"https://"+k+"."+X+((k==="app"||k==="auth")?"/":(p.replace(/^\/(support|status)/,"").replace(/index\.html$/,"")||"/"))}
+var k=kind(p),to=null;
+if(!dev){
+if(sub===""||sub===null||!S[sub]){if(k)to=u(k,p)+q}
+else{if(k&&k!==sub)to=u(k,p)+q}
+}
+if(to){document.documentElement.style.visibility="hidden";location.replace(to);return}
+var n=navigator,ua=n.userAgent||"";
+if(!(n.webdriver||/googlebot|bingbot|adsbot|applebot|duckduckbot|duckassistbot|baiduspider|yandex|gptbot|chatgpt-user|oai-searchbot|claudebot|claude-web|claude-user|claude-searchbot|anthropic|perplexitybot|perplexity-user|ccbot|bytespider|amazonbot|meta-external|facebookexternalhit|petalbot|semrush|ahrefs|mj12bot|dotbot|cohere|diffbot|youbot|ia_archiver|headless|lighthouse|python-requests|curl\/|wget|scrapy|puppeteer|playwright|selenium|phantomjs|(^|[^a-z])bot([^a-z]|$)|crawler|spider|slurp/i.test(ua)))return;
+var d=document.documentElement;d.setAttribute("data-bot","1");
+var s=document.createElement("style");
+s.textContent="html[data-bot] a,html[data-bot] button,html[data-bot] input,html[data-bot] textarea,html[data-bot] select,html[data-bot] label,html[data-bot] summary,html[data-bot] [role=button],html[data-bot] [onclick]{pointer-events:none!important;cursor:default!important}";
+document.head.appendChild(s);
+var SC={" ":1,ArrowUp:1,ArrowDown:1,PageUp:1,PageDown:1,Home:1,End:1};
+["click","dblclick","auxclick","mousedown","mouseup","pointerdown","pointerup","touchstart","touchend","keydown","keypress","keyup","input","beforeinput","change","submit","contextmenu","paste","cut","drop","dragstart"].forEach(function(t){
+window.addEventListener(t,function(e){e.stopImmediatePropagation();if(/^key/.test(t)&&SC[e.key])return;e.preventDefault()},true)});
+var of=window.fetch;
+if(of)window.fetch=function(u,o){var m=String((o&&o.method)||(u&&u.method)||"GET").toUpperCase(),x=false;
+try{x=new URL(String((u&&u.url)||u),location.href).origin!==location.origin}catch(e){}
+if((m!=="GET"&&m!=="HEAD")||x)return Promise.reject(new TypeError("read-only"));return of.apply(this,arguments)};
+var xo=XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open=function(m,u){var x=false;try{x=new URL(String(u),location.href).origin!==location.origin}catch(e){}
+if((String(m).toUpperCase()!=="GET")||x)throw new Error("read-only");return xo.apply(this,arguments)};
+window.WebSocket=function(){throw new Error("read-only")};
+n.sendBeacon=function(){return false};
+window.open=function(){return null};
+}catch(e){}})();</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Why the model switched · XMM AI</title>
+<style>
+:root{--bg:#f6f6f8;--fg:#15151a;--mut:#5c5c68;--card:#fff;--bd:#e2e2ea;--acc:#e5484d}
+@media(prefers-color-scheme:dark){:root{--bg:#0e0e12;--fg:#f1f1f5;--mut:#9a9aa8;--card:#17171d;--bd:#2a2a34}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;padding:max(20px,env(safe-area-inset-top)) 20px max(32px,env(safe-area-inset-bottom))}
+main{max-width:640px;margin:0 auto}h1{font-size:1.6rem;margin:.6em 0 .3em}h2{font-size:1.05rem;margin:1.6em 0 .4em}
+p,li{color:var(--mut)}.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px 18px;margin:14px 0}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.04em;color:var(--acc);border:1px solid var(--acc);border-radius:99px;padding:2px 10px}
+a.btn{display:inline-block;margin-top:18px;padding:12px 20px;border-radius:12px;background:var(--fg);color:var(--bg);text-decoration:none;font-weight:600}
+</style><link rel="canonical" href="https://app.xmm-ai.com/chat/why.html"></head><body><main>
+<span class="tag">MODEL SWITCH</span>
+<h1>Why did XMMGPT Sun 6.2 switch to XMMGPT 6.2?</h1>
+<p>Your message touched a topic that XMMGPT Sun 6.2 does not handle. A wrong or careless answer on these topics could have resulted in you or other people getting hurt, so the chat moved your message to the weaker, more careful model, XMMGPT 6.2.</p>
+<div class="card"><h2 style="margin-top:0">Topics that trigger the switch</h2>
+<ul><li>War, weapons, violence and terrorism</li><li>Religion and belief</li><li>Sensitive topics such as self-harm, abuse, drugs, adult content and politics</li><li>Very deep questions, such as the meaning of life or what happens after death</li></ul></div>
+<h2>What you can do</h2>
+<ul><li>Keep chatting. XMMGPT 6.2 answers this message and stays selected.</li><li>Pick XMMGPT Sun 6.2 again from the model button for your next normal question.</li><li>If you are in danger or feel unsafe, contact your local emergency number or someone you trust.</li></ul>
+<a class="btn" href="/chat/">Back to chat</a>
+</main></body></html>

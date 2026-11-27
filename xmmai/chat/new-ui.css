@@ -1,0 +1,92 @@
+/* new-ui.css: shared sidebar/+menu/generating box; desktop-only new chat page. Mobile chat page keeps the old UI. */
+html body .greeting .xg{display:none!important}
+html body #sideChat{background:#1e1e1f!important;border-right:1px solid rgba(255,255,255,.07)!important;box-shadow:none!important}
+html body #sideChat .chat-i,html body #sideChat .sidenav2 button,html body #sideChat .side-nav button{border-radius:10px!important;font-size:15px!important;font-weight:400!important;color:#d9d7d2!important;background:transparent!important}
+html body #sideChat .chat-i:hover,html body #sideChat .sidenav2 button:hover,html body #sideChat .side-nav button:hover{background:rgba(255,255,255,.06)!important}
+html body #sideChat .side-label{font-size:13px!important;color:#8a8984!important;font-weight:400!important;text-transform:none!important;letter-spacing:0!important}
+html body #sideChat .user{background:transparent!important;font-size:15px!important;font-weight:500!important}
+html body #sideChat .av{background:#1f6f66!important;color:#fff!important;border-radius:50%!important}
+/* + menu */
+#xplus{position:fixed;z-index:200;min-width:236px;padding:6px;border-radius:16px;background:#232324;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 32px rgba(0,0,0,.45)}
+#xplus[hidden]{display:none}
+#xplus button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;border-radius:10px;background:transparent;color:#e9e7e2;font:inherit;font-size:15px;text-align:left;cursor:pointer}
+#xplus button:hover{background:rgba(255,255,255,.07)}
+#xplus hr{border:0;border-top:1px solid rgba(255,255,255,.09);margin:4px 6px}
+#xplus svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+/* new image-generating box */
+html body .sv-view .frame{position:relative}
+html body #svLoad{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:linear-gradient(110deg,#1c1c1e 30%,#2d2d31 50%,#1c1c1e 70%) 0 0/220% 100%;animation:xsh 1.5s linear infinite,xgl 2.4s ease-in-out infinite;border:1px solid rgba(255,255,255,.08)}
+html body #svLoad .xnote{position:absolute;left:16px;right:16px;bottom:14px;font-size:13px;line-height:1.35;color:#d6d4ce;text-align:left}
+html body #svLoad .xnote:empty{display:none}
+@keyframes xsh{to{background-position:-220% 0}}
+@keyframes xgl{0%,100%{box-shadow:inset 0 0 40px rgba(196,72,20,.12)}50%{box-shadow:inset 0 0 80px rgba(196,72,20,.34)}}
+.xsug{display:none}
+/* mobile: old chat page stays, blur much weaker */
+@media(max-width:1100px){
+ html body .glass,html body .bnav,html body .composer,html body .sheet,html body .menu.pop,html body .vpop,html body .toast,html body .bnav-wrap .circle{-webkit-backdrop-filter:blur(6px)!important;backdrop-filter:blur(6px)!important}
+}
+/* desktop: full new look */
+@media(min-width:1101px){
+ :root{--bg:#1b1b1c!important;--c1:#222223!important;--c2:#2b2b2c!important;--bd:rgba(255,255,255,.085)!important;--tx:#e9e7e2!important;--mu:#8f8e89!important}
+ html body *,html body *::before,html body *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ html body{background:#1b1b1c!important}
+ html body .aurora{display:none!important}
+ html body #mainChat{background:radial-gradient(75% 42% at 60% 108%,rgba(196,72,20,.5) 0%,rgba(140,48,14,.24) 42%,rgba(0,0,0,0) 74%) no-repeat,#1b1b1c!important}
+ html body #mainChat .view,html body #mainChat .convo,html body #mainChat .dock,html body #mainChat .sp,html body #mainChat .topbar{background:transparent!important}
+ html body .chatview.empty{justify-content:center!important}
+ html body .chatview.empty .sp{display:none!important}
+ html body .chatview.empty .convo{flex:0 0 auto!important;display:block!important;max-width:752px;width:100%;margin:0 auto!important;padding:0 18px!important;overflow:visible!important}
+ html body .chatview.empty .greeting{display:block!important;text-align:center!important;font-size:28px!important;font-weight:500!important;margin:0 0 22px!important;animation:none!important;color:#ecebe6}
+ html body .greeting #xg{display:block}
+ html body .dock{flex:0 0 auto!important;max-width:752px!important;padding:0 18px 20px!important}
+ html body .chatview:not(.empty) .dock{padding-bottom:28px!important}
+ html body .foot{color:#6f6e6a!important;font-size:12px!important;text-align:center!important;padding-top:10px}
+ html body .composer{display:grid!important;grid-template-columns:auto 1fr auto auto auto!important;grid-template-areas:"att msg mode mic send"!important;gap:6px!important;align-items:center!important;min-height:58px!important;padding:8px 10px!important;border-radius:999px!important;background:#202021!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:none!important}
+ html body .composer #msg{grid-area:msg!important;background:transparent!important;border:0!important;font-size:16px!important;color:#ecebe6;min-height:32px}
+ html body .composer #attBtn{grid-area:att!important;background:rgba(255,255,255,.08)!important;border-radius:50%!important}
+ html body .composer #modeBtn{grid-area:mode!important;background:transparent!important;border:0!important;color:#d6d4ce!important;font-size:14px!important}
+ html body .composer .vmic{grid-area:mic!important}
+ html body .composer #sendBtn{grid-area:send!important;border-radius:50%!important}
+ html body .chatview.empty .xsug{display:block;margin-top:14px}
+ .xsug button{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border:0;background:transparent;color:#a9a7a1;font:inherit;font-size:15px;text-align:left;border-radius:12px;cursor:pointer}
+ .xsug button:hover{background:rgba(255,255,255,.05);color:#e9e7e2}
+ .xsug svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+}
+
+/* sidebar rebuilt */
+html body #sideChat .side-top,html body #sideChat #chatNav,html body #sideChat .sidenav2,html body #sideChat .side-label,html body #sideChat .sbar{display:none!important}
+html body #sideChat.xs-s .sbar{display:flex!important;margin:4px 0}html body #sideChat.xs-s .sbar .icon-btn{display:none!important}
+html body #sideChat{padding-top:14px!important}
+#sideChat .xs-top{display:flex;gap:6px;padding:2px 2px 12px}
+#sideChat .xs-i{width:36px;height:36px;display:grid;place-items:center;border:0;background:transparent;color:#d6d4ce;border-radius:10px;cursor:pointer}
+#sideChat .xs-i:hover{background:rgba(255,255,255,.07)}
+#sideChat svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#sideChat .xs-new{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;margin:0 0 10px;border:1px solid rgba(255,255,255,.12);background:#232324;color:#ecebe6;border-radius:14px;font:inherit;font-size:15px;cursor:pointer}
+#sideChat .xs-new i{width:20px;height:20px;border-radius:50%;background:#1a7cff;color:#fff;font-style:normal;font-size:16px;line-height:20px;text-align:center}
+#sideChat .xs-r{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border:0;background:transparent;color:#d6d4ce;border-radius:10px;font:inherit;font-size:15px;cursor:pointer;text-align:left}
+#sideChat .xs-r:hover{background:rgba(255,255,255,.06)}
+#sideChat .xs-lab{margin:22px 0 6px;padding:0 12px;font-size:13px;color:#8a8984}
+html body #sideChat .chat-i{padding:10px 12px!important;font-size:15px!important;color:#b9b7b1!important;border-radius:10px!important}
+#sideChat .xs-less .chat-i:nth-child(n+6){display:none!important}
+#sideChat .xs-more{align-self:flex-start;margin:2px 0 8px;padding:8px 12px;border:0;background:transparent;color:#8a8984;font:inherit;font-size:15px;cursor:pointer}
+html body #sideChat .user{margin:auto 0 0!important;padding:10px 6px!important;order:99!important;display:flex;align-items:center}
+#sideChat .xs-gear{margin-left:auto;width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.12);background:#232324;color:#d6d4ce;border-radius:50%;cursor:pointer}
+/* top bar pills (desktop) */
+.xt{display:none}
+@media(min-width:1101px){
+ html body .topbar .xt{display:flex;align-items:center;gap:8px;border:0;background:transparent;color:#d9d7d2;font:inherit;font-size:15px;padding:6px 10px;cursor:pointer}
+ .xt svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7}
+ html body .topbar .tb-share{display:none!important}
+ html body #tbPreview{background:transparent!important;border:0!important;color:#d9d7d2!important}
+ html body #tbPreview svg{width:20px;height:20px}
+}
+/* send = voice button */
+html body #sendBtn.xvoice{background:#2a2a2c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M5 10v4M8.5 7v10M12 4v16M15.5 8v8M19 10v4'/%3E%3C/svg%3E") center/18px no-repeat!important;border-radius:50%!important;width:34px!important;height:34px!important;opacity:1!important}
+html body #sendBtn.xvoice>*{opacity:0!important}
+html body .composer #modeBtn::after{content:"\2335";font-size:0}
+/* voice mode screen */
+html body #vo{background:#1b1b1c!important}
+html body #vo .bg,html body #vo .glow{display:none!important}
+html body #vo .pill{background:#202021!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:999px!important}
+html body #vo .end{background:#f2f1ee!important;color:#111!important;border-radius:50%!important}
+html body #vo .hint{color:#8a8984!important}

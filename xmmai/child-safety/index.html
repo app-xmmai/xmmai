@@ -1,0 +1,89 @@
+<!doctype html><html lang="en"><head><script data-xmm-guard>(function(){try{
+var h=location.hostname.toLowerCase(),p=location.pathname,q=location.search+location.hash,X="xmm-ai.com";
+var dev=h==="localhost"||h==="127.0.0.1"||h==="[::1]"||location.protocol==="file:";
+var S={app:1,auth:1,support:1,status:1};
+var sub=h===X?"":(h.slice(-X.length-1)==="."+X?h.slice(0,-X.length-1):null);
+function kind(p){if(/^\/chat(\/(index\.html)?)?$/.test(p))return"app";if(/^\/login(\/(index\.html)?)?$/.test(p))return"auth";if(/^\/support(\/|$)/.test(p))return"support";if(/^\/status(\/|$)/.test(p))return"status";return""}
+function u(k,p){return"https://"+k+"."+X+((k==="app"||k==="auth")?"/":(p.replace(/^\/(support|status)/,"").replace(/index\.html$/,"")||"/"))}
+var k=kind(p),to=null;
+if(!dev){
+if(sub===""||sub===null||!S[sub]){if(k)to=u(k,p)+q}
+else{if(k&&k!==sub)to=u(k,p)+q}
+}
+if(to){document.documentElement.style.visibility="hidden";location.replace(to);return}
+var n=navigator,ua=n.userAgent||"";
+if(!(n.webdriver||/googlebot|bingbot|adsbot|applebot|duckduckbot|duckassistbot|baiduspider|yandex|gptbot|chatgpt-user|oai-searchbot|claudebot|claude-web|claude-user|claude-searchbot|anthropic|perplexitybot|perplexity-user|ccbot|bytespider|amazonbot|meta-external|facebookexternalhit|petalbot|semrush|ahrefs|mj12bot|dotbot|cohere|diffbot|youbot|ia_archiver|headless|lighthouse|python-requests|curl\/|wget|scrapy|puppeteer|playwright|selenium|phantomjs|(^|[^a-z])bot([^a-z]|$)|crawler|spider|slurp/i.test(ua)))return;
+var d=document.documentElement;d.setAttribute("data-bot","1");
+var s=document.createElement("style");
+s.textContent="html[data-bot] a,html[data-bot] button,html[data-bot] input,html[data-bot] textarea,html[data-bot] select,html[data-bot] label,html[data-bot] summary,html[data-bot] [role=button],html[data-bot] [onclick]{pointer-events:none!important;cursor:default!important}";
+document.head.appendChild(s);
+var SC={" ":1,ArrowUp:1,ArrowDown:1,PageUp:1,PageDown:1,Home:1,End:1};
+["click","dblclick","auxclick","mousedown","mouseup","pointerdown","pointerup","touchstart","touchend","keydown","keypress","keyup","input","beforeinput","change","submit","contextmenu","paste","cut","drop","dragstart"].forEach(function(t){
+window.addEventListener(t,function(e){e.stopImmediatePropagation();if(/^key/.test(t)&&SC[e.key])return;e.preventDefault()},true)});
+var of=window.fetch;
+if(of)window.fetch=function(u,o){var m=String((o&&o.method)||(u&&u.method)||"GET").toUpperCase(),x=false;
+try{x=new URL(String((u&&u.url)||u),location.href).origin!==location.origin}catch(e){}
+if((m!=="GET"&&m!=="HEAD")||x)return Promise.reject(new TypeError("read-only"));return of.apply(this,arguments)};
+var xo=XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open=function(m,u){var x=false;try{x=new URL(String(u),location.href).origin!==location.origin}catch(e){}
+if((String(m).toUpperCase()!=="GET")||x)throw new Error("read-only");return xo.apply(this,arguments)};
+window.WebSocket=function(){throw new Error("read-only")};
+n.sendBeacon=function(){return false};
+window.open=function(){return null};
+}catch(e){}})();</script>
+
+
+
+
+<script>
+(function(){
+  function apply(){
+    try{
+      var w=innerWidth||0;
+      var coarse=false;
+      try{coarse=matchMedia("(pointer:coarse)").matches}catch(e){}
+      var tab=w<=1100 || (coarse && w<=1400);
+      document.documentElement.classList.toggle("is-tablet", !!tab);
+      document.documentElement.classList.toggle("is-landscape", !!matchMedia("(orientation:landscape)").matches);
+      document.documentElement.classList.toggle("is-portrait", !!matchMedia("(orientation:portrait)").matches);
+    }catch(e){}
+  }
+  apply();
+  addEventListener("resize", apply);
+  addEventListener("orientationchange", function(){setTimeout(apply, 100)});
+})();
+</script>
+
+
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Child Safety – XMM AI</title><meta name="theme-color" content="#0b0b0d"><meta name="color-scheme" content="dark"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/icon.svg?v=gpu6"><style>*{box-sizing:border-box;margin:0;padding:0}html{background:#0b0b0d;color-scheme:dark}
+body{min-height:100dvh;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;color:#e8e8ea;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);-webkit-font-smoothing:antialiased}
+.w{max-width:760px;margin:0 auto;padding:0 22px 60px}
+header{border-bottom:1px solid #25252b;margin-bottom:34px}header .w{display:flex;align-items:center;height:60px;padding-bottom:0}
+header a{color:#f2f2f3;text-decoration:none;font-weight:650;display:flex;gap:9px;align-items:center}header img{width:26px;height:26px;border-radius:7px}
+h1{font:500 clamp(30px,5vw,42px)/1.15 Georgia,serif;letter-spacing:-.02em;margin-bottom:6px}
+.up{color:#9a9aa3;font-size:14px;margin-bottom:28px}
+h2{font-size:18px;margin:30px 0 8px;color:#fff}p,li{color:#c4c4ca;margin-bottom:10px}ul{padding-left:22px}
+a{color:#b9a3f8}.box{background:#141417;border:1px solid #25252b;border-radius:12px;padding:16px 18px;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}td,th{border:1px solid #25252b;padding:8px 10px;text-align:left;vertical-align:top;color:#c4c4ca}th{background:#141417;color:#fff}
+.de{display:none}html[lang=de] .en{display:none}html[lang=de] .de{display:block}
+.bk{display:inline-block;margin-top:24px}
+</style>
+<link rel="canonical" href="https://xmm-ai.com/child-safety/"></head><body>
+<header><div class="w"><a href="/"><img src="/chat/icon.svg?v=gpu6" alt="" width="26" height="26">XMM AI</a></div></header><main class="w">
+<h1>Child Safety</h1><p class="up">Last updated: 22 November 2026</p>
+<p>The safety of children and young people matters to us. This page explains our rules, what we do to protect minors, and how to report a concern.</p>
+<div class="box"><strong style="color:#fff">Zero tolerance.</strong> XMM AI does not allow any content that sexualizes, exploits, endangers or abuses children. This includes child sexual abuse material (CSAM) and any request to create, describe, find or share it, whether real, fictional or AI-generated.</div>
+<h2>1. What is not allowed</h2>
+<ul><li>Sexual or suggestive content involving anyone under 18, in text or images, including fictional, drawn or AI-generated depictions.</li><li>Grooming, or attempts to contact, lure, manipulate or exploit a minor.</li><li>Requests for help finding, trading or hiding child sexual abuse material.</li><li>Content that encourages self-harm, dangerous challenges or other harm aimed at children.</li><li>Sharing a child’s private information, such as their name, school, address or photos, to harass or endanger them.</li></ul>
+<h2>2. How XMM AI is designed</h2>
+<ul><li><strong>No public feed and no messaging between users.</strong> XMM AI is a one-to-one assistant. People cannot contact, follow or find each other inside the app.</li><li><strong>No accounts.</strong> We do not collect an email address or password, and chats are stored in your browser on your own device (see our <a href="/privacy">Privacy Policy</a>).</li><li><strong>Safety rules for the AI.</strong> The assistant is instructed to refuse sexual content involving minors and other harmful requests, and image creation requests of this kind are refused.</li><li><strong>Action on misuse.</strong> We may block, limit or remove access for anyone who tries to use XMM AI against these rules.</li></ul>
+<h2>3. Age guidance</h2>
+<p>XMM AI is not meant for children under 13. Young people aged 13 to 17 should use it with the knowledge of a parent or guardian. AI answers can be wrong, so they are not a replacement for a trusted adult, a doctor or a teacher.</p>
+<h2>4. Tips for parents and guardians</h2>
+<ul><li>Talk with your child about what they ask AI tools and what they share. Remind them never to give out their full name, address, school, phone number or photos.</li><li>Use the device’s own parental controls to limit apps, browsers and screen time.</li><li>Chat history lives in the browser on the device. You can review or clear it from the app settings or the browser’s site data.</li><li>If a child has seen something upsetting, stay calm, listen, and take screenshots if you need to report it.</li></ul>
+<h2>5. Report a concern</h2>
+<p>If you see content or behavior that puts a child at risk, tell us at <a href="mailto:support@xmm-ai.com?subject=Child%20safety%20report">support@xmm-ai.com</a>. Include what happened, when, and a screenshot if you can. Please do not send or forward the material itself.</p>
+<p>When we find child sexual abuse material or a child in danger, we remove access and report it to the authorities as required by law.</p>
+<div class="box"><strong style="color:#fff">In immediate danger?</strong> Contact your local emergency number right away. To report child sexual abuse material, use your country’s official reporting line, for example the NCMEC CyberTipline in the United States (<a href="https://report.cybertip.org" rel="noopener">report.cybertip.org</a>) or INHOPE hotlines worldwide (<a href="https://www.inhope.org" rel="noopener">inhope.org</a>).</div>
+<p><a class="bk" href="/">&larr; Back to XMM AI</a></p>
+</main></body></html>

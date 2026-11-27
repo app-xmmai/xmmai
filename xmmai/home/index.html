@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head><script>if(/XMMAI-Desktop/.test(navigator.userAgent)){var _s=document.createElement("style");_s.textContent='a[href*="install=1"],a.store{display:none!important}';document.documentElement.appendChild(_s)}</script><script data-xmm-guard>(function(){try{
+var h=location.hostname.toLowerCase(),p=location.pathname,q=location.search+location.hash,X="xmm-ai.com";
+var dev=h==="localhost"||h==="127.0.0.1"||h==="[::1]"||location.protocol==="file:";
+var S={app:1,auth:1,support:1,status:1};
+var sub=h===X?"":(h.slice(-X.length-1)==="."+X?h.slice(0,-X.length-1):null);
+function kind(p){if(/^\/chat(\/(index\.html)?)?$/.test(p))return"app";if(/^\/login(\/(index\.html)?)?$/.test(p))return"auth";if(/^\/support(\/|$)/.test(p))return"support";if(/^\/status(\/|$)/.test(p))return"status";return""}
+function u(k,p){return"https://"+k+"."+X+((k==="app"||k==="auth")?"/":(p.replace(/^\/(support|status)/,"").replace(/index\.html$/,"")||"/"))}
+var k=kind(p),to=null;
+if(!dev){
+if(sub===""||sub===null||!S[sub]){if(k)to=u(k,p)+q}
+else{if(k&&k!==sub)to=u(k,p)+q}
+}
+if(to){document.documentElement.style.visibility="hidden";location.replace(to);return}
+if(!dev&&!k&&p==="/"&&S[sub]){var F={app:"/chat/index.html",auth:"/login/index.html",support:"/support/index.html",status:"/status/index.html"};document.documentElement.style.visibility="hidden";location.replace(F[sub]+q);return}
+var n=navigator,ua=n.userAgent||"";
+if(!(n.webdriver||/googlebot|bingbot|adsbot|applebot|duckduckbot|duckassistbot|baiduspider|yandex|gptbot|chatgpt-user|oai-searchbot|claudebot|claude-web|claude-user|claude-searchbot|anthropic|perplexitybot|perplexity-user|ccbot|bytespider|amazonbot|meta-external|facebookexternalhit|petalbot|semrush|ahrefs|mj12bot|dotbot|cohere|diffbot|youbot|ia_archiver|headless|lighthouse|python-requests|curl\/|wget|scrapy|puppeteer|playwright|selenium|phantomjs|(^|[^a-z])bot([^a-z]|$)|crawler|spider|slurp/i.test(ua)))return;
+var d=document.documentElement;d.setAttribute("data-bot","1");
+var s=document.createElement("style");
+s.textContent="html[data-bot] a,html[data-bot] button,html[data-bot] input,html[data-bot] textarea,html[data-bot] select,html[data-bot] label,html[data-bot] summary,html[data-bot] [role=button],html[data-bot] [onclick]{pointer-events:none!important;cursor:default!important}";
+document.head.appendChild(s);
+var SC={" ":1,ArrowUp:1,ArrowDown:1,PageUp:1,PageDown:1,Home:1,End:1};
+["click","dblclick","auxclick","mousedown","mouseup","pointerdown","pointerup","touchstart","touchend","keydown","keypress","keyup","input","beforeinput","change","submit","contextmenu","paste","cut","drop","dragstart"].forEach(function(t){
+window.addEventListener(t,function(e){e.stopImmediatePropagation();if(/^key/.test(t)&&SC[e.key])return;e.preventDefault()},true)});
+var of=window.fetch;
+if(of)window.fetch=function(u,o){var m=String((o&&o.method)||(u&&u.method)||"GET").toUpperCase(),x=false;
+try{x=new URL(String((u&&u.url)||u),location.href).origin!==location.origin}catch(e){}
+if((m!=="GET"&&m!=="HEAD")||x)return Promise.reject(new TypeError("read-only"));return of.apply(this,arguments)};
+var xo=XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open=function(m,u){var x=false;try{x=new URL(String(u),location.href).origin!==location.origin}catch(e){}
+if((String(m).toUpperCase()!=="GET")||x)throw new Error("read-only");return xo.apply(this,arguments)};
+window.WebSocket=function(){throw new Error("read-only")};
+n.sendBeacon=function(){return false};
+window.open=function(){return null};
+}catch(e){}})();</script>
+<script>
+(function(){try{
+var BAD=/ban|susp|violat|strike|lockout|cooldown_chat|blocked/i;
+try{for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i);if(k&&BAD.test(k)&&!/^xmm\.(chats|notes|name|terms|welcomed)$/.test(k))localStorage.removeItem(k)}}catch(e){}
+try{var c=JSON.parse(localStorage.getItem("xmm.chats")||"[]");var ch=0;c.forEach(function(x){if(x&&(x.locked||x.banned||x.closed)){delete x.locked;delete x.banned;delete x.closed;ch=1}});if(ch)localStorage.setItem("xmm.chats",JSON.stringify(c))}catch(e){}
+}catch(e){}})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>XMM-AI Corporation</title>
+<meta name="description" content="XMM-AI Corporation builds digital apps. XMM-AI is our intelligent assistant for chat, images, and creation.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.ico?v=c1" sizes="any"><link rel="icon" type="image/png" href="/favicon-96x96.png?v=c1">
+<link rel="apple-touch-icon" href="/apple-touch-icon-v2.png">
+<meta property="og:site_name" content="XMM-AI Corporation">
+<meta property="og:title" content="XMM-AI Corporation">
+<meta property="og:description" content="XMM-AI Corporation is a company that makes digital apps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:#000}
+body{background:transparent;font-family:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#f5f5f7;-webkit-font-smoothing:antialiased;line-height:1.47;font-size:17px}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.1)}
+.nav-inner{max-width:980px;margin:0 auto;padding:0 22px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;letter-spacing:-.01em}
+.nav-brand img{width:22px;height:22px;border-radius:5px}
+.nav-links{display:flex;gap:28px;font-size:12px;color:#d2d2d7}
+.nav-links a:hover,.nav-cta:hover{color:#fff}
+.nav-cta{font-size:12px;color:#2997ff}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 24px;border-radius:980px;font-size:17px;font-weight:400;cursor:pointer;border:0;font-family:inherit;transition:background .2s,color .2s}
+.btn-blue{background:#0071e3;color:#fff}.btn-blue:hover{background:#0077ed}
+.btn-outline{background:transparent;color:#2997ff;border:1px solid #2997ff}.btn-outline:hover{background:#2997ff;color:#000}
+.btn-sm{height:34px;padding:0 18px;font-size:14px}
+
+.hero{text-align:center;padding:96px 22px 120px;min-height:calc(100vh - 48px);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hero h1{font-size:clamp(36px,7vw,64px);font-weight:600;letter-spacing:-.025em;line-height:1.08;margin-bottom:10px}
+.hero .sub{font-size:clamp(19px,3vw,28px);color:#a1a1a6;margin-bottom:10px}
+.made-by{font-size:14px;color:#86868b;margin-bottom:26px}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.hero-btns.contact{margin-bottom:36px}
+
+.bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;background:#000}
+.bg-shade{position:fixed;inset:0;z-index:-1;background:rgba(0,0,0,.55)}
+.mute{position:fixed;right:16px;bottom:16px;z-index:60;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(30,30,32,.65);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .2s}
+.mute:hover{background:rgba(60,60,64,.85)}
+.mute svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mute .off{display:none}.mute.muted .on{display:none}.mute.muted .off{display:block}
+
+.product-strip{background:rgba(10,10,11,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:80px 22px;text-align:center}
+.product-strip h2,.about h2{font-size:clamp(28px,5vw,44px);font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
+.product-strip .sub{font-size:19px;color:#86868b;margin-bottom:44px}
+.strip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:980px;margin:0 auto}
+.strip-card{background:rgba(28,28,30,.85);border-radius:22px;padding:28px 22px 26px;transition:transform .2s}
+.strip-card:hover{transform:translateY(-3px)}
+.strip-card img{width:100%;height:140px;object-fit:cover;border-radius:14px;margin:0 auto 18px;background:#000}
+.strip-card img.logo{object-fit:contain;padding:18px}
+.strip-card h3{font-size:21px;font-weight:600;margin-bottom:6px}
+.strip-card p{font-size:14px;color:#a1a1a6;margin-bottom:16px}
+.strip-card a.lnk{font-size:14px;color:#2997ff}.strip-card a.lnk:hover{text-decoration:underline}
+.strip-card .dl-btn{display:inline-flex;height:38px;padding:0 20px;font-size:15px;margin-bottom:10px;color:#fff}
+.strip-card .play-link{display:block}
+
+.about{background:rgba(0,0,0,.6);padding:90px 22px;text-align:center}
+.about p{font-size:19px;color:#a1a1a6;max-width:640px;margin:0 auto 32px}
+.about-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+footer{background:rgba(0,0,0,.85);border-top:1px solid #2a2a2c;padding:28px 22px 40px;font-size:12px;color:#86868b}
+.footer-inner{max-width:980px;margin:0 auto}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:16px}
+.footer-links a:hover{color:#f5f5f7;text-decoration:underline}
+.footer-copy{padding-top:12px;border-top:1px solid #2a2a2c}
+
+.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.show{display:flex}
+.modal{background:#1c1c1e;border-radius:20px;padding:32px 28px;max-width:360px;width:100%;text-align:center}
+.modal h3{font-size:21px;font-weight:600;margin-bottom:8px}
+.modal p{font-size:15px;color:#a1a1a6;margin-bottom:24px}
+.modal .btn{width:100%}
+
+@media(max-width:734px){.nav-links{display:none}.hero{padding:40px 16px 56px}.product-strip,.about{padding:56px 16px}.strip-grid{grid-template-columns:1fr}}
+
+/* v405 landing polish */
+.btn-discord{background:#5865f2;color:#fff;gap:10px}.btn-discord:hover{background:#6d78f5;transform:translateY(-1px)}
+.btn{transition:background .2s,color .2s,transform .2s,box-shadow .2s}.btn:active{transform:scale(.97)}
+.btn-blue{box-shadow:0 8px 24px rgba(0,113,227,.35)}
+.hero h1{background:linear-gradient(180deg,#fff 30%,#9ec5ff);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.03em}
+.hero{animation:xIn .9s cubic-bezier(.22,1,.36,1) both}
+@keyframes xIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.strip-card,.modal-card{border:1px solid rgba(255,255,255,.1);background:rgba(20,20,24,.55);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-radius:22px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.strip-card:hover{transform:translateY(-4px);border-color:rgba(41,151,255,.45);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.25)}
+html{scroll-behavior:smooth}
+@media(max-width:640px){.hero-btns{flex-direction:column;align-items:stretch;padding:0 22px}.hero-btns .btn{width:100%}.nav-links{display:none}}
+@media(prefers-reduced-motion:reduce){.hero{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<script>if(navigator.standalone||matchMedia("(display-mode: standalone)").matches)location.replace("https://app.xmm-ai.com/");</script>
+
+<video class="bg-video" id="heroVideo" autoplay loop playsinline preload="auto" poster="/media/bg-poster.jpg" aria-hidden="true"><source src="/media/bg.mp4?v=405" type="video/mp4"></video>
+<div class="bg-shade"></div>
+<button class="mute" id="muteBtn" type="button" aria-label="Mute" title="Mute">
+  <svg class="on" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+  <svg class="off" viewBox="0 0 24 24"><path d="m11 5-5 4H3v6h3l5 4z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
+</button>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/"><img src="/chat/icon.svg?v=c1" alt=""><span>XMM AI Corporation</span></a>
+    <div class="nav-links">
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="https://support.xmm-ai.com/">Support</a>
+      <a href="https://status.xmm-ai.com/">Status</a>
+    </div>
+    <a class="nav-cta" href="https://app.xmm-ai.com/?install=1">Get XMM-AI</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>XMM AI Corporation</h1>
+  <p class="sub">Your intelligent assistant.</p>
+  <p class="made-by">All made by Mohammad Yasin Bayat / XMM Bayat</p>
+  <div class="hero-btns">
+    <a class="btn btn-blue" href="https://app.xmm-ai.com/?install=1">Get XMM-AI</a>
+    <button class="btn btn-outline" type="button" id="otherProjectsBtn">Other Projects</button><a class="btn btn-discord" id="discordBtn" href="https://discord.gg/Bb9x8rMe5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.5a18 18 0 0 0-6.4 0L8.6 3a19.8 19.8 0 0 0-4.9 1.4C.6 9 0 13.5.3 18a19.9 19.9 0 0 0 6 3l1.2-2a13 13 0 0 1-1.9-.9l.5-.4a14.2 14.2 0 0 0 11.8 0l.5.4c-.6.4-1.2.7-1.9.9l1.2 2a19.9 19.9 0 0 0 6-3c.4-5.2-.7-9.700-3.400-13.600ZM8.500 15.300c-1.100 0-2-1-2-2.200s.9-2.200 2-2.200 2 1 2 2.200-.9 2.200-2 2.200Zm7 0c-1.100 0-2-1-2-2.200s.9-2.200 2-2.200 2 1 2 2.200-.9 2.200-2 2.200Z"/></svg>Join our Discord</a>
+  </div>
+</section>
+
+<section class="product-strip" id="products">
+  <h2>Explore the lineup.</h2>
+  <p class="sub">Digital apps built by XMM-AI Corporation.</p>
+  <div class="strip-grid">
+    <div class="strip-card">
+      <img class="logo" src="/chat/icon.svg?v=c1" alt="XMM AI" width="120" height="120">
+      <h3>XMM AI</h3>
+      <p>Chat, create, and understand images with one fast assistant.</p>
+      <a class="lnk" href="https://app.xmm-ai.com/?install=1">Learn more ›</a>
+    </div>
+    <div class="strip-card">
+      <img src="/media/spikedash.svg" alt="SpikeDash game" width="400" height="140">
+      <h3>SpikeDash</h3>
+      <p>A gem-collecting arcade dash game inspired by Gemtray. Free web game (PWA) for Linux, Windows, macOS, Android and iOS.</p>
+      <a class="btn btn-blue dl-btn" href="/downloads/SpikeDash.html" download="SpikeDash.html">Download free</a>
+      <a class="lnk play-link" href="/downloads/SpikeDash.html">Play online ›</a>
+    </div>
+    <div class="strip-card">
+      <img src="/media/hero-fold.jpg" alt="More apps" width="120" height="120">
+      <h3>More apps</h3>
+      <p>New digital experiences from XMM-AI Corporation are on the way.</p>
+      <a class="lnk" href="#" id="otherProjectsLink">Coming soon ›</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2>XMM-AI Corporation</h2>
+  <p>XMM-AI Corporation is a company that makes digital apps. We design products that feel simple, fast, and useful — starting with XMM-AI, our intelligent assistant available on the web and as an installable app.</p>
+  <div class="about-btns">
+    <a class="btn btn-blue" href="https://app.xmm-ai.com/?install=1">Get XMM-AI</a>
+    <a class="btn btn-outline" href="https://support.xmm-ai.com/">Support</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="https://support.xmm-ai.com/">FAQ</a>
+      <a href="https://support.xmm-ai.com/">Support</a>
+      <a href="https://support.xmm-ai.com/terms">Terms</a>
+      <a href="https://support.xmm-ai.com/privacy">Privacy</a>
+      <a href="https://status.xmm-ai.com/">Status</a>
+      <a href="/child-safety">Child Safety</a>
+    </div>
+    <div class="footer-copy">Copyright © 2026 XMM-AI Corporation. All rights reserved.</div>
+  </div>
+</footer>
+
+<div class="modal-bg" id="comingSoonModal">
+  <div class="modal">
+    <h3>Coming Soon</h3>
+    <p>Other projects from XMM-AI Corporation are on the way. Check back later.</p>
+    <button class="btn btn-blue" type="button" id="closeModalBtn">Got it</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var modal=document.getElementById("comingSoonModal");
+  function open(){modal.classList.add("show")}
+  function close(){modal.classList.remove("show")}
+  document.getElementById("otherProjectsBtn").addEventListener("click",function(){document.getElementById("products").scrollIntoView({behavior:"smooth"})});
+  document.getElementById("otherProjectsLink").addEventListener("click",function(e){e.preventDefault();open()});
+  document.getElementById("closeModalBtn").addEventListener("click",close);
+  modal.addEventListener("click",function(e){if(e.target===modal)close()});
+
+  /* Hero video: try to play with sound; browsers may block that, so fall back to muted
+     and turn sound on at the visitor's first tap/click/key. */
+  var v=document.getElementById("heroVideo"),b=document.getElementById("muteBtn"),userMuted=false;
+  function ui(){var m=v.muted;b.classList.toggle("muted",m);b.setAttribute("aria-label",m?"Unmute":"Mute");b.title=m?"Unmute":"Mute"}
+  function unlock(){
+    document.removeEventListener("pointerdown",unlock,true);document.removeEventListener("keydown",unlock,true);
+    if(!userMuted){v.volume=0.2;v.muted=false;var p=v.play();if(p&&p.catch)p.catch(function(){});ui()}
+  }
+  v.volume=0.2;v.muted=false;
+  var p=v.play();
+  if(p&&p.catch)p.catch(function(){
+    v.muted=true;v.play().catch(function(){});ui();
+    document.addEventListener("pointerdown",unlock,true);
+    document.addEventListener("keydown",unlock,true);
+  });
+  b.addEventListener("click",function(e){
+    e.stopPropagation();userMuted=true;v.muted=!v.muted;
+    if(!v.muted&&v.paused)v.play().catch(function(){});
+    ui();
+  });
+  ui();
+})();
+</script>
+</body>
+</html>

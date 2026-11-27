@@ -1,0 +1,49 @@
+/* ===== mobile fixes (loaded last) ===== */
+@media (max-width:1100px){
+  /* 1. Ask/Build highlight: one rule, pinned inside the pill */
+  html body.vui #mainChat .vtop .vseg.vseg{display:flex!important;align-items:stretch!important;position:relative!important;padding:3px!important;gap:0!important;min-width:0!important;flex:none!important}
+  html body.vui #mainChat .vtop .vseg button{position:relative!important;z-index:1!important;flex:0 0 auto!important;min-width:64px!important;height:34px!important;padding:0 16px!important;margin:0!important;white-space:nowrap!important;line-height:34px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+  html body.vui #mainChat .vtop .vseg .vseg-pill.vseg-pill,
+  html body.vui .vseg .vseg-pill.vseg-pill{position:absolute!important;left:0!important;top:3px!important;bottom:3px!important;height:auto!important;margin:0!important;z-index:0!important;border-radius:999px!important;background:rgba(255,255,255,.16)!important;box-shadow:none!important;pointer-events:none!important}
+
+  /* 2. Top bar: even side padding, nothing cut off or squeezed */
+  html body.vui #mainChat .vtop.vtop{box-sizing:border-box!important;width:100%!important;max-width:100%!important;padding-left:14px!important;padding-right:14px!important;gap:8px!important;grid-template-columns:1fr auto 1fr!important}
+  html body.vui #mainChat .vtop .vc.vc.vc,
+  html body.vui #mainChat .vtop .vgl.vgl.vgl button{flex:0 0 40px!important;width:40px!important;height:40px!important;min-width:40px!important;padding:0!important}
+  html body.vui #mainChat .vtop .vright{justify-self:end!important;display:flex!important;justify-content:flex-end!important;gap:8px!important;min-width:0!important}
+  html body.vui #mainChat .vtop .vmenu{justify-self:start!important}
+  /* the extra "more" button duplicated actions that live elsewhere */
+  html body.vui #mainChat .vtop .vdots{display:none!important}
+
+  /* 3. No duplicate close buttons */
+  html body #sideChat .side-top .icon-btn[data-act="closeDrawer"]{display:none!important}
+  body:has(#settings:not([hidden])) .lq-x,
+  body:has(#installGuide:not([hidden])) .lq-x,
+  body:has(#welcome:not([hidden])) .lq-x{display:none!important}
+  html body #sideChat .xclose{flex:0 0 auto!important}
+  /* only one "new chat" in the drawer + one in the top bar: drop the drawer's second one */
+  html body #sideChat .sbar [data-act="newchat"]{display:none!important}
+  html body .bnav-wrap{display:none!important}
+
+  /* 4. Buttons never squeezed or overlapping */
+  html body :is(.icon-btn,.circle,.send,.mode,.btn,.xfab,.xclose,.vc,.vnew,.vseg button,.vchips button,.cd-f,.att-x,.chip){flex-shrink:0!important}
+  html body :is(.icon-btn,.circle,.send,.xfab,.xclose,.vc,.vnew){min-width:38px;min-height:38px;box-sizing:border-box}
+  html body .btn,html body .mode,html body .vchips button,html body .chip{white-space:nowrap}
+  html body .composer{gap:8px!important}
+  html body.vui #mainChat .composer .vrow-b{gap:10px!important;padding-top:4px}
+  html body.vui #mainChat .composer .vrow-b button{flex:0 0 auto!important;min-width:40px!important;min-height:40px!important;width:auto}
+  html body .vchips{gap:8px!important;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  html body .vchips::-webkit-scrollbar{display:none}
+  html body .sheet .sheet-h,html body #settings .sheet-h{gap:12px}
+  html body .m-acts{gap:6px!important;flex-wrap:wrap}
+  html body .m-acts .icon-btn{width:36px!important;height:36px!important}
+  html body .field,html body .xl-in{min-width:0}
+
+  /* 5. Tap highlight off everywhere; active feedback is the scale only */
+  html,html body,html body *{-webkit-tap-highlight-color:transparent!important}
+  html body :is(button,.icon-btn,.chat-i,.nav-i,.mg-i,.ms-i,.lq-row,a,[data-act],[role=tab]){outline:0!important;-webkit-touch-callout:none;touch-action:manipulation}
+  html body :is(button,[role=tab]):focus,html body :is(button,[role=tab]):focus-visible{outline:0!important}
+}
+@media (max-width:380px){
+  html body.vui #mainChat .vtop .vseg button{min-width:56px!important;padding:0 12px!important}
+}

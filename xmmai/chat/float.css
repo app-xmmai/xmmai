@@ -1,0 +1,144 @@
+/* floating blurred top buttons, no header bar */
+html body #mainChat>header.topbar.topbar{position:absolute!important;top:0!important;left:0!important;right:0!important;margin:0!important;padding:calc(8px + env(safe-area-inset-top,0px)) 12px 0!important;min-height:0!important;height:auto!important;background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;pointer-events:none!important;z-index:30!important}
+html body #mainChat>header.topbar.topbar>*{pointer-events:auto}
+html body #mainChat>header.topbar.topbar .icon-btn,
+html body #mainChat>header.topbar.topbar .xpill,
+html body #mainChat>header.topbar.topbar .xtog,
+html body #mainChat>header.topbar.topbar .xnew{background:rgba(120,120,128,.22)!important;border:1px solid rgba(255,255,255,.16)!important;-webkit-backdrop-filter:blur(22px) saturate(1.8)!important;backdrop-filter:blur(22px) saturate(1.8)!important;box-shadow:0 6px 22px rgba(0,0,0,.18)!important;animation:none!important}
+html body #mainChat>header.topbar.topbar .xpill .xp-b{background:none!important}
+html body #mainChat .chatview{padding-top:64px}
+html body #mainChat .chatview .convo{padding-top:0}
+/* ---- maps: better layout, fits every screen ---- */
+html body #nv{height:100vh;height:100dvh;bottom:auto}
+html body #nv .gl{border-radius:22px;box-shadow:0 10px 36px rgba(0,0,0,.2),0 0 0 .5px rgba(255,255,255,.45) inset}
+html body #nv .sheet,html body #nv .drv{left:max(8px,env(safe-area-inset-left,0px));right:max(8px,env(safe-area-inset-right,0px));border-radius:28px;max-height:calc(100dvh - 130px - env(safe-area-inset-top,0px));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+html body #nv .sheet::-webkit-scrollbar{display:none}
+html body #nv .acts .st{flex:1.7;height:58px;border-radius:16px;font-size:13px;background:linear-gradient(135deg,#0a84ff,#2563eb);box-shadow:0 6px 18px rgba(10,132,255,.45)}
+html body #nv .acts .st b{font-size:17px}
+html body #nv .acts>*{height:58px;border-radius:16px}
+html body #nv .rts{display:none;gap:8px;margin-top:12px;overflow-x:auto;scrollbar-width:none}
+html body #nv .rts::-webkit-scrollbar{display:none}
+html body #nv .rts button{flex:1 0 auto;min-width:96px;text-align:start;border:1.5px solid transparent;border-radius:14px;padding:8px 12px;background:var(--chip);display:flex;flex-direction:column;gap:1px}
+html body #nv .rts button b{font-size:16px;font-weight:700}
+html body #nv .rts button small{font-size:11.5px;color:var(--mu);font-weight:600;white-space:nowrap}
+html body #nv .rts button.on{border-color:#0a84ff;background:rgba(10,132,255,.14)}
+html body #nv .rts button.on b{color:#0a84ff}
+html body #nv .aip{max-height:min(60%,calc(100dvh - var(--sh,200px) - 150px));border-radius:24px}
+html body #nv .aio{max-height:min(32vh,calc(100dvh - var(--sh,200px) - 330px))}
+html body #nv .top{left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px))}
+html body #nv .fabs button{width:44px;height:44px}
+@media (max-height:700px){
+ html body #nv .fabs button{width:38px;height:38px}
+ html body #nv .stats{display:none}
+ html body #nv .sheet,html body #nv .drv{padding:6px 12px 12px}
+ html body #nv .turn b{font-size:18px}
+ html body #nv .acts>*,html body #nv .acts .st{height:50px}
+}
+/* ---- chat dialogs and boxes: always on screen ---- */
+html body .modal{padding:max(10px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) max(10px,env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));place-items:center;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+html body .modal .sheet{margin:0;width:min(520px,100%);max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;border-radius:26px;box-shadow:0 24px 70px rgba(0,0,0,.45);box-sizing:border-box}
+html body .modal .sheet .field,html body .modal .sheet input,html body .modal .sheet select,html body .modal .sheet textarea{max-width:100%;box-sizing:border-box}
+html body .toast{max-width:min(92vw,460px);bottom:calc(env(safe-area-inset-bottom,0px) + 90px)}
+html body .xw{border-radius:22px;padding:16px;box-sizing:border-box;max-width:100%;overflow-wrap:anywhere;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+html body .xw-place{padding:0}
+html body .xw img,html body .xw iframe,html body .xw table,html body .xw svg{max-width:100%}
+html body .xw-scroll,html body .xw .xw-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+html body .xw .xw-btn,html body .xw button{min-height:40px}
+html body .xw-ck,html body .xw-checklist li{min-height:40px}
+@media (max-width:420px){html body .xw{padding:13px;border-radius:20px}html body .modal .sheet{padding:18px}}
+
+/* ---- place rows: image, name + Start, short description ---- */
+.xp-pick{display:block}
+.xp-h{padding:14px 14px 4px;font-size:12px;font-weight:700;opacity:.55;text-transform:uppercase;letter-spacing:.05em}
+.xp-list{display:flex;flex-direction:column;padding:6px}
+.xp-row{display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;text-align:start;padding:9px;border-radius:16px;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.xp-row+.xp-row{border-top:1px solid rgba(128,128,128,.16)}
+.xp-row:active{background:rgba(128,128,128,.18)}
+.xp-img{flex:none;width:62px;height:62px;border-radius:14px;background:rgba(128,128,128,.18) center/cover no-repeat;display:grid;place-items:center;color:inherit;overflow:hidden}
+.xp-img.has svg{display:none}
+.xp-n{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.xp-t{display:flex;align-items:center;gap:8px;min-width:0}
+.xp-t b{font-size:15.5px;font-weight:700;min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xp-t em{flex:none;font-style:normal;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;background:#0a84ff;color:#fff}
+.xp-start{flex:none;border:0;border-radius:99px;padding:6px 16px;font:700 13px/1 inherit;background:#0a84ff;color:#fff;cursor:pointer;box-shadow:0 3px 10px rgba(10,132,255,.4)}
+.xp-start:active{transform:scale(.95)}
+.xp-ds{font-size:12.5px;line-height:1.35;opacity:.68;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.xp-d{font-size:11.5px;opacity:.55;font-weight:600}
+.xp-row.big{flex-direction:column;align-items:stretch;gap:10px;padding:0 0 12px;border:0;cursor:default}
+.xp-row.big .xp-img{width:100%;height:170px;border-radius:18px 18px 0 0}
+.xp-row.big .xp-n{padding:0 14px}
+.xp-row.big .xp-t b{font-size:19px;white-space:normal}
+.xp-row.big .xp-ds{-webkit-line-clamp:4;font-size:13.5px}
+.xp-row.big .xp-start{padding:9px 22px;font-size:14px}
+.xp-empty{padding:18px 14px;opacity:.7;font-size:14px}
+.xp-back{display:block;width:100%;border:0;background:none;color:#0a84ff;font:600 13px inherit;padding:0 14px 12px;text-align:start;cursor:pointer}
+.xp-pick.sel .xe-mini{margin:0;border-radius:0;height:170px}
+.xp-x{display:block;width:100%;border:0;background:none;color:inherit;opacity:.6;font:600 13px inherit;padding:8px 0 10px;cursor:pointer}
+/* ---- map: dark / light themes, results panel, 3D ---- */
+html body #nv.dk{--bg:rgba(28,29,34,.84);--fg:#fff;--mu:rgba(235,235,245,.6);--sep:rgba(235,235,245,.16);--chip:rgba(120,120,128,.32);background:#14161a}
+html body #nv.lt{--bg:rgba(255,255,255,.84);--fg:#111;--mu:rgba(60,60,67,.62);--sep:rgba(60,60,67,.16);--chip:rgba(118,118,128,.14)}
+html body #nv.dk .map,html body #nv.dk .leaflet-container{background:#14161a}
+html body #nv .res{display:none;margin-top:8px;border-radius:22px;max-height:min(62vh,calc(100dvh - 190px));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;color:var(--fg)}
+html body #nv .res.on{display:block}
+html body #nv .res::-webkit-scrollbar{display:none}
+html body #nv .res .xp-row.big .xp-img{height:min(190px,28vh)}
+html body #nv .xp-cats{display:flex;gap:8px;overflow-x:auto;padding:10px;scrollbar-width:none}
+html body #nv .xp-cats button{flex:none;border:0;border-radius:99px;padding:8px 14px;background:var(--chip);color:var(--fg);font:600 13.5px inherit;display:flex;align-items:center;gap:6px}
+html body #nv .m3d{position:absolute;inset:0;z-index:750;display:none;background:#14161a}
+html body #nv.d3on .m3d{display:block}
+html body #nv.d3on .fade{z-index:760}
+html body #nv.d3on .nv-attr{display:none}
+html body #nv .maplibregl-ctrl-attrib{font-size:10px;margin-bottom:calc(var(--sh,200px) + 6px)}
+html body #nv .m3-u{width:20px;height:20px;border-radius:50%;background:#0a84ff;border:3px solid #fff;box-shadow:0 0 0 6px rgba(10,132,255,.28),0 2px 8px rgba(0,0,0,.5)}
+html body #nv .m3-d{width:22px;height:22px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#ff453a;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+html body #nv .fabs .d3 b{font-size:13px;font-weight:800;letter-spacing:.02em}
+html body #nv.d3on .fabs .d3{background:#0a84ff;color:#fff}
+html body #nv .fabs button{width:42px;height:42px}
+/* ---- AI button: no popup, small purple highlight while listening ---- */
+html body #nv .fabs .txb,html body #nv.aion .fabs .txb,html body #nv .aip,html body #nv .aip.on{display:none!important}
+html body #nv.aion .fabs .aib{background:rgba(168,85,247,.2)!important;color:#c084fc!important;animation:none!important;box-shadow:inset 0 0 0 2px rgba(168,85,247,.9),0 0 10px rgba(168,85,247,.55)!important}
+
+/* AI header image on boxes */
+.xw>.xw-ai{height:128px;margin:-2px -2px 12px;border-radius:16px;background:linear-gradient(110deg,rgba(128,128,128,.16) 30%,rgba(128,128,128,.28) 50%,rgba(128,128,128,.16) 70%) 0 0/200% 100%;animation:xwsh 1.4s linear infinite;background-size:200% 100%}
+.xw>.xw-ai.ok{animation:none;background-size:cover;background-position:center;background-repeat:no-repeat}
+@keyframes xwsh{to{background-position:-200% 0}}
+
+/* ---- Chat | Image | Video bar above the input ---- */
+.gm{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 auto 8px;max-width:760px;padding:0 4px;flex-wrap:wrap}
+.gm-seg{display:inline-flex;padding:3px;border-radius:99px;background:rgba(120,120,128,.22);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);border:1px solid rgba(255,255,255,.12)}
+.gm-seg button,.gm-len button{border:0;background:none;color:inherit;font:600 13px/1 inherit;padding:8px 15px;border-radius:99px;cursor:pointer;opacity:.7;white-space:nowrap}
+.gm-seg button.on{background:#0a84ff;color:#fff;opacity:1;box-shadow:0 2px 10px rgba(10,132,255,.4)}
+.gm-seg i{font-style:normal;font-weight:600;opacity:.9}
+.gm-len{display:inline-flex;align-items:center;gap:4px;font-size:12px}
+.gm-len[hidden]{display:none}
+.gm-len span{opacity:.55;margin-right:4px}
+.gm-len button{padding:7px 11px;background:rgba(120,120,128,.2)}
+.gm-len button.on{background:#a855f7;color:#fff;opacity:1}
+/* ---- video box ---- */
+.xv{display:block;border-radius:18px;overflow:hidden;background:rgba(128,128,128,.14);aspect-ratio:11/8;position:relative;width:100%}
+.xv video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
+.xv-load{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:18px}
+.xv-load b{font-size:15px}.xv-load small{opacity:.65;font-size:12.5px}
+.xv-ring{width:40px;height:40px;border-radius:50%;border:4px solid rgba(128,128,128,.3);border-top-color:#a855f7;animation:xvspin .9s linear infinite}
+@keyframes xvspin{to{transform:rotate(360deg)}}
+.xv-acts{position:absolute;right:10px;top:10px}
+.xv-acts a{display:inline-block;padding:7px 14px;border-radius:99px;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font:600 12.5px/1 inherit;text-decoration:none}
+.xw-video{padding:6px}
+/* ---- loaders keep animating even with "reduce motion" on ---- */
+@media (prefers-reduced-motion:reduce){
+ html body .xv-ring,html body .sv-ring{animation-duration:.9s!important;animation-iteration-count:infinite!important}
+ html body .xw-ai,html body .sv-card.sk,html body .xw-skel span{animation-duration:1.5s!important;animation-iteration-count:infinite!important}
+ html body .gdots,html body .gdots *,html body .genbox .gdots *,html body .sv-load *{animation-duration:2.2s!important;animation-iteration-count:infinite!important}
+}
+
+.xv-tag{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.xv-acts{z-index:3;display:flex;gap:6px}
+.xv-acts button{padding:7px 14px;border:0;border-radius:99px;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font:600 12.5px/1 inherit;cursor:pointer}
+.xv:fullscreen{aspect-ratio:auto;border-radius:0;background:#000}.xv:fullscreen video{object-fit:contain}
+
+/* wave must always play: beat reduced-motion / turbo / other "animation:none" rules */
+html body .dotsbox i,html.xmm-turbo body .dotsbox i{animation-name:dwave!important;animation-duration:2.4s!important;animation-timing-function:ease-in-out!important;animation-iteration-count:infinite!important;animation-delay:var(--d,0s)!important;animation-play-state:running!important}
+html body .xv-ring{animation-name:xvspin!important;animation-duration:.9s!important;animation-iteration-count:infinite!important;animation-timing-function:linear!important}
+.xv:not(.done){background:#2b2b31}
+.xv .xv-load{pointer-events:none}.xv .dotsbox{z-index:0}.xv .dotslbl{z-index:1;bottom:12px}
+body:not(.imagine-on) .gm{display:none!important}

@@ -1,0 +1,136 @@
+/* ===== global (pc + mobile): sidebar, placeholder, file cards ===== */
+.g-ib{width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:10px;background:transparent;color:#c9c9c9;cursor:pointer;flex:none;padding:0}
+.g-ib:hover{background:rgba(255,255,255,.07);color:#fff}
+.g-ib svg{width:20px;height:20px}
+html body #sideChat{background:#1f1f1f!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-right:1px solid #2e2e2e!important;padding:0!important;display:flex!important;flex-direction:column;overflow:hidden;color:#e3e3e3;font-family:inherit;box-shadow:none!important}
+html body #sideChat#sideChat>:not(.g-keep),html body #sideChat#sideChat .user,html body #sideChat#sideChat .xclose,html body #sideChat#sideChat .xfab,html body #sideChat#sideChat .xwm,html body #sideChat#sideChat .xnav,html body #sideChat#sideChat.open .xclose{display:none!important}
+html body #sideChat .xfab{display:none!important}
+#sideChat .g-top{display:flex;align-items:center;gap:4px;padding:10px 10px 8px;position:static!important;top:auto!important;right:auto!important;justify-content:flex-start!important}
+#sideChat .g-colM{display:none}
+#sideChat .g-search{padding:0 10px 6px}
+#sideChat .g-search label{display:flex;align-items:center;gap:8px;height:38px;border-radius:12px;background:#2a2a2a;padding:0 12px;color:#999;border:0!important}
+#sideChat .g-search input{flex:1;background:transparent;border:0;outline:0;color:#fff;font-size:15px;font-family:inherit;min-width:0}
+#sideChat .g-search label i{display:none}
+#sideChat .g-new{display:flex;align-items:center;gap:10px;margin:6px 9px 8px;height:42px;padding:0 12px;border-radius:14px;border:1px solid #363636;background:#1b1b1b;color:#fff;font-weight:500;font-size:15px;font-family:inherit;cursor:pointer;text-align:left}
+#sideChat .g-new:hover{background:#242424}
+#sideChat .g-plus{width:18px;height:18px;border-radius:50%;background:#1d8bff;color:#fff;display:grid;place-items:center}
+#sideChat .g-plus svg{width:12px;height:12px;stroke-width:2.6}
+#sideChat .g-row{display:flex;align-items:center;gap:12px;width:calc(100% - 18px);margin:0 9px;height:41px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:#dedede;font-weight:400;font-size:15px;font-family:inherit;cursor:pointer;text-align:left}
+#sideChat .g-row:hover{background:rgba(255,255,255,.06)}
+#sideChat .g-row svg{width:18px;height:18px;color:#cfcfcf}
+#sideChat .g-sec{display:block!important;margin:22px 0 4px!important;padding:0 21px;font-size:13.5px!important;font-weight:500!important;color:#8e8e8e!important;text-transform:none!important;letter-spacing:0!important}
+#sideChat #chatList{flex:1 1 auto;min-height:0;overflow-y:auto;padding:0 9px;scrollbar-width:thin;scrollbar-color:#3a3a3a transparent;display:block!important}
+#sideChat #chatList .chat-i{display:flex!important;align-items:center;height:41px;padding:0 12px!important;border-radius:10px!important;font-size:15px!important;font-weight:400!important;color:#d6d6d6!important;background:transparent!important;margin:0!important;border:0!important}
+#sideChat #chatList .chat-i:hover,#sideChat #chatList .chat-i.on{background:rgba(255,255,255,.07)!important}
+#sideChat #chatList .chat-i span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#sideChat #chatList .chat-i .dots{opacity:0}
+#sideChat #chatList .chat-i:hover .dots{opacity:.8}
+#sideChat:not(.g-all) #chatList>:nth-child(n+6){display:none!important}
+#sideChat .g-more{display:block;margin:2px 9px 6px;padding:10px 12px;border:0;background:transparent;color:#8e8e8e;font-weight:400;font-size:15px;font-family:inherit;text-align:left;cursor:pointer;flex:none}
+#sideChat .g-bottom{display:flex;align-items:center;padding:10px 12px calc(14px + env(safe-area-inset-bottom,0px));margin-top:auto;flex:none}
+#sideChat .g-user{display:flex;align-items:center;gap:10px;border:0;background:transparent;color:#e3e3e3;font-weight:400;font-size:15px;font-family:inherit;cursor:pointer;min-width:0;padding:4px;border-radius:12px}
+#sideChat .g-user:hover{background:rgba(255,255,255,.06)}
+#sideChat .g-av{width:26px;height:26px;border-radius:50%;background:#000;color:#ff4b2b;display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+#sideChat .g-un{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g-pill{display:none!important}
+html body #msg::placeholder{color:#8b8b8b!important;opacity:1;text-shadow:0 0 0 rgba(139,139,139,0);transition:color .5s ease,text-shadow .5s ease,opacity .5s ease}
+html body #msg.g-phx::placeholder{color:transparent!important;opacity:.5;text-shadow:0 0 9px rgba(160,160,160,.95)}
+@keyframes gIn{from{opacity:0;filter:blur(6px);transform:translateY(6px)}to{opacity:1;filter:none;transform:none}}
+.g-file{display:flex;align-items:center;gap:12px;width:min(420px,100%);margin:10px 0;padding:12px 14px;border-radius:16px;background:#2a2a2a;border:1px solid #3a3a3a;cursor:pointer;animation:gIn .4s ease both;transition:background .18s,transform .18s,border-color .18s;color:#eee}
+.g-file:hover{background:#303030;border-color:#4a4a4a;transform:translateY(-1px)}
+.g-file:active{transform:scale(.985)}
+.g-fi{width:42px;height:42px;border-radius:12px;background:#383838;display:grid;place-items:center;color:#9cc8ff;flex:none}
+.g-fm{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.g-fm b{font-weight:600;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g-fm span{font-size:13px;color:#9a9a9a}
+.g-fd{display:flex;align-items:center;gap:6px;background:#fff;color:#000;border-radius:999px;padding:8px 14px;font-weight:600;font-size:13px;flex:none}
+.g-fd svg{width:16px;height:16px}
+.g-fab{display:none}
+
+/* ===== mobile: old home screen back, new sidebar kept, no pill ===== */
+
+
+/* ===== pc only ===== */
+@media all{
+ html body,html body .shell,html body #shell-chat,html body #mainChat,html body #viewChat{background:#1f1f1f!important}
+ html body .aurora,html body .bg,html body .orb{display:none!important}
+ html body #sideChat{transform:none!important;width:253px!important;max-width:253px!important;position:fixed!important;inset:0 auto 0 0!important;z-index:30}
+ html body.collapsed #sideChat{transform:translateX(-100%)!important}
+ html body #shell-chat #mainChat{margin-left:253px!important;left:0!important;width:auto!important;transition:margin .3s}
+ html body.collapsed #shell-chat #mainChat{margin-left:0!important}
+ html body.collapsed .g-fabD{display:grid;position:fixed;top:10px;left:12px;z-index:25;width:40px;height:40px;border-radius:12px;place-items:center;background:rgba(42,42,42,.92);border:1px solid #3a3a3a;color:#eee;cursor:pointer;padding:0}
+ body.code-on .g-fab{display:none!important}
+ .g-fabM,.g-fabS{display:none!important}
+ html body #mainChat>.topbar{position:absolute!important;top:0!important;left:0!important;right:0!important;height:56px!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:0 14px!important;display:flex!important;align-items:center;z-index:5}
+ html body #mainChat>.topbar>:not(.g-tb){display:none!important}
+ .g-tb{display:flex;align-items:center;gap:6px;width:100%}
+ .g-sp{flex:1}
+ .g-tb .g-menu,.g-tb .g-open{display:none!important}
+ html body #viewChat.empty:not([hidden]){display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding-bottom:28px}
+ html body #viewChat.empty .sp{display:none!important}
+ html body #viewChat.empty .convo{flex:none!important;overflow:visible!important;height:auto!important;min-height:0!important;width:100%;padding:0!important}
+ html body #viewChat.empty .dock{position:static!important;flex:none;width:100%;background:transparent!important;padding:0 24px!important}
+ .greeting{display:block!important;text-align:center;margin:0 0 24px!important;padding:0 16px}
+ .greeting>*{display:none!important}
+ .greeting::before{content:"What’s on the agenda today?";font-weight:500;font-size:28px;line-height:1.25;font-family:inherit;color:#ececec;letter-spacing:-.2px}
+ .g-sug{display:none;flex-direction:column;width:min(764px,calc(100% - 48px));margin-top:12px}
+ html body #viewChat.empty .g-sug{display:flex}
+ .g-srow{display:flex;align-items:center;gap:14px;height:48px;padding:0 21px;border:0;border-radius:12px;background:transparent;color:#dcdcdc;font-weight:400;font-size:15px;font-family:inherit;cursor:pointer;text-align:left}
+ .g-srow:hover{background:rgba(255,255,255,.05)}
+ .g-srow svg{width:20px;height:20px;color:#bdbdbd}
+ .xsug,.twin-sugg,.chips,.foot{display:none!important}
+ html body .composer{position:relative;display:flex!important;align-items:center;gap:8px;width:min(764px,calc(100% - 48px))!important;min-height:58px;height:auto!important;padding:10px 12px!important;border-radius:29px!important;background:#1b1b1b!important;border:1px solid #363636!important;box-shadow:none!important;backdrop-filter:none!important;margin:0 auto!important}
+ html body .composer:focus-within{border-color:#4a4a4a!important;box-shadow:none!important}
+ html body #attBtn{width:34px;height:34px;border-radius:50%!important;background:#2e2e2e!important;color:#ddd!important;flex:none;display:grid;place-items:center;padding:0}
+ html body #msg{flex:1;min-width:0;background:transparent!important;border:0!important;color:#fff;font-size:15px;line-height:24px;font-family:inherit;padding:0 4px!important;max-height:180px}
+ html body #modeBtn{display:flex;align-items:center;gap:0;background:transparent!important;border:0!important;box-shadow:none!important;color:#fff!important;padding:0 8px!important;height:34px;flex:none;font-weight:500}
+ html body #modeBtn svg{display:none!important}
+ html body #modeBtn span{font-size:0!important}
+ html body #modeBtn span::after{content:"Fast";font-size:15px;font-weight:500}
+ html body #modeBtn::after{content:"";width:6px;height:6px;border-right:1.6px solid #9a9a9a;border-bottom:1.6px solid #9a9a9a;transform:rotate(45deg) translateY(-2px);margin-left:7px}
+ .g-mic{color:#bbb;border-radius:50%}
+ .g-mic.on{color:#ff453a}
+ .g-wave{width:34px;height:34px;border-radius:50%;background:#2a2a2a}
+ html body #sendBtn{width:34px!important;height:34px!important;border-radius:50%!important;flex:none}
+ .composer[data-has="0"] #sendBtn{display:none!important}
+ .composer[data-has="1"] .g-wave{display:none!important}
+}
+
+/* ===== v76 mobile fixes ===== */
+
+
+/* hidden views must stay hidden (some rules force display:flex) */
+html body #viewChat[hidden],html body #viewSearch[hidden],html body #viewNotebooks[hidden]{display:none!important}
+
+
+/* ===== v77 ===== */
+/* settings sheet must always be visible (no clip/opacity animation leftovers) */
+html body #settings:not([hidden]) .sheet,html body #settings:not([hidden]) .sheet>*{opacity:1!important;clip-path:none!important;visibility:visible!important}
+/* chat bubbles */
+html body .m-user{background:#2f2f31!important;border-radius:20px 20px 6px 20px!important;padding:10px 14px!important;max-width:85%;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html body .m-bot .body{background:#1c1c1e!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:20px 20px 20px 6px!important;padding:10px 14px!important;max-width:92%;-webkit-touch-callout:none}
+/* action row hidden: copy/edit only on hold */
+html body .m-bot .m-acts{display:none!important}
+html body .m-bot .genbox~.m-acts,html body .m-bot .m-acts:has([data-gen]){display:flex!important}
+/* hold popup */
+.hold-pop{position:fixed;z-index:100000;display:flex;gap:2px;padding:4px;border-radius:14px;background:rgba(40,40,42,.96);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 28px rgba(0,0,0,.5)}
+.hold-pop button{border:0;background:none;color:#fff;font:600 14px -apple-system,system-ui,sans-serif;padding:9px 16px;border-radius:10px}
+.hold-pop button:active{background:rgba(255,255,255,.14)}
+/* sidebar-corner gap: menu button closer to left corner */
+
+
+/* ===== v78 ===== */
+html body .twin-ua{display:none!important}
+html body .m-bot:not(:has(pre)) .xsum-btn{display:none!important}
+
+
+/* ===== v79: no native select/callout on messages, only our popup ===== */
+html body .m-user,html body .m-user *,html body .m-bot .body,html body .m-bot .body *:not(pre):not(pre *){-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent}
+
+/* ===== v80 ===== */
+html body #msg::placeholder,html body #msg.g-phx::placeholder{color:transparent!important;opacity:0!important;text-shadow:none!important}
+.g-pv{position:fixed;z-index:3;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#8b8b8b;opacity:0;transform:translate3d(0,0,0);will-change:opacity,transform,filter;transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1),filter .45s cubic-bezier(.4,0,.2,1)}
+.g-pv.in{opacity:1;filter:blur(0)}
+.g-pv.out{opacity:0;filter:blur(4px);transform:translate3d(0,-5px,0)}
+.g-pv.pre{opacity:0;filter:blur(4px);transform:translate3d(0,6px,0);transition:none}
+html body .m-bot,html body .m-bot *:not(pre):not(code),html body .m-user,html body .m-user *,html body #msgs .m-uw{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}

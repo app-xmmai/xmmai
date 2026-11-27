@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head><script src="desktop.js?v=1"></script><script src="noanim.js?v=1"></script><script src="net.js?v=1" defer></script><script data-xmm-guard>(function(){try{
+var h=location.hostname.toLowerCase(),p=location.pathname,q=location.search+location.hash,X="xmm-ai.com";
+var dev=h==="localhost"||h==="127.0.0.1"||h==="[::1]"||location.protocol==="file:";
+var S={app:1,auth:1,support:1,status:1};
+var sub=h===X?"":(h.slice(-X.length-1)==="."+X?h.slice(0,-X.length-1):null);
+function kind(p){if(/^\/chat(\/(index\.html)?)?$/.test(p))return"app";if(/^\/login(\/(index\.html)?)?$/.test(p))return"auth";if(/^\/support(\/|$)/.test(p))return"support";if(/^\/status(\/|$)/.test(p))return"status";return""}
+function u(k,p){return"https://"+k+"."+X+((k==="app"||k==="auth")?"/":(p.replace(/^\/(support|status)/,"").replace(/index\.html$/,"")||"/"))}
+var k=kind(p),to=null;
+if(!dev){
+if(sub===""||sub===null||!S[sub]){if(k)to=u(k,p)+q}
+else{if(k&&k!==sub)to=u(k,p)+q}
+}
+if(to){document.documentElement.style.visibility="hidden";location.replace(to);return}
+if(!dev&&S[sub]&&k===sub&&/^\/(chat|login|support|status)(\/(index\.html)?)?$/.test(p)){try{history.replaceState(history.state,"","/"+location.search+location.hash)}catch(e){}}
+var n=navigator,ua=n.userAgent||"";
+if(!(n.webdriver||/googlebot|bingbot|adsbot|applebot|duckduckbot|duckassistbot|baiduspider|yandex|gptbot|chatgpt-user|oai-searchbot|claudebot|claude-web|claude-user|claude-searchbot|anthropic|perplexitybot|perplexity-user|ccbot|bytespider|amazonbot|meta-external|facebookexternalhit|petalbot|semrush|ahrefs|mj12bot|dotbot|cohere|diffbot|youbot|ia_archiver|headless|lighthouse|python-requests|curl\/|wget|scrapy|puppeteer|playwright|selenium|phantomjs|(^|[^a-z])bot([^a-z]|$)|crawler|spider|slurp/i.test(ua)))return;
+var d=document.documentElement;d.setAttribute("data-bot","1");
+var s=document.createElement("style");
+s.textContent="html[data-bot] a,html[data-bot] button,html[data-bot] input,html[data-bot] textarea,html[data-bot] select,html[data-bot] label,html[data-bot] summary,html[data-bot] [role=button],html[data-bot] [onclick]{pointer-events:none!important;cursor:default!important}";
+document.head.appendChild(s);
+var SC={" ":1,ArrowUp:1,ArrowDown:1,PageUp:1,PageDown:1,Home:1,End:1};
+["click","dblclick","auxclick","mousedown","mouseup","pointerdown","pointerup","touchstart","touchend","keydown","keypress","keyup","input","beforeinput","change","submit","contextmenu","paste","cut","drop","dragstart"].forEach(function(t){
+window.addEventListener(t,function(e){e.stopImmediatePropagation();if(/^key/.test(t)&&SC[e.key])return;e.preventDefault()},true)});
+var of=window.fetch;
+if(of)window.fetch=function(u,o){var m=String((o&&o.method)||(u&&u.method)||"GET").toUpperCase(),x=false;
+try{x=new URL(String((u&&u.url)||u),location.href).origin!==location.origin}catch(e){}
+if((m!=="GET"&&m!=="HEAD")||x)return Promise.reject(new TypeError("read-only"));return of.apply(this,arguments)};
+var xo=XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open=function(m,u){var x=false;try{x=new URL(String(u),location.href).origin!==location.origin}catch(e){}
+if((String(m).toUpperCase()!=="GET")||x)throw new Error("read-only");return xo.apply(this,arguments)};
+window.WebSocket=function(){throw new Error("read-only")};
+n.sendBeacon=function(){return false};
+window.open=function(){return null};
+}catch(e){}})();</script><script>/* auth.xmm-ai.com -> app.xmm-ai.com sign-in handoff */(function(){try{var m=/[#&]xmmx=([^&]+)/.exec(location.hash);if(!m)return;var o=JSON.parse(decodeURIComponent(m[1])),ok={"xmm.name":1,"xmm.terms":1,"xmm.welcomed":1};for(var k in o){if(ok[k]&&typeof o[k]==="string"&&o[k].length<200){JSON.parse(o[k]);localStorage.setItem(k,o[k])}}history.replaceState(null,"",location.pathname+location.search)}catch(e){}})();</script><script>try{if(localStorage.getItem("xmm.galaxy")==="1")document.documentElement.classList.add("xm-galaxy")}catch(e){}</script><script>if(/^\/map\//.test(location.pathname)||location.hostname==="app.xmm-ai.com")document.write('<base href="/chat/">')</script>
+<script>/* no-suspension guard: clears any old ban/lock state and removes any suspension screen. */
+(function(){try{
+var h=location.hostname.toLowerCase();
+var BAD=/ban|susp|violat|strike|lockout|cooldown_chat|blocked/i;
+try{for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i);if(k&&BAD.test(k)&&!/^xmm\.(chats|notes|name|terms|welcomed)$/.test(k))localStorage.removeItem(k)}}catch(e){}
+try{var c=JSON.parse(localStorage.getItem("xmm.chats")||"[]");var ch=0;c.forEach(function(x){if(x&&(x.locked||x.banned||x.closed)){delete x.locked;delete x.banned;delete x.closed;ch=1}});if(ch)localStorage.setItem("xmm.chats",JSON.stringify(c))}catch(e){}
+var RX=/access suspended|account was suspended|safety violation|can.t message in this chat|you have been logged out/i;
+function sweep(){try{var all=document.body?document.body.querySelectorAll("div,section,aside,p,span"):[];for(var j=0;j<all.length;j++){var e=all[j];if(e.children.length<4&&RX.test(e.textContent||"")&&(e.textContent||"").length<400){var t=e;while(t.parentElement&&t.parentElement!==document.body&&(t.parentElement.textContent||"").length<500)t=t.parentElement;t.remove()}}
+var ins=document.querySelectorAll("#msg[disabled],#msg[readonly]");ins.forEach(function(n){n.removeAttribute("disabled");n.removeAttribute("readonly")})}catch(e){}}
+document.addEventListener("DOMContentLoaded",function(){sweep();new MutationObserver(sweep).observe(document.documentElement,{childList:true,subtree:true})});
+setInterval(sweep,1500);
+}catch(e){}})();</script>
+
+<style id="cine-css">
+html{background:#000}
+#cine{position:fixed;inset:0;z-index:2147483000;overflow:hidden;display:grid;place-items:center;contain:strict;-webkit-tap-highlight-color:transparent;cursor:pointer}
+#cine *{box-sizing:border-box}
+#cine .ci-bar{position:absolute;left:0;right:0;height:50.3%;background:#000;z-index:1;transition:transform .7s cubic-bezier(.76,0,.18,1) .12s;will-change:transform}
+#cine .ci-t{top:0}#cine .ci-b{bottom:0}
+#cine .ci-t::after,#cine .ci-b::after{content:"";position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,.6);box-shadow:0 0 18px 2px rgba(130,180,255,.55);opacity:0;transition:opacity .2s}
+#cine .ci-t::after{bottom:0}#cine .ci-b::after{top:0}
+#cine.out .ci-t{transform:translate3d(0,-101%,0)}#cine.out .ci-b{transform:translate3d(0,101%,0)}
+#cine.out .ci-t::after,#cine.out .ci-b::after{opacity:1}
+#cine .ci-flare{position:absolute;z-index:2;left:50%;top:50%;width:min(92vw,1000px);height:2px;margin-top:-1px;transform:translate(-50%,0) scaleX(0);opacity:0;
+ background:linear-gradient(90deg,transparent,rgba(255,255,255,.95) 50%,transparent);box-shadow:0 0 26px 5px rgba(120,170,255,.5);animation:ciFlare .9s cubic-bezier(.2,.8,.2,1) .05s both}
+#cine .ci-c{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;transition:opacity .3s ease-in,transform .55s cubic-bezier(.5,0,1,1)}
+#cine.out .ci-c{opacity:0;transform:scale(1.16)}
+#cine .ci-glow{position:absolute;left:50%;top:38px;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;
+ background:radial-gradient(circle,rgba(120,170,255,.34),rgba(120,170,255,0) 66%);animation:ciGlow 1.7s ease-out .1s both}
+#cine .ci-logo{position:relative;width:76px;height:76px;animation:ciLogo .95s cubic-bezier(.16,1,.3,1) .22s both}
+#cine .ci-logo svg{display:block;width:100%;height:100%}
+#cine .ci-title{margin:26px -.42em 0 0;font:300 clamp(24px,6.4vw,40px)/1 -apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Inter,system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;color:#f4f4f2;animation:ciTitle 1.1s cubic-bezier(.16,1,.3,1) .6s both}
+#cine .ci-sub{margin:16px -.5em 0 0;font:400 10.5px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;letter-spacing:.5em;text-transform:uppercase;color:#7c7c82;animation:ciSub .9s ease 1s both}
+#cine .ci-grain,#cine .ci-vig{position:absolute;inset:-50%;z-index:4;pointer-events:none;transition:opacity .4s ease .2s}
+#cine .ci-grain{opacity:.09;background-size:160px 160px;animation:ciGrain .6s steps(5) infinite;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#cine .ci-vig{inset:0;background:radial-gradient(120% 95% at 50% 50%,transparent 45%,rgba(0,0,0,.7) 100%)}
+#cine.out .ci-grain,#cine.out .ci-vig{opacity:0}
+#cine.out{pointer-events:none}
+/* warm start: quick logo flash, no title card */
+#cine.warm .ci-title,#cine.warm .ci-sub,#cine.warm .ci-glow{display:none}
+#cine.warm .ci-logo{animation-duration:.4s;animation-delay:0s}
+#cine.warm .ci-flare{animation-duration:.5s;animation-delay:0s}
+#cine.warm .ci-grain{animation:none}
+/* reduced motion: plain fade */
+#cine.rm .ci-flare,#cine.rm .ci-glow,#cine.rm .ci-sub,#cine.rm .ci-grain{display:none}
+#cine.rm .ci-logo,#cine.rm .ci-title{animation:none}
+#cine.rm .ci-bar{transition:none;background:#000}
+#cine.rm{transition:opacity .25s ease}#cine.rm.out{opacity:0}
+#cine.rm.out .ci-t,#cine.rm.out .ci-b{transform:none}
+@keyframes ciFlare{0%{opacity:0;transform:translate(-50%,0) scaleX(0)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,0) scaleX(1)}}
+@keyframes ciGlow{0%{opacity:0;transform:scale(.55)}45%{opacity:1}100%{opacity:.5;transform:scale(1.12)}}
+@keyframes ciLogo{from{opacity:0;transform:scale(1.18)}}
+@keyframes ciTitle{from{opacity:0;transform:scale(1.2)}}
+@keyframes ciSub{from{opacity:0;transform:translateY(6px)}}
+@keyframes ciGrain{0%{transform:translate3d(0,0,0)}20%{transform:translate3d(-3%,2%,0)}40%{transform:translate3d(2%,-3%,0)}60%{transform:translate3d(-2%,-2%,0)}80%{transform:translate3d(3%,3%,0)}100%{transform:translate3d(0,0,0)}}
+</style>
+<style id="xmm-no-cf">
+
+html.cf-pending body > *:not(
+</style>
+<meta name="xmm-build" content="v405">
+<script>
+(function(){
+  window.__xmmCfPassed = 1;
+  document.documentElement.classList.add("cf-passed");
+  document.documentElement.classList.remove("cf-pending");
+  try { localStorage.setItem("xmm.cf.ok", JSON.stringify(Date.now())); } catch(e){}
+  try { localStorage.removeItem("xmm.cf.ok"); localStorage.setItem("xmm.cf.ok", JSON.stringify(Date.now())); } catch(e){}
+  window.dispatchEvent(new Event("xmm:cf-ok"));
+  // nuke any leftover gate if somehow present
+  document.addEventListener("DOMContentLoaded", function(){
+    try{var g=document.getElementById("cfGate");if(g)g.remove()}catch(e){}
+  });
+})();
+</script>
+
+
+
+
+
+<script>
+(function(){
+  function apply(){
+    try{
+      var w=innerWidth||0;
+      var coarse=false;
+      try{coarse=matchMedia("(pointer:coarse)").matches}catch(e){}
+      var tab=w<=1100 || (coarse && w<=1400);
+      document.documentElement.classList.toggle("is-tablet", !!tab);
+      document.documentElement.classList.toggle("is-landscape", !!matchMedia("(orientation:landscape)").matches);
+      document.documentElement.classList.toggle("is-portrait", !!matchMedia("(orientation:portrait)").matches);
+    }catch(e){}
+  }
+  apply();
+  addEventListener("resize", apply);
+  addEventListener("orientationchange", function(){setTimeout(apply, 100)});
+})();
+</script>
+
+
+<script>/* fresh-load: every load drops service workers, caches and cookies so users always get the newest site. Never hides the page, never redirects, never wipes chats or the saved name. */
+(function(){try{
+if(navigator.serviceWorker)navigator.serviceWorker.getRegistrations().then(function(r){r.forEach(function(x){var u=(x.active&&x.active.scriptURL)||(x.installing&&x.installing.scriptURL)||(x.waiting&&x.waiting.scriptURL)||"";if(u.indexOf("offline-sw.js")<0)x.unregister()})}).catch(function(){});
+if(window.caches)caches.keys().then(function(k){k.forEach(function(x){caches.delete(x)})}).catch(function(){});
+document.cookie.split(";").forEach(function(c){var n=c.split("=")[0].trim();if(!n)return;["",location.hostname,"."+location.hostname].forEach(function(d){document.cookie=n+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"+(d?";domain="+d:"")})});
+}catch(e){}})();</script>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+
+<script>try{var _n=JSON.parse(localStorage.getItem("xmm.name")||'""');if(!/[?&]install=1/.test(location.search)&&(!String(_n||"").trim()||/[?&]login=1/.test(location.search))){location.replace((/(^|\.)xmm-ai\.com$/.test(location.hostname)?"https://auth.xmm-ai.com/":"/login/")+(String(_n||"").trim()?"?force=1":""))}}catch(e){}</script>
+<script>/* instant theme: set before first paint, no flash */try{var _t=JSON.parse(localStorage.getItem("xmm.cl.theme"));var _d=_t!=="light";if(_t==="system")_d=matchMedia("(prefers-color-scheme:dark)").matches;document.documentElement.setAttribute("data-cl-theme",_d?"dark":"light")}catch(e){document.documentElement.setAttribute("data-cl-theme","dark")}</script>
+<meta charset="utf-8"><script src="/chat/install.js?v=2"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<title>XMM AI</title>
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="XMM AI by XMMAI">
+<link rel="preload" as="image" href="icon.svg?v=c1" type="image/svg+xml" fetchpriority="high">
+<meta name="application-name" content="XMM AI"><meta name="apple-mobile-web-app-title" content="XMM AI"><link rel="manifest" href="/chat/manifest.webmanifest?v=gpu7">
+<link rel="icon" href="/favicon.ico" sizes="48x48 96x96"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"><link rel="icon" type="image/svg+xml" href="icon.svg?v=c1">
+<link rel="apple-touch-icon" href="/chat/pwa-180.png?v=gpu7"><link rel="apple-touch-icon" sizes="152x152" href="/chat/pwa-152.png?v=gpu7"><link rel="apple-touch-icon" sizes="167x167" href="/chat/pwa-167.png?v=gpu7"><link rel="apple-touch-icon" sizes="180x180" href="/chat/pwa-180.png?v=gpu7">
+
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="XMM AI">
+<link rel="stylesheet" href="styles.css?v=183">
+<link rel="stylesheet" href="redesign.css?v=30">
+<link rel="stylesheet" href="code-ui.css?v=6">
+<link rel="stylesheet" href="voice-ui.css?v=7">
+<link rel="stylesheet" href="widgets.css?v=4">
+<link rel="stylesheet" href="final.css?v=12"><link rel="stylesheet" href="turbo.css?v=1"><link rel="stylesheet" href="maps.css?v=4b">
+<link rel="stylesheet" href="sun.css?v=405"><link rel="stylesheet" href="twin.css?v=1"><link rel="stylesheet" href="grok.css?v=14"><link rel="stylesheet" href="cinema.css?v=3"><link rel="stylesheet" href="fix.css?v=88"><link rel="stylesheet" href="clone.css?v=97">
+<link rel="stylesheet" href="ipad.css?v=117"><link rel="stylesheet" href="xfix.css?v=1"><link rel="stylesheet" href="float.css?v=8"><link rel="stylesheet" href="zdark.css?v=3"><link rel="stylesheet" href="lovable.css?v=4"><link rel="stylesheet" href="mobile-final.css?v=405"><link rel="stylesheet" href="bg.css?v=15"><link rel="stylesheet" href="xfix2.css?v=13"><link rel="stylesheet" href="gemini.css?v=8">
+
+
+
+
+
+
+<script>
+(function(){
+  window.__xmmCfPassed=1;
+  document.documentElement.classList.add("cf-passed");
+  document.documentElement.classList.remove("cf-pending");
+  try{localStorage.setItem("xmm.cf.ok", JSON.stringify(Date.now()))}catch(e){}
+  window.dispatchEvent(new Event("xmm:cf-ok"));
+})();
+</script>
+
+<style>#xl small{position:absolute;left:0;right:0;bottom:calc(22px + env(safe-area-inset-bottom,0px));max-width:none!important;font-size:13px}#xl i,#xl b{display:none!important}#xl{position:fixed;inset:0;z-index:2147483647;background:#0b0b10;color:#f4f4f6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;text-align:center;padding:24px;transition:opacity .35s}#xl.out{opacity:0;pointer-events:none}#xl img{width:84px;height:84px;border-radius:22px}#xl b{font-size:26px;font-weight:700;letter-spacing:-.3px}#xl small{font-size:13px;color:#9b9ba5;line-height:1.5;max-width:320px}#xl i{width:22px;height:22px;border-radius:50%;border:3px solid #2c2c33;border-top-color:#3b82f6;animation:xls .8s linear infinite;margin-top:6px}@keyframes xls{to{transform:rotate(360deg)}}</style><link rel="canonical" href="https://app.xmm-ai.com/">
+<link rel="stylesheet" href="v316.css?v=5"><link rel="stylesheet" href="mobile-v405.css?v=1"><link rel="stylesheet" href="fit.css?v=14"><script>(function(){try{var ua=navigator.userAgent||"",mm=function(q){try{return window.matchMedia(q).matches}catch(e){return false}};var touch=mm("(pointer: coarse)")||(navigator.maxTouchPoints>1&&Math.min(screen.width,screen.height)<1100);if(touch&&(navigator.standalone===true||mm("(display-mode: standalone)")||mm("(display-mode: fullscreen)")||mm("(display-mode: minimal-ui)")||(/iPhone|iPad|iPod/.test(ua)&&!/Safari|CriOS|FxiOS|EdgiOS/.test(ua))))document.documentElement.classList.add("pwa")}catch(e){}})();</script><script>(function(){function st(){try{var d=document.createElement("div");d.style.cssText="position:fixed;top:0;left:0;width:1px;height:1px;visibility:hidden;pointer-events:none;padding-top:env(safe-area-inset-top,0px)";document.documentElement.appendChild(d);var v=parseFloat(getComputedStyle(d).paddingTop)||0;document.documentElement.removeChild(d);
+ var land=window.innerWidth>window.innerHeight;if(land)v=0;
+ else if(!v&&navigator.standalone===true){var H=Math.max(screen.width,screen.height);v=H>=956?62:H>=852?(H===932||H===852?54:47):H>=812?(H===896?44:H===926?47:H===844?47:44):20}
+ document.documentElement.style.setProperty("--sat",v+"px")}catch(e){}}
+function f(){st();try{var h=(window.visualViewport&&window.visualViewport.height)||window.innerHeight||document.documentElement.clientHeight;if(navigator.standalone===true){var sw=screen.width,sh=screen.height,land=window.innerWidth>window.innerHeight,full=land?Math.min(sw,sh):Math.max(sw,sh);if(full>h&&full-h<120)h=full}var vv=window.visualViewport,kb=0,vt=0;if(vv){vt=Math.max(0,vv.offsetTop);kb=Math.max(0,Math.round(window.innerHeight-vv.height-vt));if(kb<90)kb=0}document.documentElement.style.setProperty("--kb",kb+"px");document.documentElement.style.setProperty("--vvt",vt+"px");if(kb&&(window.scrollY||vt)){try{window.scrollTo(0,0)}catch(e){}}document.documentElement.style.setProperty("--app-h",Math.round(h)+"px")}catch(e){}}f();window.addEventListener("resize",f);window.addEventListener("orientationchange",function(){setTimeout(f,150)});window.addEventListener("pageshow",f);if(window.visualViewport){window.visualViewport.addEventListener("resize",f);window.visualViewport.addEventListener("scroll",f)}document.addEventListener("focusin",function(){setTimeout(f,120);setTimeout(f,400)});document.addEventListener("focusout",function(){setTimeout(f,120);setTimeout(f,400)});setTimeout(f,300)})()</script><link rel="stylesheet" href="anim.css?v=6"><link rel="stylesheet" href="chrome.css?v=1"></head>
+<body><script src="verify.js?v=1"></script><div id="xl"><img src="icon.svg" alt=""><small id="xls">© XMM AI</small></div><script>window.__xlT=Date.now()</script>
+
+
+<div class="aurora"></div>
+<div id="langTop"><select id="topLang" aria-label="Language"><option value="de">Deutsch</option><option value="en">English</option><option value="fa">فارسی</option><option value="ar">العربية</option><option value="es">Español</option></select></div>
+<section class="shell" id="shell-chat">
+  <aside class="side glass" id="sideChat">
+    <div class="side-top">
+      <div class="brand"><img class="logo" src="icon.svg?v=c1" alt=""><span>XMM AI</span></div>
+      <div class="side-tools"><button class="icon-btn only-m" data-act="closeDrawer" data-ic="chev2" aria-label="Close"></button></div>
+    </div>
+    <nav class="side-nav" id="chatNav"></nav>
+    <div id="codeSec" hidden><div class="side-label">Code projects</div><div class="code-list" id="codeList"></div></div>
+    <div class="side-label">Chats</div>
+    <div class="chat-list" id="chatList"></div>
+    <nav class="sidenav2"><button data-act="opencode" id="sideCode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>Code</button><button data-k="notebooks" data-ic="folder">Notebooks</button></nav>
+    <div class="sbar"><label class="sin"><i data-ic="search"></i><input id="sideSearch" placeholder="Search" dir="auto"></label><button class="icon-btn" data-act="settings" data-ic="gear" aria-label="Settings"></button><button class="icon-btn" data-act="newchat" data-ic="plus" aria-label="New chat"></button></div>
+    <div class="user"><span class="av">XM</span><span class="uname">XMM User</span></div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main" id="mainChat" data-empty="1">
+    <header class="topbar">
+      <button class="icon-btn expand only-d" data-act="toggleSide" data-ic="panel" aria-label="Open sidebar"></button>
+      <button class="icon-btn glass only-m" data-act="openDrawer" data-ic="menu" aria-label="Menu"></button>
+            <div class="spacer"></div>
+      <div class="xpill" id="seg" data-pos="0"><span class="xp-thumb"></span><button type="button" class="xp-b" data-m="chat">Ask</button><button type="button" class="xp-b" data-m="code">Build</button></div>
+      
+      <button class="icon-btn only-d tb-share" data-act="share" data-ic="share" aria-label="Share"></button>
+    
+    <button id="tbCode" hidden aria-hidden="true"></button>
+    </header>
+
+    <div class="view chatview empty" id="viewChat">
+      <div class="sp sp-top"></div>
+      <div class="convo" id="convo">
+        <div class="greeting"><span class="g-d">Hi, what can I help you with?</span><span class="g-m">Hi, how's it going?</span></div>
+        <div class="msgs" id="msgs"></div>
+      </div>
+      <div class="dock">
+        <div class="chips" id="chips" hidden></div>
+                <div class="atts" id="atts"></div>
+        <div class="composer glass">
+          <button class="icon-btn" id="attBtn" data-ic="plus" aria-label="Attach"></button>
+          <textarea id="msg" rows="1" placeholder="Ask Anything" dir="auto"></textarea>
+          <button class="mode" id="modeBtn" data-ic="bolt"><span>Models</span></button><button class="send" id="sendBtn" aria-label="Send"></button>
+        </div>
+        <div class="foot">AI-generated content may be incorrect · © XMMAI. All rights reserved.</div>
+        <!-- file input created only on intentional upload tile tap -->
+      </div>
+      <div class="sp sp-bot"></div>
+    </div>
+
+    <div class="view page" id="viewSearch" hidden>
+      <h2>Search</h2>
+      <div class="searchbar glass"><i data-ic="search"></i><input id="searchIn" placeholder="Search your chats" dir="auto"></div>
+      <div class="results-list" id="searchOut"></div>
+    </div>
+    <div class="view page" id="viewNotebooks" hidden>
+      <div class="page-head"><h2>Notebooks</h2><button class="btn glass" id="newNote" data-ic="plus">New note</button></div>
+      <div class="notes" id="notes"></div>
+    </div>
+  </main>
+
+  <nav class="bnav-wrap only-m"><div class="bnav glass" id="chatBnav"></div><button class="circle glass" data-act="newchat" data-ic="plus" aria-label="New chat"></button></nav>
+</section>
+
+<div class="install glass" id="installBanner" hidden><img src="icon.svg?v=c1" alt=""><div><b>Install XMM AI</b><span>Add to your home screen for full-screen use</span></div><button class="btn sm" id="instYes">Install</button><button class="icon-btn sm" id="instNo" data-ic="close" aria-label="Dismiss"></button></div>
+
+<div id="settings" hidden><button id="logout" type="button"></button><button id="clearAll" type="button"></button><button data-act="install" type="button"></button></div>
+<div class="modal" id="installGuide" hidden><div class="sheet glass install-guide">
+  <div class="sheet-h"><h3>Install XMM AI</h3><button class="icon-btn sm" data-act="closeInstall" data-ic="close" aria-label="Close"></button></div>
+  <div id="igBody"></div>
+</div></div>
+<div class="modal" id="welcome" hidden><form class="sheet glass welcome" id="welcomeForm" autocomplete="off">
+  <img src="icon.svg?v=c1" alt="">
+  <h3>Welcome to XMM AI</h3>
+  <p class="hint">What should I call you? Give me your name so I know you.</p>
+  <input class="field" id="nameIn" placeholder="Your name" maxlength="40" dir="auto" autocapitalize="words" enterkeyhint="done">
+  <button class="btn wide" type="submit">Continue</button>
+  <button class="skip" type="button" id="nameSkip">Skip for now</button>
+</form></div>
+<div id="login" class="xl" hidden>
+<div class="xl-x" aria-hidden="true"><svg viewBox="1 1 22 22" width="100%" height="100%" style="overflow:visible"><defs><linearGradient id="xlg" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="0" y2="24"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#c4c4c4"/><stop offset=".62" stop-color="#6a6a6a"/><stop offset="1" stop-color="#4a4a4a"/><animateTransform attributeName="gradientTransform" type="rotate" from="0 12 12" to="360 12 12" dur="16s" repeatCount="indefinite"/></linearGradient><filter id="xlb" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation=".42"/></filter></defs><g fill="none" stroke="url(#xlg)" stroke-width=".42" filter="url(#xlb)" opacity=".9"><circle cx="12" cy="12" r="9.6"/><rect x="8.115" y="8.35" width="2.67" height="5.83" rx="1.335"/><rect x="14.435" y="8.35" width="2.67" height="5.83" rx="1.335"/></g><g fill="none" stroke="url(#xlg)" stroke-width=".14"><circle cx="12" cy="12" r="9.6"/><rect x="8.115" y="8.35" width="2.67" height="5.83" rx="1.335"/><rect x="14.435" y="8.35" width="2.67" height="5.83" rx="1.335"/></g></svg></div>
+<div class="xl-l"><div class="xl-h" role="heading" aria-level="1">Ask<br>anything.</div>
+<input id="lgName" class="xl-in" placeholder="Username" maxlength="24" autocapitalize="off" autocomplete="off" spellcheck="false" enterkeyhint="go" aria-label="Username">
+<button type="button" class="xl-b xl-c" id="lgGo" disabled>Continue</button>
+<div class="xl-t">By continuing, you agree to our <a href="https://support.xmm-ai.com/terms" target="_blank" rel="noopener">Terms of Service</a>, <a href="https://support.xmm-ai.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://support.xmm-ai.com/privacy" target="_blank" rel="noopener">Cookie Use</a>.</div></div>
+
+<div class="xl-f"><a href="https://xmm-ai.com/">About</a><a href="https://app.xmm-ai.com/?install=1">Get App</a><a href="https://support.xmm-ai.com/terms">Terms</a><a href="https://support.xmm-ai.com/privacy">Privacy</a><a href="https://support.xmm-ai.com/privacy">Cookies</a><a href="https://support.xmm-ai.com/privacy">Accessibility</a><span>© 2026 XMM AI</span></div>
+</div>
+<div class="toast glass" id="toast" hidden></div>
+
+<script src="icons.js?v=1"></script>
+<script src="config.js?v=183f"></script>
+<script src="limit.js?v=5"></script>
+<script src="sun.js?v=9"></script>
+<script src="media.js?v=2"></script>
+<script src="app.js?v=209mfgh"></script>
+<script src="widgets.js?v=28"></script><script src="nav.js?v=27"></script><script src="places.js?v=5"></script><script src="extra.js?v=8"></script><script src="boximg.js?v=2"></script>
+<script src="redesign.js?v=19"></script>
+<script src="summary.js?v=1"></script>
+<script src="morph.js?v=7"></script>
+<script src="imgrace.js?v=9"></script>
+<script src="img.js?v=14"></script>
+<script src="code.js?v=201"></script>
+<script src="upload.js?v=2"></script>
+<script src="lang.js"></script>
+<script src="voice-ui.js?v=9"></script>
+<script src="twin.js?v=3"></script><script src="turbo.js?v=1"></script>
+<script src="grok.js?v=10"></script>
+<script src="hold.js?v=3"></script>
+<script src="cinema.js?v=1" defer></script>
+<script src="unify.js?v=1"></script>
+<script src="mcp.js?v=2"></script>
+<script src="fix.js?v=89"></script>
+<script src="clone.js?v=gm6m"></script>
+<script src="ipad.js?v=gm1m"></script><script src="zdark.js?v=gm2"></script><script src="bg.js?v=5"></script>
+<script src="gemini.js?v=2"></script>
+<script src="v316.js?v=19m"></script><script src="gap.js?v=3"></script><script src="kbfix.js?v=1"></script><script src="popup.js?v=4"></script><script src="build7.js?v=2"></script>
+
+<link rel="stylesheet" href="noanim.css?v=3"></body>
+</html>

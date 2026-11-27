@@ -1,0 +1,121 @@
+/* bg.css: live space background for the chat */
+html:root{background:#000!important}
+html:root body,html:root body .aurora{background:transparent!important}
+html:root body #shell-chat,html:root body #mainChat,html:root body #viewChat,html:root body .main{background:transparent!important}
+#xmmBg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;display:block;background:radial-gradient(ellipse at 70% 35%,#0b0f1c 0%,#04050a 55%,#000 100%)}
+.aurora{display:none!important}
+.sunpop .sp-gal{width:84px;height:84px;margin:0 auto 10px;border-radius:50%;background:radial-gradient(circle,#fff 0 6%,#bcd8ff 14%,rgba(120,150,255,.5) 34%,rgba(0,0,0,0) 70%);box-shadow:0 0 40px rgba(140,170,255,.55);animation:galSpin 6s linear infinite}
+@keyframes galSpin{to{transform:rotate(360deg)}}
+
+/* ===== sidebar bottom bar fix: New chat button back + round, unsquished profile button ===== */
+html body #clDrawer .cl-db{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important;padding:12px 14px calc(env(safe-area-inset-bottom,0px) + 14px)!important}
+html body #clDrawer .cl-db #clAv,html body #clDrawer .cl-db .cl-av{flex:0 0 44px!important;width:44px!important;min-width:44px!important;max-width:44px!important;height:44px!important;min-height:44px!important;aspect-ratio:1/1!important;border-radius:50%!important;padding:0!important;margin:0!important;display:grid!important;place-items:center!important;line-height:1!important;font:600 16px var(--cl-sans,system-ui)!important;overflow:hidden}
+html body #clDrawer .cl-db #clNc,html body #clDrawer .cl-db .cl-nc{display:flex!important;visibility:visible!important;opacity:1!important;flex:1 1 auto!important;min-width:0!important;height:44px!important;border-radius:22px!important;padding:0 18px!important;align-items:center!important;justify-content:center!important;gap:9px!important;white-space:nowrap;font:600 15px var(--cl-sans,system-ui)!important;background:rgba(255,255,255,.06)!important;color:#fff!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:none!important;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);cursor:pointer}
+html body #clDrawer .cl-db #clNc svg{width:18px!important;height:18px!important;flex:none;display:block!important}
+html body #clDrawer .cl-db #clNc:hover{transform:translateY(-1px)}
+
+/* ===== glass: transparent buttons / sidebar / input with a small blur so the galaxy shows through ===== */
+html body{--gl-bg:rgba(255,255,255,.06);--gl-bg-h:rgba(255,255,255,.12);--gl-bd:rgba(255,255,255,.14);--gl-blur:blur(3px) saturate(130%)}
+html body #clDrawer,html body #sideChat,html body .cl-db,html body .cl-ds,html body #clTop{background:transparent!important;background-color:transparent!important;-webkit-backdrop-filter:var(--gl-blur)!important;backdrop-filter:var(--gl-blur)!important}
+html body #clDrawer{border-right:1px solid var(--gl-bd)!important;background:rgba(0,0,0,.12)!important}
+html body #clDrawer .cl-db,html body #clDrawer .cl-ds{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:none!important}
+html body :is(button,.btn,.icon-btn,.circle,.chip,.sug,.pl,.mode,.send,.xp-b,.cl-b,.cl-nc,.cl-av,.cl-pill,.cl-nr,.cl-ci,#clNew,#clMore,#clMenu,#attBtn,#gMic,#sendBtn,#modeBtn,.composer button,.xp-thumb):not(.cl-nr):not(.cl-ci){
+ background:var(--gl-bg)!important;background-color:var(--gl-bg)!important;background-image:none!important;color:#fff!important;border:1px solid var(--gl-bd)!important;box-shadow:none!important;
+ -webkit-backdrop-filter:var(--gl-blur)!important;backdrop-filter:var(--gl-blur)!important}
+html body :is(button,.btn,.icon-btn,.cl-b,.cl-nc,.cl-av,.cl-pill,#clNew,#clMore,#clMenu,#attBtn,#gMic,#sendBtn,#modeBtn,.composer button):not(.cl-nr):not(.cl-ci):hover{background:var(--gl-bg-h)!important}
+html body .cl-nr,html body .cl-ci{background:transparent!important}
+html body .cl-nr:hover,html body .cl-ci:hover{background:var(--gl-bg)!important;-webkit-backdrop-filter:var(--gl-blur);backdrop-filter:var(--gl-blur)}
+html body #clDrawer .cl-db #clNc{color:#fff!important;border:1px solid var(--gl-bd)!important;box-shadow:none!important}
+html body #clDrawer .cl-db #clNc svg{stroke:#fff}
+/* chat input */
+html body .composer,html body #viewChat .composer,html body .cl-comp{background:rgba(255,255,255,.05)!important;background-image:none!important;border:1px solid var(--gl-bd)!important;box-shadow:none!important;-webkit-backdrop-filter:var(--gl-blur)!important;backdrop-filter:var(--gl-blur)!important}
+html body .composer textarea,html body #msg{background:transparent!important;color:#fff!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body .composer button{border:0!important;background:rgba(255,255,255,.08)!important}
+html body .composer #sendBtn{background:rgba(255,255,255,.16)!important}
+html body #sideChat input,html body #clDrawer input{background:var(--gl-bg)!important;-webkit-backdrop-filter:var(--gl-blur);backdrop-filter:var(--gl-blur)}
+
+/* ===== no flicker: only the composer itself blurs (nested backdrop-filters flicker over the animated canvas) ===== */
+html body .composer *,html body .composer button,html body #clTop button,html body #clPill,html body #clPill button{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body .composer{transform:translateZ(0);will-change:auto!important;transition:none!important}
+html body #xmmBg{will-change:transform}
+
+/* ===== sidebar: hidden when closed, smooth open/close ===== */
+html body #clDrawer{transition:transform .45s cubic-bezier(.22,.8,.24,1),opacity .35s ease,visibility 0s linear .45s!important;transform:translateX(-24px);opacity:0;visibility:hidden}
+html body.cl-drawer #clDrawer{transform:none;opacity:1;visibility:visible;transition:transform .45s cubic-bezier(.22,.8,.24,1),opacity .35s ease,visibility 0s!important}
+/* PC + tablets: sidebar sits next to the normal chat page (chat resizes, stays usable, no dark overlay) */
+@media(min-width:700px){
+ html body #mainChat{transition:left .45s cubic-bezier(.22,.8,.24,1)!important}
+ html body.cl-drawer #mainChat{transform:none!important;left:var(--dw)!important;border-radius:0!important;box-shadow:none!important;border-left:1px solid rgba(255,255,255,.1)!important}
+ html body.cl-drawer #mainChat::after{opacity:0!important;pointer-events:none!important}
+}
+
+/* ===== no "All chats" button: every chat is listed (list scrolls); sidebar fits any screen ===== */
+html body #clAll,html body .cl-all{display:none!important}
+html body .cl-ci.cl-x{display:flex!important}
+html body #clDrawer .cl-ds{padding-bottom:84px!important;min-height:0}
+:root{--dw:clamp(230px,82vw,320px)}
+@media(min-width:700px){:root{--dw:clamp(260px,26vw,320px)}}
+html body #clDrawer{width:var(--dw)!important;max-width:100vw;height:var(--vvh,100%)!important;box-sizing:border-box}
+html body #clDrawer .cl-nr,html body #clDrawer .cl-ci{min-width:0}
+html body #clDrawer .cl-nr span,html body #clDrawer .cl-ci>span:not(.cl-dots){overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+@media(max-width:360px){html body #clDrawer .cl-db{padding:10px 10px calc(env(safe-area-inset-bottom,0px) + 10px)!important;gap:8px!important}html body #clDrawer #clNc{padding:0 12px!important;font-size:14px!important}}
+@media(max-height:560px){html body #clDrawer .cl-nr{height:38px!important}html body #clDrawer .cl-ci{height:34px!important}}
+
+/* ===== center cards/title + chat input in the chat area (they were double-offset by the sidebar width) ===== */
+html body.xempty #zhero{position:absolute!important;left:0!important;right:0!important;width:auto!important;max-width:none!important;margin:0!important;display:flex!important;justify-content:center!important}
+html body #zhero .zg,html body #zhero .zin{margin-left:auto!important;margin-right:auto!important;justify-content:center!important;max-width:100%}
+html body #mainChat .dock{position:absolute!important;left:0!important;right:0!important;width:auto!important;max-width:none!important;margin:0!important;transform:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;box-sizing:border-box}
+html body #mainChat .dock .composer{width:100%!important;max-width:720px!important;margin:0 auto!important}
+
+/* ===== flicker fix: no big blurred areas over the animated canvas; no row re-animations ===== */
+html body #clDrawer,html body .cl-db,html body .cl-ds,html body #clTop,html body #sideChat{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body #clDrawer{background:rgba(0,0,0,.28)!important}
+html body #mainChat button,html body #clDrawer button{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body #clDrawer *{animation:none!important}
+html body .composer{-webkit-backdrop-filter:blur(3px)!important;backdrop-filter:blur(3px)!important;isolation:isolate}
+html body #mainChat #viewChat .dock,html body.xempty #mainChat #viewChat .dock,html.is-tablet body.xempty #mainChat #viewChat .dock{position:absolute!important;left:0!important;right:0!important;width:auto!important;max-width:none!important;margin:0!important;transform:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;padding-left:24px!important;padding-right:24px!important;box-sizing:border-box!important}
+html body #mainChat #viewChat .dock .composer,html body.xempty #mainChat #viewChat .dock .composer{width:100%!important;max-width:720px!important;margin:0 auto!important}
+/* hero (title + cards) only on an empty chat; hidden as soon as a message is sent */
+html body:not(.xempty) #zhero{display:none!important}
+/* cards removed (title stays) */
+html body #zhero .zg,html body #zhero .zc,html body .g-sug,html body .sug-cards{display:none!important}
+/* removed: suggestion chips / voice tip under the chat input */
+html body #ipSug,html body .ip-sug,html body .cl-tip,html body #chips:empty{display:none!important}
+
+/* ===== remove the purple/pink/orange glow at the bottom (and its breathing animation) ===== */
+html body .shell::before,html body .shell::after,html body #zhero::before,html body #zhero::after,html body #shell-chat::before,html body #shell-chat::after,html body #mainChat::before,html body .dock::before,html body .dock::after,html body #viewChat::before,html body #viewChat::after,html body .cl-vglow,html body .cin-back,html body .cin-front,html body .cin-vig{display:none!important;animation:none!important;background:none!important;content:none!important}
+html body.xempty #shell-chat,html body.xempty #mainChat,html body.xempty #viewChat,html body #mainChat,html body #viewChat{background:transparent!important;background-image:none!important}
+
+/* ===== chat input: no blur / no animations => no flicker ===== */
+html body .composer,html body .dock .composer{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(20,20,28,.55)!important;transition:none!important;animation:none!important;will-change:auto!important;transform:none!important}
+html body .composer *,html body .dock *{animation:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body .composer textarea,html body #msg{transition:none!important}
+
+/* ===== blur back on the chat input (one single blur layer, nothing nested => stable) ===== */
+html body .composer,html body .dock .composer{background:rgba(255,255,255,.07)!important;-webkit-backdrop-filter:blur(10px) saturate(140%)!important;backdrop-filter:blur(10px) saturate(140%)!important;border:1px solid rgba(255,255,255,.16)!important;transform:translateZ(0)!important;isolation:isolate;contain:paint}
+html body .composer *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* small buttons: light blur */
+html body #clTop button,html body #mainChat .topbar button,html body #clDrawer #clNc,html body #clDrawer #clAv,html body #clDrawer .ip-circ{-webkit-backdrop-filter:blur(6px)!important;backdrop-filter:blur(6px)!important}
+
+/* ===== MOBILE FIX: chat input buttons (+, mic, voice) clickable and not white ===== */
+html body .composer,html body .dock .composer{transform:none!important;contain:none!important;isolation:auto!important;touch-action:manipulation}
+html body #zhero,html body #zhero *{pointer-events:none!important}
+html body #viewChat .dock{z-index:60!important;pointer-events:none!important}
+html body #viewChat .dock>*{pointer-events:auto!important}
+html body .composer button,html body .composer .g-ib,html body .composer .icon-btn{pointer-events:auto!important;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer;position:relative;z-index:2;background:rgba(255,255,255,.1)!important;background-color:rgba(255,255,255,.1)!important;background-image:none!important;color:#fff!important;border:1px solid rgba(255,255,255,.16)!important;box-shadow:none!important;opacity:1!important;visibility:visible!important}
+html body .composer button:active{background:rgba(255,255,255,.22)!important}
+html body .composer button svg,html body .composer button svg *{pointer-events:none!important;color:#fff!important;stroke:#fff!important;opacity:1!important}
+html body .composer button svg [fill]:not([fill=none]){fill:#fff!important}
+html body .composer #gWave,html body .composer .g-wave{background:#2f7bff!important;border-color:#2f7bff!important}
+
+/* ===== SAFARI FIX: buttons inside the composer were white (nested backdrop-filter bug). Blur moved to a sibling layer; buttons are SOLID. ===== */
+html body #viewChat .composer,html body #viewChat .dock .composer{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(18,18,26,.35)!important;position:relative!important;z-index:0}
+html body #viewChat .composer::before{content:""!important;display:block!important;position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;-webkit-backdrop-filter:blur(10px) saturate(140%)!important;backdrop-filter:blur(10px) saturate(140%)!important;background:rgba(255,255,255,.05)!important;animation:none!important}
+html body #viewChat .composer button,html body #viewChat .composer #attBtn,html body #viewChat .composer #gMic,html body #viewChat .composer #gWave,html body #viewChat .composer #sendBtn,html body #viewChat .composer #modeBtn,html body #viewChat .composer .g-ib,html body #viewChat .composer .icon-btn{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:#2b2b38!important;background-color:#2b2b38!important;background-image:none!important;color:#fff!important;border:1px solid #4a4a5c!important;opacity:1!important;visibility:visible!important;filter:none!important;mix-blend-mode:normal!important;-webkit-appearance:none;appearance:none;pointer-events:auto!important;touch-action:manipulation;-webkit-transform:translateZ(0);transform:translateZ(0)}
+html body #viewChat .composer #gWave,html body #viewChat .composer .g-wave{background:#2f7bff!important;background-color:#2f7bff!important;border-color:#2f7bff!important}
+html body #viewChat .composer #sendBtn.xvoice{background:#2f7bff!important}
+html body #viewChat .composer button svg{display:block!important;width:20px;height:20px;opacity:1!important;visibility:visible!important;color:#fff!important;stroke:#fff!important;fill:none}
+html body #viewChat .composer button svg [fill]:not([fill=none]){fill:#fff!important}
+html body #viewChat .composer button svg [stroke]:not([stroke=none]){stroke:#fff!important}
+html body #viewChat .composer button:active{background:#44445a!important}
+html body #viewChat .composer #gWave:active{background:#1f5fd6!important}

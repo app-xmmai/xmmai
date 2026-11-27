@@ -1,0 +1,4 @@
+/* XMM chrome */
+.brand span,#xls{background:linear-gradient(180deg,#fff 0%,#d9dde3 38%,#8e949c 52%,#f4f6f8 70%,#aeb4bc 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent;font-weight:800}
+.brand .logo,#xl img,.install img{border-radius:8px;object-fit:contain;background:#000}
+#xl img{width:min(240px,60vw)!important;height:auto!important;border-radius:20px}

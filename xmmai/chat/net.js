@@ -1,0 +1,5 @@
+(function(){function mk(){if(document.getElementById("xOff"))return document.getElementById("xOff");var d=document.createElement("div");d.id="xOff";d.hidden=true;d.innerHTML='<div class="o-i">\u26A1</div><h1>You\u2019re offline</h1><p>XMM AI needs the internet. Check your connection and it will come back by itself.</p><button type="button">Try again</button>';d.querySelector("button").onclick=function(){if(navigator.onLine)location.reload();else{var b=this;b.textContent="Still offline";setTimeout(function(){b.textContent="Try again"},1200)}};(document.body||document.documentElement).appendChild(d);return d}
+function upd(){var d=mk();d.hidden=navigator.onLine!==false}
+addEventListener("offline",upd);addEventListener("online",function(){var d=mk();var was=!d.hidden;d.hidden=true});
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",upd);else upd();
+try{if("serviceWorker"in navigator&&location.protocol==="https:")addEventListener("load",function(){navigator.serviceWorker.register("offline-sw.js").catch(function(){})})}catch(e){}})();
