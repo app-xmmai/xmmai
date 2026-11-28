@@ -1,4 +1,4 @@
-/* v422: the + button opens the device's own file selector (iOS, Android, PC). No in-app popup.
+/* v420: the + button opens the device's own file selector (iOS, Android, PC). No in-app popup.
    Must load before every other script so older + button handlers never run. */
 (function(){
  var SEL="#attBtn,#v3Add,#cvPlus,.composer .vplus",last=null;

@@ -133,12 +133,24 @@ footer{background:rgba(0,0,0,.85);border-top:1px solid #2a2a2c;padding:28px 22px
 html{scroll-behavior:smooth}
 @media(max-width:640px){.hero-btns{flex-direction:column;align-items:stretch;padding:0 22px}.hero-btns .btn{width:100%}.nav-links{display:none}}
 @media(prefers-reduced-motion:reduce){.hero{animation:none}html{scroll-behavior:auto}}
+
+/* v427 professional polish */
+.strip-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:stretch}
+.strip-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.strip-card p{flex:1}
+.strip-card .dl-btn{align-self:center}
+.strip-card h3 .tag{display:inline-block;vertical-align:middle;margin-left:6px;padding:2px 9px;border-radius:980px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7cc0ff;background:rgba(41,151,255,.14);border:1px solid rgba(41,151,255,.35)}
+.bg-shade{background:linear-gradient(180deg,rgba(0,0,0,.38),rgba(0,0,0,.62))}
+.hero .sub{color:#c7c7cc}
+.nav-links a{transition:color .2s}
+a:focus-visible,button:focus-visible{outline:2px solid #2997ff;outline-offset:3px;border-radius:8px}
+.bg-video{transform:translateZ(0)}
 </style>
 </head>
 <body>
 <script>if(navigator.standalone||matchMedia("(display-mode: standalone)").matches)location.replace("https://app.xmm-ai.com/");</script>
 
-<video class="bg-video" id="heroVideo" autoplay loop playsinline preload="auto" poster="/media/bg-poster.jpg" aria-hidden="true"><source src="/media/bg.mp4?v=406" type="video/mp4"></video>
+<video class="bg-video" id="heroVideo" autoplay loop playsinline preload="auto" poster="/media/bg-poster.jpg" aria-hidden="true"><source src="/media/bg.mp4?v=427" type="video/mp4"></video>
 <div class="bg-shade"></div>
 <button class="mute" id="muteBtn" type="button" aria-label="Mute" title="Mute">
   <svg class="on" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
@@ -149,7 +161,7 @@ html{scroll-behavior:smooth}
   <div class="nav-inner">
     <a class="nav-brand" href="/"><img src="/chat/icon.svg?v=c1" alt=""><span>XMM AI Corporation</span></a>
     <div class="nav-links">
-      <a href="#products">Products</a>
+      <a href="#products">Projects</a>
       <a href="#about">About</a>
       <a href="https://support.xmm-ai.com/">Support</a>
       <a href="https://status.xmm-ai.com/">Status</a>
@@ -170,7 +182,7 @@ html{scroll-behavior:smooth}
 
 <section class="product-strip" id="products">
   <h2>Explore the lineup.</h2>
-  <p class="sub">Digital apps built by XMM-AI Corporation.</p>
+  <p class="sub">Apps and projects built by XMM-AI Corporation.</p>
   <div class="strip-grid">
     <div class="strip-card">
       <img class="logo" src="/chat/icon.svg?v=c1" alt="XMM AI" width="120" height="120">
@@ -184,6 +196,13 @@ html{scroll-behavior:smooth}
       <p>A gem-collecting arcade dash game inspired by Gemtray. Free web game (PWA) for Linux, Windows, macOS, Android and iOS.</p>
       <a class="btn btn-blue dl-btn" href="/downloads/SpikeDash.html" download="SpikeDash.html">Download free</a>
       <a class="lnk play-link" href="/downloads/SpikeDash.html">Play online ›</a>
+    </div>
+    <div class="strip-card">
+      <img class="logo" src="/media/amrok.svg" alt="AMROK Browser" width="120" height="120">
+      <h3>AMROK Browser <span class="tag">Linux</span></h3>
+      <p>A fast, private desktop browser built on Chromium. Clean design, optional AI assistant in the toolbar.</p>
+      <a class="btn btn-blue dl-btn" href="https://github.com/app-xmmai/xmmai/releases" target="_blank" rel="noopener">Download – Linux only</a>
+      <a class="lnk play-link" href="https://github.com/app-xmmai/xmmai/releases" target="_blank" rel="noopener">View all releases ›</a>
     </div>
     <div class="strip-card">
       <img src="/media/hero-fold.jpg" alt="More apps" width="120" height="120">
@@ -237,6 +256,12 @@ html{scroll-behavior:smooth}
 
   /* Hero video: try to play with sound; browsers may block that, so fall back to muted
      and turn sound on at the visitor's first tap/click/key. */
+  var v0=document.getElementById("heroVideo");
+  /* Use the 4K video on large / high-density screens when data saving is off. */
+  (function(){
+    var c=navigator.connection||{},big=Math.max(screen.width,screen.height)*(window.devicePixelRatio||1)>=2600;
+    if(big&&!c.saveData&&!/2g/.test(c.effectiveType||"")){var s=v0.querySelector("source");s.src="/media/bg-4k.mp4?v=427";v0.load()}
+  })();
   var v=document.getElementById("heroVideo"),b=document.getElementById("muteBtn"),userMuted=false;
   function ui(){var m=v.muted;b.classList.toggle("muted",m);b.setAttribute("aria-label",m?"Unmute":"Mute");b.title=m?"Unmute":"Mute"}
   function unlock(){
